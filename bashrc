@@ -1,7 +1,4 @@
 export PATH=${PATH}:/Developer/SDKs/android-sdk-mac_86/tools
-##
-# Your previous /Users/niklas/.bash_profile file was backed up as /Users/niklas/.bash_profile.macports-saved_2010-07-08_at_23:13:55
-##
 
 # MacPorts Installer addition on 2010-07-08_at_23:13:55: adding an appropriate PATH variable for use with MacPorts.
 export PATH=/opt/local/bin:/opt/local/sbin:$PATH
@@ -10,10 +7,16 @@ export PATH=~/bin:$PATH
 export EDITOR='/usr/bin/vim'
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"  # This loads RVM into a shell session.
 alias gitk="/usr/bin/wish $(which gitk)"
-txtred='\033[0;31m' 
-txtgrn='\033[0;32m' 
-txtylw='\033[1;33m' 
-end='\033[0m' 
+
+txtblk='\e[0;30m' # Black - Regular
+txttxtred='\e[0;31m' # txtred
+txtgrn='\e[0;32m' # txtgrn
+txtylw='\e[0;33m' # txtylw
+txtblu='\e[0;34m' # Blue
+txtpur='\e[0;35m' # Purple
+txtcyn='\e[0;36m' # Cyan
+txtwht='\e[0;37m' # White
+txtrst='\e[0m'    # Text txtrst
 
 function parse_git_branch {
 	git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1) /'
@@ -27,21 +30,16 @@ function git_status_color {
   else
     if [[ "$STATUS" == *'working directory clean'* ]]
     then
-      echo -e '\033[032m'
+      echo -e $txtgrn 
 		else
     	if [[ "$STATUS" == *'Untracked files'* ]]
 			then
-      	echo -e '\033[031m'
+				echo -e $txtred
     	else
-				echo -e '\033[33m'
+				echo -e $txtylw 
     	fi
 		fi
   fi
 }
 
-#PS1='[\W$(parse_git_branch)]\$ ' 
-#	PS1='\u $'
-#else
-PS1='\[\033[37m\w\033[0m\]\[$(git_status_color)$(parse_git_branch)\033[0m\]
-$ '
-#fi
+PS1=''$txtcyn'\w'$txtrst'\[$(git_status_color)$(parse_git_branch)'$txtrst'\n$ '
