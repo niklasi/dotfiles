@@ -55,7 +55,7 @@ set laststatus=2                  " Show the status line all the time
 
 " Or use vividchalk
 colorscheme vividchalk
-set guifont=Consolas:h12
+"set guifont=Consolas:h12
 
 set smartindent
 set autoindent
@@ -116,6 +116,11 @@ autocmd bufwritepost _vimrc source $MYVIMRC
 " Set up the window colors and size
 "-----------------------------------------------------------------------------
 if has("gui_running")
+	if has("gui_gtk2")
+    set guifont=Inconsolata\ 11
+  elseif has("gui_win32")
+    set guifont=Consolas:h12:cANSI
+  endif
  if !exists("g:vimrcloaded")
      winpos 0 0
        if ! &diff
