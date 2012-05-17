@@ -9,7 +9,7 @@ export EDITOR='/usr/bin/vim'
 alias gitk="/usr/bin/wish $(which gitk)"
 
 txtblk='\e[0;30m' # Black - Regular
-txttxtred='\e[0;31m' # txtred
+txtred='\e[0;31m' # txtred
 txtgrn='\e[0;32m' # txtgrn
 txtylw='\e[0;33m' # txtylw
 txtblu='\e[0;34m' # Blue
@@ -21,7 +21,6 @@ txtrst='\e[0m'    # Text txtrst
 function parse_git_branch {
 	git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1) /'
 }
-
 function git_status_color {
   local STATUS=`git status 2>&1`
   if [[ "$STATUS" == *'Not a git repository'* ]]
@@ -41,5 +40,5 @@ function git_status_color {
 		fi
   fi
 }
-
-PS1=''$txtcyn'\w'$txtrst'\[$(git_status_color)$(parse_git_branch)'$txtrst'\n$ '
+PS1=''$txtcyn'\w$(parse_git_branch)'$txtrst'\n$ '
+#PS1=''$txtcyn'\w'$txtrst'$(git_status_color)$(parse_git_branch)'$txtrst'\n$ '
