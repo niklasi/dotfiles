@@ -1,3 +1,4 @@
+set encoding=utf-8
 call pathogen#infect()
 set nocompatible                  " Must come first because it changes other options.
 
