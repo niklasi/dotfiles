@@ -62,7 +62,7 @@ nnoremap <leader>ft Vatzf "Shortcut to fold tags
 set mousehide "Hide mouse when typeing
 set pastetoggle=<F2>               " Press F2 to enable autoindenting when
                                    " pasting. Press F2 again after pasting.
-let mapleader = ","
+let mapleader = "'"
 
 map <leader>c <c-_><c-_>
 "http://vim.wikia.com/wiki/Make_Vim_completion_popup_menu_work_just_like_in_an_IDE
@@ -95,12 +95,8 @@ imap jj <esc>
 " Uncomment to use Jamis Buck's file opening plugin
 "map <Leader>t :FuzzyFinderTextMate<Enter>
 nmap <space> :
-" Controversial...swap colon and semicolon for easier commands
-"nnoremap ; :
-"nnoremap : ;
-
-"vnoremap ; :
-"vnoremap : ;
+nmap ö ;
+nmap Ö ,
 
 " Automatic fold settings for specific files. Uncomment to use.
 " autocmd FileType ruby setlocal foldmethod=syntax
