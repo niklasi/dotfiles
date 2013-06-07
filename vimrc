@@ -45,7 +45,7 @@ set directory=$HOME/.vim/tmp//,.  " Keep swap files in one location
 " UNCOMMENT TO USE
 set tabstop=2                    " Global tab width.
 set shiftwidth=2                 " And again, related.
-"set expandtab                    " Use spaces instead of tabs
+set expandtab                    " Use spaces instead of tabs
 
 set laststatus=2                  " Show the status line all the time
 " Useful status information at bottom of screen
@@ -62,7 +62,7 @@ nnoremap <leader>ft Vatzf "Shortcut to fold tags
 set mousehide "Hide mouse when typeing
 set pastetoggle=<F2>               " Press F2 to enable autoindenting when
                                    " pasting. Press F2 again after pasting.
-let mapleader = "'"
+let mapleader = ","
 
 map <leader>c <c-_><c-_>
 "http://vim.wikia.com/wiki/Make_Vim_completion_popup_menu_work_just_like_in_an_IDE
@@ -95,8 +95,12 @@ imap jj <esc>
 " Uncomment to use Jamis Buck's file opening plugin
 "map <Leader>t :FuzzyFinderTextMate<Enter>
 nmap <space> :
-nmap ö ;
-nmap Ö ,
+" Controversial...swap colon and semicolon for easier commands
+"nnoremap ; :
+"nnoremap : ;
+
+"vnoremap ; :
+"vnoremap : ;
 
 " Automatic fold settings for specific files. Uncomment to use.
 " autocmd FileType ruby setlocal foldmethod=syntax
