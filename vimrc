@@ -91,16 +91,11 @@ vmap <S-Tab> <gv
 nmap <S-Tab> <C-W><C-W>
 vmap Q gq
 nmap Q gqap
-imap jj <esc> 
 " Uncomment to use Jamis Buck's file opening plugin
 "map <Leader>t :FuzzyFinderTextMate<Enter>
 nmap <space> :
-" Controversial...swap colon and semicolon for easier commands
-"nnoremap ; :
-"nnoremap : ;
-
-"vnoremap ; :
-"vnoremap : ;
+nmap ö ;
+nmap Ö ,
 
 " Automatic fold settings for specific files. Uncomment to use.
 " autocmd FileType ruby setlocal foldmethod=syntax
