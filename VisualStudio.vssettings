@@ -44,6 +44,7 @@
 							<Item Name="Operator" Foreground="0x00B7E2E8" Background="0x02000000" BoldFont="No"/>
 							<Item Name="outlining.verticalrule" Foreground="0x006F5C25" Background="0x02000000" BoldFont="No"/>
 							<Item Name="Preprocessor Keyword" Foreground="0x00BD82A0" Background="0x02000000" BoldFont="No"/>
+							<Item Name="Razor Code" Foreground="0x02000000" Background="0x02000000" BoldFont="No"/>
 							<Item Name="ReSharper ASP.NET MVC View" Foreground="0x0000FFFF" Background="0x02000000" BoldFont="No"/>
 							<Item Name="ReSharper Class Identifier" Foreground="0x00C08000" Background="0x02000000" BoldFont="No"/>
 							<Item Name="ReSharper CSS id selector" Foreground="0x00C08000" Background="0x02000000" BoldFont="No"/>
