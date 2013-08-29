@@ -1,4 +1,4 @@
-set encoding=utf-8
+﻿set encoding=utf-8
 call pathogen#infect()
 set nocompatible                  " Must come first because it changes other options.
 
@@ -73,8 +73,8 @@ nmap <S-Tab> <C-W><C-W>
 nmap <space> :
 nmap ö ;
 nmap Ö ,
-nmap ä }
-nmap Ä {
+nmap ^ }
+nmap Å {
 
 autocmd bufwritepost .vimrc source $MYVIMRC
 autocmd bufwritepost _vimrc source $MYVIMRC
