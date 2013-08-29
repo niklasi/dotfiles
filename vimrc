@@ -73,7 +73,7 @@ nmap <S-Tab> <C-W><C-W>
 nmap <space> :
 nmap ö ;
 nmap Ö ,
-nmap ^ }
+nmap ^ <space>}
 nmap Å {
 
 autocmd bufwritepost .vimrc source $MYVIMRC
