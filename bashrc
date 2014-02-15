@@ -8,6 +8,8 @@ export EDITOR='/usr/bin/vim'
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"  # This loads RVM into a shell session.
 alias gitk="/usr/bin/wish $(which gitk)"
 
+set -o vi
+
 txtblk='\e[0;30m' # Black - Regular
 txtred='\e[0;31m' # txtred
 txtgrn='\e[0;32m' # txtgrn
