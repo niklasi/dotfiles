@@ -88,20 +88,25 @@ autocmd bufwritepost _vimrc source $MYVIMRC
 " Set up the window colors and size
 "-----------------------------------------------------------------------------
 if has("gui_running")
-	if has("gui_gtk2")
-    set guifont=Inconsolata\ 11
-  elseif has("gui_win32")
-    set guifont=Consolas:h12:cANSI
-  endif
- if !exists("g:vimrcloaded")
-     winpos 0 0
-       if ! &diff
+    if has("gui_win32")
+        set guifont=Consolas:h12:cANSI
+    elseif has("gui_macvim")
+        set guifont=Inconsolata:h14
+    elseif has("gui_gtk2")
+        set guifont=Inconsolata\ 14
+    endif
+    
+    if !exists("g:vimrcloaded")
+        winpos 0 0
+
+        if ! &diff
            winsize 160 50
         else
             winsize 227 50
         endif
+        
         let g:vimrcloaded = 1
-  endif
- endif
+    endif
+endif
 :nohls
 
