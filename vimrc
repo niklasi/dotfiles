@@ -44,7 +44,7 @@ set expandtab                    " Use spaces instead of tabs
 
 set laststatus=2                  " Show the status line all the time
 
-colorscheme vividchalk
+colorscheme ir_black
 
 set smartindent
 set autoindent
