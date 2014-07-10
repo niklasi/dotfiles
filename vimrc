@@ -91,7 +91,7 @@ if has("gui_running")
     if has("gui_win32")
         set guifont=Consolas:h12:cANSI
     elseif has("gui_macvim")
-        set guifont=Inconsolata:h14
+        set guifont=Inconsolata:h16
     elseif has("gui_gtk2")
         set guifont=Inconsolata\ 14
     endif
