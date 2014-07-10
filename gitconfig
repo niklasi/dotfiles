@@ -1,0 +1,11 @@
+[user]
+	name = niklasi
+	email = niklas@ingholt.com
+[push]
+	default = simple
+[alias]
+	st = status
+	c = commit
+	ch = checkout
+	s = status
+	l = log
