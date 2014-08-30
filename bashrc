@@ -1,9 +1,5 @@
 export PATH=${PATH}:/Developer/SDKs/android-sdk-mac_86/tools
-
-# MacPorts Installer addition on 2010-07-08_at_23:13:55: adding an appropriate PATH variable for use with MacPorts.
-export PATH=/opt/local/bin:/opt/local/sbin:$PATH
-export PATH=~/bin:$PATH
-# Finished adapting your PATH environment variable for use with MacPorts.
+export PATH=/usr/local/bin:$PATH
 export EDITOR='/usr/bin/vim'
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"  # This loads RVM into a shell session.
 alias gitk="/usr/bin/wish $(which gitk)"
