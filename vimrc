@@ -45,7 +45,8 @@ set shiftwidth=4                 " And again, related.
 
 set laststatus=2                  " Show the status line all the time
 
-colorscheme ir_black
+set background=dark
+colorscheme solarized
 
 set smartindent
 set autoindent
