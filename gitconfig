@@ -13,7 +13,7 @@
     	undo = reset HEAD~1 --mixed
     	up = !git pull --rebase --prune $@ && git submodule update --init --recursive                
     	cm = !git add -A && git commit -m                                                            
-    	bclean = "!f() { git branch --merged ${1-master} | grep -v " ${1-master}$" | xargs -r git bra
+    	bclean = "!f() { git branch --merged ${1-master} | grep -v " ${1-master}$" | xargs -r git branch -d; }; f"
     	bdone = "!f() { git checkout ${1-master} && git up && git bclean ${1-master}; }; f"
 [credential]
 	helper = osxkeychain
