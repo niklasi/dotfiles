@@ -87,6 +87,7 @@ nmap Ö ,
 nmap ^ <space>}
 nmap Å {
 
+autocmd BufNewFile,BufReadPost *.md set filetype=markdown
 autocmd bufwritepost .vimrc source $MYVIMRC
 autocmd bufwritepost _vimrc source $MYVIMRC
 " Set up the window colors and size
