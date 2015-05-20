@@ -45,10 +45,10 @@ set shiftwidth=4                 " And again, related.
 
 set laststatus=2                  " Show the status line all the time
 
-set background=dark
+let g:solarized_termcolors=256
 colorscheme monokai
+set background=dark
 hi Normal ctermbg=NONE
-hi NonText ctermbg=NONE
 
 set smartindent
 set autoindent
@@ -88,6 +88,8 @@ nmap ^ <space>}
 nmap Å {
 
 autocmd BufNewFile,BufReadPost *.md set filetype=markdown
+nmap <leader>t :!npm test<cr>
+nmap <F5> :!npm start<cr>
 autocmd bufwritepost .vimrc source $MYVIMRC
 autocmd bufwritepost _vimrc source $MYVIMRC
 " Set up the window colors and size

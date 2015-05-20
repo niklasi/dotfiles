@@ -1,4 +1,3 @@
-export PATH=${PATH}:/Developer/SDKs/android-sdk-mac_86/tools
 export PATH=/usr/local/bin:$PATH
 export EDITOR='/usr/bin/vim'
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"  # This loads RVM into a shell session.
@@ -41,3 +40,7 @@ function git_status_color {
 PS1=''$txtcyn'\w$(parse_git_branch)'$txtrst'\n$ '
 #PS1=''$txtcyn'\w'$txtrst'$(git_status_color)$(parse_git_branch)'$txtrst'\n$ '
 export TERM="xterm-256color"
+source ~/.bashrc_local
+
+export NVM_DIR="/home/niklasi/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
