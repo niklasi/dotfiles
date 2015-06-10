@@ -34,3 +34,9 @@
 [submodule "vim/bundle/monokai"]
 	path = vim/bundle/monokai
 	url = https://github.com/sickill/vim-monokai.git
+[submodule "vim/bundle/syntastic"]
+	path = vim/bundle/syntastic
+	url = https://github.com/scrooloose/syntastic.git
+[submodule "vim/bundle/gitignore"]
+	path = vim/bundle/gitignore
+	url = https://github.com/vim-scripts/gitignore.git

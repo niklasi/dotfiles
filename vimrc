@@ -39,9 +39,12 @@ set noswapfile                    " And again.
 set directory=$HOME/.vim/tmp//,.  " Keep swap files in one location
 
 " UNCOMMENT TO USE
-set tabstop=4                    " Global tab width.
-set shiftwidth=4                 " And again, related.
-"set expandtab                    " Use spaces instead of tabs
+set tabstop=2                    " Global tab width.
+set shiftwidth=2                 " And again, related.
+set expandtab                    " Use spaces instead of tabs
+
+autocmd FileType coffee setlocal shiftwidth=4 tabstop=4 noexpandtab
+autocmd BufNewFile,BufReadPost *.md set filetype=markdown
 
 set laststatus=2                  " Show the status line all the time
 
@@ -87,11 +90,36 @@ nmap Ö ,
 nmap ^ <space>}
 nmap Å {
 
+" Syntastic
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+
+let g:syntastic_javascript_checkers = ['standard']
+" End Syntastic
+
 autocmd BufNewFile,BufReadPost *.md set filetype=markdown
 nmap <leader>t :!npm test<cr>
 nmap <F5> :!npm start<cr>
 autocmd bufwritepost .vimrc source $MYVIMRC
-autocmd bufwritepost _vimrc source $MYVIMRC
+
+let g:ctrlp_use_caching = 0
+if executable('ag')
+  set grepprg=ag\ --nogroup\ --nocolor
+
+  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+else
+  let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files . -co --exclude-standard', 'find %s -type f']
+  let g:ctrlp_prompt_mappings = {
+        \ 'AcceptSelection("e")': ['<space>', '<cr>', '<2-LeftMouse>'],
+        \ }
+endif
+
 " Set up the window colors and size
 "-----------------------------------------------------------------------------
 if has("gui_running")
