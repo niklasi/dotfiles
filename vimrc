@@ -58,7 +58,10 @@ set autoindent
 set foldenable "Enable code folding
 set mousehide "Hide mouse when typeing
 
-let mapleader = ","
+autocmd BufReadPost fugitive://* set bufhidden=delete
+set statusline=%<%f\ %h%m%r%{fugitive#statusline()}%=%-14.(%l,%c%V%)\ %P
+
+let mapleader = "\<Space>"
 
 nnoremap <leader>ft Vatzf "Shortcut to fold tags
 nnoremap <C-h> <C-w>h
@@ -84,11 +87,22 @@ map <leader>tm :tabmove
 nmap <S-Tab> <C-W><C-W>
 "vmap Q gq
 "nmap Q gqap
-nmap <space> :
+nmap <Leader><Leader> :
 nmap ö ;
 nmap Ö ,
 nmap ^ <space>}
 nmap Å {
+" Copy and paste to system clipboard
+vmap <Leader>y "+y
+vmap <Leader>d "+d
+nmap <Leader>p "+p
+nmap <Leader>P "+P
+vmap <Leader>p "+p
+vmap <Leader>P "+P
+nmap <C-y><C-y> "+yy
+
+nnoremap <Leader>w :w<CR>
+nnoremap <Leader>e :e .<CR>
 
 " Syntastic
 set statusline+=%#warningmsg#
@@ -105,7 +119,7 @@ let g:syntastic_javascript_checkers = ['standard']
 
 autocmd BufNewFile,BufReadPost *.md set filetype=markdown
 nmap <leader>t :!npm test<cr>
-nmap <F5> :!npm start<cr>
+nmap <leader>r :!npm start<cr>
 autocmd bufwritepost .vimrc source $MYVIMRC
 
 let g:ctrlp_use_caching = 0
