@@ -1,6 +1,6 @@
 [user]
 	name = Niklas Ingholt
-	email = niklas.ingholt@consultant.volvo.com
+	email = niklas@ingholt.com
 [push]
 	default = simple
 [credential]
@@ -17,7 +17,3 @@
 	cm = !git add -A && git commit -m                                                            
 	bclean = "!f() { git branch --merged ${1-master} | grep -v " ${1-master}$" | xargs -r git branch -d; }; f"
 	bdone = "!f() { git checkout ${1-master} && git up && git bclean ${1-master}; }; f"
-[url "https://"]
-	insteadOf = git://
-[http]
-	sslVerify = false
