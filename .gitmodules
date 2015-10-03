@@ -19,9 +19,6 @@
 [submodule "vim/bundle/ctrlp"]
 	path = vim/bundle/ctrlp
 	url = https://github.com/kien/ctrlp.vim.git
-[submodule "vim/bundle/vim-literate-coffeescript.git"]
-	path = vim/bundle/vim-literate-coffeescript.git
-	url = https://github.com/mintplant/vim-literate-coffeescript.git
 [submodule "vim/bundle/solarized"]
 	path = vim/bundle/solarized
 	url = git://github.com/altercation/vim-colors-solarized.git
