@@ -37,3 +37,6 @@
 [submodule "vim/bundle/vim-instant-markdown"]
 	path = vim/bundle/vim-instant-markdown
 	url = https://github.com/suan/vim-instant-markdown.git
+[submodule "vim/bundle/vim-node"]
+	path = vim/bundle/vim-node
+	url = git@github.com:niklasi/dotfiles.git
