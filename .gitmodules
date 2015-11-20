@@ -40,3 +40,6 @@
 [submodule "vim/bundle/vim-node"]
 	path = vim/bundle/vim-node
 	url = https://github.com/moll/vim-node.git
+[submodule "vim/bundle/typescript"]
+	path = vim/bundle/typescript
+	url = https://github.com/leafgarland/typescript-vim.git
