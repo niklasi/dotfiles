@@ -51,7 +51,7 @@ set laststatus=2                  " Show the status line all the time
 let g:solarized_termcolors=256
 colorscheme monokai
 set background=dark
-hi Normal ctermbg=NONE
+" hi Normal ctermbg=NONE
 
 set smartindent
 set autoindent
