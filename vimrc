@@ -1,4 +1,4 @@
-﻿set t_Co=256
+﻿" set t_Co=256
 set encoding=utf-8
 call pathogen#infect()
 set nocompatible                  " Must come first because it changes other options.
@@ -51,7 +51,7 @@ set laststatus=2                  " Show the status line all the time
 let g:solarized_termcolors=256
 colorscheme monokai
 set background=dark
-" hi Normal ctermbg=NONE
+hi Normal ctermbg=NONE
 
 set smartindent
 set autoindent
