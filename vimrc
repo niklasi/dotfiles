@@ -115,11 +115,26 @@ let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 
 " let g:syntastic_javascript_checkers = ['standard']
+let g:syntastic_go_checkers = ['golint', 'govet', 'errcheck']
+let g:syntastic_mode_map = { 'mode': 'active', 'passive_filetypes': ['go'] }
 " End Syntastic
 
 autocmd BufNewFile,BufReadPost *.md set filetype=markdown
-nmap <leader>t :!npm test<cr>
-nmap <leader>r :!npm start<cr>
+au FileType javascript nmap <leader>t :!npm test<cr>
+au FileType javascript nmap <leader>r :!npm start<cr>
+
+au FileType go nmap <leader>r <Plug>(go-run)
+au FileType go nmap <leader>b <Plug>(go-build)
+au FileType go nmap <leader>t <Plug>(go-test)
+au FileType go nmap <leader>c <Plug>(go-coverage)
+au FileType go nmap <Leader>e <Plug>(go-rename)
+let g:go_highlight_functions = 1
+let g:go_highlight_methods = 1
+let g:go_highlight_structs = 1
+let g:go_highlight_interfaces = 1
+let g:go_highlight_operators = 1
+let g:go_highlight_build_constraints = 1
+
 autocmd bufwritepost .vimrc source $MYVIMRC
 
 let g:ctrlp_use_caching = 0

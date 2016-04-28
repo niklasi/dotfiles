@@ -1,8 +1,9 @@
 export PATH=/usr/local/bin:$PATH
 export EDITOR='/usr/bin/vim'
-export GOPATH=$HOME/dev
+export GOPATH=$HOME/dev/go
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"  # This loads RVM into a shell session.
 alias gitk="/usr/bin/wish $(which gitk)"
+alias vim="mvim -v"
 
 set -o vi
 
@@ -42,5 +43,5 @@ PS1=''$txtcyn'\w$(parse_git_branch)'$txtrst'\n$ '
 #PS1=''$txtcyn'\w'$txtrst'$(git_status_color)$(parse_git_branch)'$txtrst'\n$ '
 # export TERM="screen-256color"
 
-export NVM_DIR="/home/niklasi/.nvm"
+NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
