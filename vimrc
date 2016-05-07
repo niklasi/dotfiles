@@ -1,10 +1,27 @@
-﻿" set t_Co=256
+﻿set nocompatible                  " Must come first because it changes other options.
+filetype off
 set encoding=utf-8
-call pathogen#infect()
-set nocompatible                  " Must come first because it changes other options.
+"set the runtime path to include Vundle and initialize
+set rtp+=~/dotfiles/vim/bundle/Vundle.vim
+call vundle#begin()
+Plugin 'VundleVim/Vundle.vim'
+Plugin 'tpope/vim-fugitive.git'
+Plugin 'tpope/vim-surround.git'
+Plugin 'tpope/vim-commentary.git'
+Plugin 'scrooloose/nerdtree.git'
+Plugin 'altercation/vim-colors-solarized.git'
+Plugin 'sickill/vim-monokai.git'
+Plugin 'scrooloose/syntastic.git'
+Plugin 'christoomey/vim-tmux-navigator.git'
+Plugin 'suan/vim-instant-markdown.git'
+Plugin 'moll/vim-node.git'
+Plugin 'leafgarland/typescript-vim.git'
+Plugin 'fatih/vim-go.git'
+Plugin 'ctrlpvim/ctrlp.vim.git'
+call vundle#end()
 
-syntax enable                     " Turn on syntax highlighting.
 filetype plugin indent on         " Turn on file type detection.
+syntax enable                     " Turn on syntax highlighting.
 
 set showcmd                       " Display incomplete commands.
 set showmode                      " Display the mode you're in.
@@ -23,7 +40,6 @@ set number                        " Show line numbers.
 set ruler                         " Show cursor position.
 
 set incsearch                     " Highlight matches as you type.
-"set hlsearch                     " Highlight matches.
 
 set nowrap                        " Turn on line wrapping.
 set scrolloff=3                   " Show 3 lines of context around the cursor.
@@ -31,7 +47,7 @@ set scrolloff=3                   " Show 3 lines of context around the cursor.
 set title                         " Set the terminal's title
 
 set visualbell                    " No beeping.
-set noerrorbells				  " No beeping.
+set noerrorbells				          " No beeping.
 
 set nobackup                      " Don't make a backup before overwriting a file.
 set nowritebackup                 " And again.
@@ -56,7 +72,7 @@ hi Normal ctermbg=NONE
 set smartindent
 set autoindent
 set foldenable "Enable code folding
-set mousehide "Hide mouse when typeing
+set mousehide "Hide mouse when typing
 
 autocmd BufReadPost fugitive://* set bufhidden=delete
 set statusline=%<%f\ %h%m%r%{fugitive#statusline()}%=%-14.(%l,%c%V%)\ %P
@@ -71,22 +87,6 @@ nnoremap <C-l> <C-w>l
 
 inoremap jj <ESC>
 
-map <leader>tt :tabnew<cr>
-map <leader>te :tabedit
-map <leader>tc :tabclose<cr>
-map <leader>to :tabonly<cr>
-map <leader>tn :tabnext<cr>
-map <leader>tp :tabprevious<cr>
-map <leader>tf :tabfirst<cr>
-map <leader>tl :tablast<cr>
-map <leader>tm :tabmove
-"imap <Tab> <C-N>
-"imap <S-Tab> <C-P>
-"vmap <Tab> >gv
-"vmap <S-Tab> <gv
-nmap <S-Tab> <C-W><C-W>
-"vmap Q gq
-"nmap Q gqap
 nmap <Leader><Leader> :
 nmap ö ;
 nmap Ö ,
