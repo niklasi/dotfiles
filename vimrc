@@ -1,24 +1,20 @@
 ﻿set nocompatible                  " Must come first because it changes other options.
-filetype off
 set encoding=utf-8
-"set the runtime path to include Vundle and initialize
-set rtp+=~/dotfiles/vim/bundle/Vundle.vim
-call vundle#begin()
-"Plugin 'VundleVim/Vundle.vim'
-"Plugin 'tpope/vim-fugitive.git'
-"Plugin 'tpope/vim-surround.git'
-"Plugin 'tpope/vim-commentary.git'
-"Plugin 'scrooloose/nerdtree.git'
-"Plugin 'altercation/vim-colors-solarized.git'
-"Plugin 'sickill/vim-monokai.git'
-"Plugin 'scrooloose/syntastic.git'
-"Plugin 'christoomey/vim-tmux-navigator.git'
-"Plugin 'suan/vim-instant-markdown.git'
-"Plugin 'moll/vim-node.git'
-"Plugin 'leafgarland/typescript-vim.git'
-"Plugin 'fatih/vim-go.git'
-"Plugin 'ctrlpvim/ctrlp.vim.git'
-call vundle#end()
+call plug#begin('~/dotfiles/vim/bundle')
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-commentary'
+Plug 'scrooloose/nerdtree'
+Plug 'sickill/vim-monokai'
+Plug 'scrooloose/syntastic'
+Plug 'christoomey/vim-tmux-navigator'
+Plug 'suan/vim-instant-markdown'
+Plug 'moll/vim-node'
+Plug 'leafgarland/typescript-vim'
+Plug 'fatih/vim-go'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
+call plug#end()
 
 filetype plugin indent on         " Turn on file type detection.
 syntax enable                     " Turn on syntax highlighting.
@@ -54,7 +50,6 @@ set nowritebackup                 " And again.
 set noswapfile                    " And again. 
 set directory=$HOME/.vim/tmp//,.  " Keep swap files in one location
 
-" UNCOMMENT TO USE
 set tabstop=2                    " Global tab width.
 set shiftwidth=2                 " And again, related.
 set expandtab                    " Use spaces instead of tabs
@@ -64,7 +59,6 @@ autocmd BufNewFile,BufReadPost *.md set filetype=markdown
 
 set laststatus=2                  " Show the status line all the time
 
-let g:solarized_termcolors=256
 colorscheme monokai
 set background=dark
 hi Normal ctermbg=NONE
@@ -79,7 +73,6 @@ set statusline=%<%f\ %h%m%r%{fugitive#statusline()}%=%-14.(%l,%c%V%)\ %P
 
 let mapleader = "\<Space>"
 
-nnoremap <leader>ft Vatzf "Shortcut to fold tags
 nnoremap <C-h> <C-w>h
 nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
@@ -103,6 +96,7 @@ nmap <C-y><C-y> "+yy
 
 nnoremap <Leader>w :w<CR>
 nnoremap <Leader>e :e .<CR>
+nnoremap <silent> <C-p> :FZF<CR>
 
 " Syntastic
 set statusline+=%#warningmsg#
@@ -137,17 +131,17 @@ let g:go_highlight_build_constraints = 1
 
 autocmd bufwritepost .vimrc source $MYVIMRC
 
-let g:ctrlp_use_caching = 0
-if executable('ag')
-  set grepprg=ag\ --nogroup\ --nocolor
+" let g:ctrlp_use_caching = 0
+" if executable('ag')
+"   set grepprg=ag\ --nogroup\ --nocolor
 
-  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
-else
-  let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files . -co --exclude-standard', 'find %s -type f']
-  let g:ctrlp_prompt_mappings = {
-        \ 'AcceptSelection("e")': ['<space>', '<cr>', '<2-LeftMouse>'],
-        \ }
-endif
+"   let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+" else
+"   let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files . -co --exclude-standard', 'find %s -type f']
+"   let g:ctrlp_prompt_mappings = {
+"         \ 'AcceptSelection("e")': ['<space>', '<cr>', '<2-LeftMouse>'],
+"         \ }
+" endif
 
 " Set up the window colors and size
 "-----------------------------------------------------------------------------
