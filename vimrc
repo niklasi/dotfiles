@@ -4,20 +4,20 @@ set encoding=utf-8
 "set the runtime path to include Vundle and initialize
 set rtp+=~/dotfiles/vim/bundle/Vundle.vim
 call vundle#begin()
-Plugin 'VundleVim/Vundle.vim'
-Plugin 'tpope/vim-fugitive.git'
-Plugin 'tpope/vim-surround.git'
-Plugin 'tpope/vim-commentary.git'
-Plugin 'scrooloose/nerdtree.git'
-Plugin 'altercation/vim-colors-solarized.git'
-Plugin 'sickill/vim-monokai.git'
-Plugin 'scrooloose/syntastic.git'
-Plugin 'christoomey/vim-tmux-navigator.git'
-Plugin 'suan/vim-instant-markdown.git'
-Plugin 'moll/vim-node.git'
-Plugin 'leafgarland/typescript-vim.git'
-Plugin 'fatih/vim-go.git'
-Plugin 'ctrlpvim/ctrlp.vim.git'
+"Plugin 'VundleVim/Vundle.vim'
+"Plugin 'tpope/vim-fugitive.git'
+"Plugin 'tpope/vim-surround.git'
+"Plugin 'tpope/vim-commentary.git'
+"Plugin 'scrooloose/nerdtree.git'
+"Plugin 'altercation/vim-colors-solarized.git'
+"Plugin 'sickill/vim-monokai.git'
+"Plugin 'scrooloose/syntastic.git'
+"Plugin 'christoomey/vim-tmux-navigator.git'
+"Plugin 'suan/vim-instant-markdown.git'
+"Plugin 'moll/vim-node.git'
+"Plugin 'leafgarland/typescript-vim.git'
+"Plugin 'fatih/vim-go.git'
+"Plugin 'ctrlpvim/ctrlp.vim.git'
 call vundle#end()
 
 filetype plugin indent on         " Turn on file type detection.
