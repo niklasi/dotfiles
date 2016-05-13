@@ -7,16 +7,28 @@
   helper = cache --timeout=9999999
 [alias]
 	st = status
+	tst = status # Handle typo
 	c = commit
+	tc = commit
 	ch = checkout
+	tch = checkout
 	s = status
-	l = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+	ts = status
+	l = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --no-merges
+	tl = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+  	save = !git add -A && git commit -m 'SAVEPOINT'
+  	tsave = !git add -A && git commit -m 'SAVEPOINT'
 	wipe = !git add -A && git commit -qm 'WIPE SAVEPOINT' && git reset HEAD~1 --hard
+	twipe = !git add -A && git commit -qm 'WIPE SAVEPOINT' && git reset HEAD~1 --hard
 	undo = reset HEAD~1 --mixed
+  	amend = commit -a --amend --no-edit
 	up = !git pull --rebase --prune $@ && git submodule update --init --recursive                
+	tup = !git pull --rebase --prune $@ && git submodule update --init --recursive                
 	cm = !git add -A && git commit -m                                                            
+	tcm = !git add -A && git commit -m                                                            
 	bclean = "!f() { git branch --merged ${1-master} | grep -v " ${1-master}$" | xargs -r git branch -d; }; f"
 	bdone = "!f() { git checkout ${1-master} && git up && git bclean ${1-master}; }; f"
+	rlog = !git fetch && git l FETCH_HEAD
 [diff]
 	tool = vimdiff
 [merge]
