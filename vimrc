@@ -51,23 +51,22 @@ set nowritebackup                 " And again.
 set noswapfile                    " And again. 
 set directory=$HOME/.vim/tmp//,.  " Keep swap files in one location
 
-set tabstop=2                    " Global tab width.
-set shiftwidth=2                 " And again, related.
-set expandtab                    " Use spaces instead of tabs
-
-autocmd FileType coffee setlocal shiftwidth=4 tabstop=4 noexpandtab
-autocmd BufNewFile,BufReadPost *.md set filetype=markdown
+set tabstop=2                     " Global tab width.
+set shiftwidth=2                  " And again, related.
+set expandtab                     " Use spaces instead of tabs
 
 set laststatus=2                  " Show the status line all the time
+
+set smartindent
+set autoindent
+set foldenable                    " Enable code folding
+set mousehide                     " Hide mouse when typing
+
+set autoread                      " Auto read file when changed outside of vim
 
 colorscheme monokai
 set background=dark
 hi Normal ctermbg=NONE
-
-set smartindent
-set autoindent
-set foldenable "Enable code folding
-set mousehide "Hide mouse when typing
 
 autocmd BufReadPost fugitive://* set bufhidden=delete
 set statusline=%<%f\ %h%m%r%{fugitive#statusline()}%=%-14.(%l,%c%V%)\ %P
@@ -79,13 +78,12 @@ nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
 
+
 inoremap jj <ESC>
 
 nmap <Leader><Leader> :
-nmap ö ;
-nmap Ö ,
-nmap ^ <space>}
-nmap Å {
+nnoremap <leader>l :redraw!<CR>
+
 " Copy and paste to system clipboard
 vmap <Leader>y "+y
 vmap <Leader>d "+d
@@ -99,32 +97,35 @@ nnoremap <Leader>w :w<CR>
 nnoremap <Leader>e :e .<CR>
 nnoremap <silent> <C-p> :FZF<CR>
 
+autocmd bufwritepost *.js silent !standard --fix %
+
 " Syntastic
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
 
+let g:syntastic_full_redraws = 1
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_open = 0
 let g:syntastic_check_on_wq = 0
 
 let g:syntastic_javascript_checkers = ['standard']
-autocmd bufwritepost *.js silent !standard-format -w %
-set autoread
-let g:syntastic_go_checkers = ['golint', 'govet', 'errcheck']
-let g:syntastic_mode_map = { 'mode': 'active', 'passive_filetypes': ['go'] }
+
+" let g:syntastic_go_checkers = ['golint', 'govet', 'errcheck']
+" let g:syntastic_mode_map = { 'mode': 'active', 'passive_filetypes': ['go'] }
 " End Syntastic
-
+autocmd FileType coffee setlocal shiftwidth=4 tabstop=4 noexpandtab
 autocmd BufNewFile,BufReadPost *.md set filetype=markdown
-au FileType javascript nmap <leader>t :!npm test<cr>
-au FileType javascript nmap <leader>r :!npm start<cr>
+autocmd FocusGained * :redraw!
+autocmd FileType javascript nmap <leader>t :!npm test<cr>
+autocmd FileType javascript nmap <leader>r :!npm start<cr>
 
-au FileType go nmap <leader>r <Plug>(go-run)
-au FileType go nmap <leader>b <Plug>(go-build)
-au FileType go nmap <leader>t <Plug>(go-test)
-au FileType go nmap <leader>c <Plug>(go-coverage)
-au FileType go nmap <Leader>e <Plug>(go-rename)
+autocmd FileType go nmap <leader>r <Plug>(go-run)
+autocmd FileType go nmap <leader>b <Plug>(go-build)
+autocmd FileType go nmap <leader>t <Plug>(go-test)
+autocmd FileType go nmap <leader>c <Plug>(go-coverage)
+autocmd FileType go nmap <Leader>e <Plug>(go-rename)
 let g:go_highlight_functions = 1
 let g:go_highlight_methods = 1
 let g:go_highlight_structs = 1
@@ -133,18 +134,6 @@ let g:go_highlight_operators = 1
 let g:go_highlight_build_constraints = 1
 
 autocmd bufwritepost .vimrc source $MYVIMRC
-
-" let g:ctrlp_use_caching = 0
-" if executable('ag')
-"   set grepprg=ag\ --nogroup\ --nocolor
-
-"   let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
-" else
-"   let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files . -co --exclude-standard', 'find %s -type f']
-"   let g:ctrlp_prompt_mappings = {
-"         \ 'AcceptSelection("e")': ['<space>', '<cr>', '<2-LeftMouse>'],
-"         \ }
-" endif
 
 " Set up the window colors and size
 "-----------------------------------------------------------------------------
