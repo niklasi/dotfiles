@@ -59,7 +59,7 @@ set laststatus=2                  " Show the status line all the time
 
 set smartindent
 set autoindent
-set foldenable                    " Enable code folding
+set nofoldenable                  " Disable code folding
 set mousehide                     " Hide mouse when typing
 
 set autoread                      " Auto read file when changed outside of vim
