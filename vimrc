@@ -64,6 +64,9 @@ set mousehide                     " Hide mouse when typing
 
 set autoread                      " Auto read file when changed outside of vim
 
+set wildignore+=*.DS_Store        " Mac Support bootstrap
+set wildignore+=*/_build**        " Mac Support bootstrap
+
 colorscheme monokai
 set background=dark
 hi Normal ctermbg=NONE
