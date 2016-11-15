@@ -98,7 +98,7 @@ nmap <C-y><C-y> "+yy
 
 nnoremap <Leader>w :w<CR>
 nnoremap <Leader>e :e .<CR>
-nnoremap <silent> <C-p> :FZF<CR>
+nnoremap <silent> <C-p> :Ag<CR>
 
 autocmd bufwritepost *.js silent !standard --fix %
 
