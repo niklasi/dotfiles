@@ -15,6 +15,7 @@ Plug 'fatih/vim-go'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'othree/html5.vim'
+Plug 'wincent/terminus'
 call plug#end()
 
 filetype plugin indent on         " Turn on file type detection.
