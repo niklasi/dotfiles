@@ -84,6 +84,9 @@ nnoremap <C-l> <C-w>l
 
 inoremap jj <ESC>
 
+" Sudo tee trick
+cmap w!! w !sudo tee % >/dev/null
+
 nmap <Leader><Leader> :
 nnoremap <leader>l :redraw!<CR>
 
