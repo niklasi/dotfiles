@@ -16,6 +16,7 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'othree/html5.vim'
 Plug 'wincent/terminus'
+Plug 'benmills/vimux'
 call plug#end()
 
 filetype plugin indent on         " Turn on file type detection.
@@ -82,7 +83,6 @@ nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
 
-
 inoremap jj <ESC>
 
 " Sudo tee trick
@@ -125,8 +125,8 @@ let g:syntastic_javascript_checkers = ['standard']
 autocmd FileType coffee setlocal shiftwidth=4 tabstop=4 noexpandtab
 autocmd BufNewFile,BufReadPost *.md set filetype=markdown
 autocmd FocusGained * :redraw!
-autocmd FileType javascript nmap <leader>t :!npm test<cr>
-autocmd FileType javascript nmap <leader>r :!npm start<cr>
+autocmd FileType javascript nmap <leader>t :VimuxRunCommand("npm test")<cr>
+autocmd FileType javascript nmap <leader>r :VimuxRunCommand("npm start")<cr>
 
 autocmd FileType go nmap <leader>r <Plug>(go-run)
 autocmd FileType go nmap <leader>b <Plug>(go-build)
