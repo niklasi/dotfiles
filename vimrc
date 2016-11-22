@@ -100,6 +100,10 @@ vmap <Leader>p "+p
 vmap <Leader>P "+P
 nmap <C-y><C-y> "+yy
 
+" Move visual blocks up and down
+vnoremap J :m '>+1<CR>gv=gv
+vnoremap K :m '<-2<CR>gv=gv
+
 nnoremap <Leader>w :w<CR>
 nnoremap <Leader>e :e .<CR>
 nnoremap <silent> <C-p> :Ag<CR>
