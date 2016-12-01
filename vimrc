@@ -17,6 +17,7 @@ Plug 'junegunn/fzf.vim'
 Plug 'othree/html5.vim'
 Plug 'wincent/terminus'
 Plug 'benmills/vimux'
+Plug 'editorconfig/editorconfig-vim'
 call plug#end()
 
 filetype plugin indent on         " Turn on file type detection.
@@ -73,7 +74,6 @@ colorscheme monokai
 set background=dark
 hi Normal ctermbg=NONE
 
-autocmd BufReadPost fugitive://* set bufhidden=delete
 set statusline=%<%f\ %h%m%r%{fugitive#statusline()}%=%-14.(%l,%c%V%)\ %P
 
 let mapleader = "\<Space>"
@@ -108,37 +108,46 @@ nnoremap <Leader>w :w<CR>
 nnoremap <Leader>e :e .<CR>
 nnoremap <silent> <C-p> :Ag<CR>
 
-if executable('standard')
-  autocmd bufwritepost *.js silent !standard --fix %
-endif
+function! StandardFix()
+  if exists('g:linter') && g:linter == 'standard'
+    if executable('standard')
+      execute('!standard --fix %')
+    endif
+  endif
+endfunction
+
+augroup standard
+  autocmd!
+  autocmd bufwritepost *.js silent call StandardFix()
+augroup END
 
 " Syntastic
+function! LinterHook(config)
+  if has_key(a:config, 'linter')
+    let g:linter = a:config['linter']
+    if a:config['linter'] == 'standard'
+      let g:syntastic_javascript_checkers = ['standard']
+    endif
+  endif
+
+  return 0 " Return 0 to show no error happened
+endfunction
+
+call editorconfig#AddNewHook(function('LinterHook'))
+
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
 
-let g:syntastic_full_redraws = 1
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 0
 let g:syntastic_check_on_wq = 0
 
-let g:syntastic_javascript_checkers = ['standard']
-
 " let g:syntastic_go_checkers = ['golint', 'govet', 'errcheck']
 " let g:syntastic_mode_map = { 'mode': 'active', 'passive_filetypes': ['go'] }
 " End Syntastic
-autocmd FileType coffee setlocal shiftwidth=4 tabstop=4 noexpandtab
-autocmd BufNewFile,BufReadPost *.md set filetype=markdown
-autocmd FocusGained * :redraw!
-autocmd FileType javascript nmap <leader>t :VimuxRunCommand("npm test")<cr>
-autocmd FileType javascript nmap <leader>r :VimuxRunCommand("npm start")<cr>
 
-autocmd FileType go nmap <leader>r <Plug>(go-run)
-autocmd FileType go nmap <leader>b <Plug>(go-build)
-autocmd FileType go nmap <leader>t <Plug>(go-test)
-autocmd FileType go nmap <leader>c <Plug>(go-coverage)
-autocmd FileType go nmap <Leader>e <Plug>(go-rename)
 let g:go_highlight_functions = 1
 let g:go_highlight_methods = 1
 let g:go_highlight_structs = 1
@@ -146,7 +155,26 @@ let g:go_highlight_interfaces = 1
 let g:go_highlight_operators = 1
 let g:go_highlight_build_constraints = 1
 
-autocmd bufwritepost .vimrc source $MYVIMRC
+augroup vimrc
+  autocmd!
+  autocmd BufReadPost fugitive://* set bufhidden=delete
+  autocmd FileType coffee setlocal shiftwidth=4 tabstop=4 noexpandtab
+  autocmd BufNewFile,BufReadPost *.md set filetype=markdown
+  autocmd FocusGained * :redraw!
+
+  if executable('npm')
+    autocmd FileType javascript nmap <leader>t :VimuxRunCommand("npm test")<cr>
+    autocmd FileType javascript nmap <leader>r :VimuxRunCommand("npm start")<cr>
+  endif
+
+  autocmd FileType go nmap <leader>r <Plug>(go-run)
+  autocmd FileType go nmap <leader>b <Plug>(go-build)
+  autocmd FileType go nmap <leader>t <Plug>(go-test)
+  autocmd FileType go nmap <leader>c <Plug>(go-coverage)
+  autocmd FileType go nmap <Leader>e <Plug>(go-rename)
+
+  autocmd bufwritepost .vimrc source $MYVIMRC
+augroup END
 
 " Set up the window colors and size
 "-----------------------------------------------------------------------------
