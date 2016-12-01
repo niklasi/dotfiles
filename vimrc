@@ -109,7 +109,7 @@ nnoremap <Leader>e :e .<CR>
 nnoremap <silent> <C-p> :Ag<CR>
 
 function! StandardFix()
-  if exists('g:linter') && g:linter == 'standard'
+  if exists('b:linter') && b:linter == 'standard'
     if executable('standard')
       execute('!standard --fix %')
     endif
@@ -124,7 +124,7 @@ augroup END
 " Syntastic
 function! LinterHook(config)
   if has_key(a:config, 'linter')
-    let g:linter = a:config['linter']
+    let b:linter = a:config['linter']
     if a:config['linter'] == 'standard'
       let g:syntastic_javascript_checkers = ['standard']
     endif
