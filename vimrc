@@ -108,7 +108,9 @@ nnoremap <Leader>w :w<CR>
 nnoremap <Leader>e :e .<CR>
 nnoremap <silent> <C-p> :Ag<CR>
 
-autocmd bufwritepost *.js silent !standard --fix %
+if executable('standard')
+  autocmd bufwritepost *.js silent !standard --fix %
+endif
 
 " Syntastic
 set statusline+=%#warningmsg#
