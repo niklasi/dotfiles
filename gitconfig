@@ -32,3 +32,6 @@
 	tool = vimdiff
 [merge]
 	tool = vimdiff
+[difftool]
+	cmd = vimdiff "$1" "$2"
+  prompt = false
