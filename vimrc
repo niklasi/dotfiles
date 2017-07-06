@@ -88,7 +88,8 @@ inoremap jj <ESC>
 " Sudo tee trick
 cmap w!! w !sudo tee % >/dev/null
 
-nmap <Leader><Leader> :
+nmap <Leader><Leader> :NERDTreeToggle<CR>
+nmap <Leader><Leader><Leader> :NERDTreeFind<CR>
 nnoremap <leader>l :redraw!<CR>
 
 " Copy and paste to system clipboard
