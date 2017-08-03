@@ -88,8 +88,6 @@ inoremap jj <ESC>
 " Sudo tee trick
 cmap w!! w !sudo tee % >/dev/null
 
-nmap <Leader><Leader> :NERDTreeToggle<CR>
-nmap <Leader><Leader><Leader> :NERDTreeFind<CR>
 nnoremap <leader>l :redraw!<CR>
 
 " Copy and paste to system clipboard
@@ -106,7 +104,8 @@ vnoremap J :m '>+1<CR>gv=gv
 vnoremap K :m '<-2<CR>gv=gv
 
 nnoremap <Leader>w :w<CR>
-nnoremap <Leader>e :e .<CR>
+nnoremap <Leader>e :NERDTreeToggle<CR>
+nnoremap <Leader><Leader>e :NERDTreeFind<CR>
 nnoremap <silent> <C-p> :Ag<CR>
 
 function! StandardFix()
