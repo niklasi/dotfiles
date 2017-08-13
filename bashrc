@@ -50,3 +50,8 @@ NVM_DIR="$HOME/.nvm"
 
 # OPAM configuration
 . /Users/niklasi/.opam/opam-init/init.sh > /dev/null 2> /dev/null || true
+
+export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
+
+# added by travis gem
+[ -f /Users/niklasi/.travis/travis.sh ] && source /Users/niklasi/.travis/travis.sh
