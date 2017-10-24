@@ -138,8 +138,13 @@ augroup vimrc
   autocmd BufNewFile,BufReadPost *.md set filetype=markdown
   
   if executable('npm')
-    autocmd FileType javascript nmap <leader>t :VimuxRunCommand("npm test")<cr>
-    autocmd FileType javascript nmap <leader>r :VimuxRunCommand("npm start")<cr>
+    if $TMUX != ""
+      autocmd FileType javascript nmap <leader>t :VimuxRunCommand("npm test")<cr>
+      autocmd FileType javascript nmap <leader>r :VimuxRunCommand("npm start")<cr>
+    else
+      autocmd FileType javascript nmap <leader>t :!npm test<cr>
+      autocmd FileType javascript nmap <leader>r :!npm start<cr>
+    endif
   endif
 
   autocmd bufwritepost .vimrc source $MYVIMRC
