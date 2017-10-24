@@ -6,7 +6,6 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
 Plug 'scrooloose/nerdtree'
-Plug 'scrooloose/syntastic'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'suan/vim-instant-markdown'
 Plug 'moll/vim-node'
@@ -20,6 +19,7 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'bling/vim-airline'
 Plug 'joshdick/onedark.vim'
 Plug 'pangloss/vim-javascript'
+Plug 'w0rp/ale'
 call plug#end()
 
 filetype plugin indent on         " Turn on file type detection.
@@ -110,51 +110,33 @@ nnoremap <Leader>e :NERDTreeToggle<CR>
 nnoremap <Leader><Leader>e :NERDTreeFind<CR>
 nnoremap <silent> <C-p> :Ag<CR>
 
-function! StandardFix()
-  if exists('b:linter') && b:linter == 'standard'
-    if executable('standard')
-      execute('!standard --fix %')
-    endif
-  endif
-endfunction
-
-augroup standard
-  autocmd!
-  autocmd bufwritepost *.js silent call StandardFix()
-augroup END
-
-" Syntastic
 function! LinterHook(config)
   if has_key(a:config, 'linter')
-    let b:linter = a:config['linter']
-    if a:config['linter'] == 'standard'
-      let g:syntastic_javascript_checkers = ['standard']
-    endif
+    let g:ale_fixers = {&filetype: [a:config['linter']]}
+    let g:ale_linters = {&filetype: [a:config['linter']]}
+  else
+    let g:ale_enabled = 0
   endif
 
   return 0 " Return 0 to show no error happened
 endfunction
 
-call editorconfig#AddNewHook(function('LinterHook'))
 
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-
+let g:airline#extensions#ale#enabled = 1
 let g:airline_powerline_fonts = 1
 
-let g:syntastic_always_populate_loc_list = 0
-let g:syntastic_auto_loc_list = 0
-let g:syntastic_check_on_open = 0
-let g:syntastic_check_on_wq = 0
+let g:ale_fix_on_save = 1
+let g:ale_sign_warning = '▲'
+let g:ale_sign_error = '✗'
+
+call editorconfig#AddNewHook(function('LinterHook'))
 
 augroup vimrc
   autocmd!
   autocmd BufReadPost fugitive://* set bufhidden=delete
   autocmd FileType coffee setlocal shiftwidth=4 tabstop=4 noexpandtab
   autocmd BufNewFile,BufReadPost *.md set filetype=markdown
-  autocmd FocusGained * :redraw!
-
+  
   if executable('npm')
     autocmd FileType javascript nmap <leader>t :VimuxRunCommand("npm test")<cr>
     autocmd FileType javascript nmap <leader>r :VimuxRunCommand("npm start")<cr>
