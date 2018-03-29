@@ -20,6 +20,7 @@ Plug 'bling/vim-airline'
 Plug 'joshdick/onedark.vim'
 Plug 'pangloss/vim-javascript'
 Plug 'w0rp/ale'
+Plug 'fatih/vim-go'
 call plug#end()
 
 filetype plugin indent on         " Turn on file type detection.
