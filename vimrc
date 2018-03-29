@@ -121,8 +121,7 @@ function! LinterHook(config)
   if has_key(a:config, 'linter')
     let g:ale_fixers = {&filetype: [a:config['linter']]}
     let g:ale_linters = {&filetype: [a:config['linter']]}
-  else
-    let g:ale_enabled = 0
+    let g:ale_enabled = 1
   endif
 
   return 0 " Return 0 to show no error happened
@@ -135,6 +134,7 @@ let g:airline_powerline_fonts = 1
 let g:ale_fix_on_save = 1
 let g:ale_sign_warning = '▲'
 let g:ale_sign_error = '✗'
+let g:ale_enabled = 0
 
 call editorconfig#AddNewHook(function('LinterHook'))
 
