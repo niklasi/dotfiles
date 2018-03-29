@@ -112,6 +112,11 @@ nnoremap <Leader>e :NERDTreeToggle<CR>
 nnoremap <Leader><Leader>e :NERDTreeFind<CR>
 nnoremap <silent> <C-p> :Ag<CR>
 
+nnoremap ]q :cnext<CR>
+nnoremap [q :cprev<CR>
+nnoremap ]Q :clast<CR>
+nnoremap [Q :cfirst<CR>
+
 function! LinterHook(config)
   if has_key(a:config, 'linter')
     let g:ale_fixers = {&filetype: [a:config['linter']]}
