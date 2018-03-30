@@ -32,3 +32,6 @@ done
 
 # install minpac 
 [ ! -d vim/pack/minpac/opt/minpac ] && git clone https://github.com/k-takata/minpac.git vim/pack/minpac/opt/minpac
+
+# install fzf 
+[ ! -d ~/.fzf ] && git clone https://github.com/junegunn/fzf.git ~/.fzf && ~/.fzf/install --all
