@@ -30,3 +30,5 @@ for file in $files; do
     ln -s $dir/$file ~/.$file
 done
 
+# install minpac 
+[ ! -d vim/pack/minpac/opt/minpac ] && git clone https://github.com/k-takata/minpac.git vim/pack/minpac/opt/minpac
