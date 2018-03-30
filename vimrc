@@ -1,30 +1,60 @@
 ﻿set nocompatible                  " Must come first because it changes other options.
 set encoding=utf-8
 
-call plug#begin('~/dotfiles/vim/bundle')
-Plug 'tpope/vim-fugitive'
-Plug 'tpope/vim-surround'
-Plug 'tpope/vim-commentary'
-Plug 'scrooloose/nerdtree'
-Plug 'christoomey/vim-tmux-navigator'
-Plug 'suan/vim-instant-markdown'
-Plug 'moll/vim-node'
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-Plug 'junegunn/fzf.vim'
-Plug 'othree/html5.vim'
-Plug 'wincent/terminus'
-Plug 'benmills/vimux'
-Plug 'editorconfig/editorconfig-vim'
-Plug 'vim-airline/vim-airline-themes'
-Plug 'bling/vim-airline'
-Plug 'joshdick/onedark.vim'
-Plug 'pangloss/vim-javascript'
-Plug 'w0rp/ale'
-Plug 'fatih/vim-go'
-call plug#end()
-
 filetype plugin indent on         " Turn on file type detection.
 syntax enable                     " Turn on syntax highlighting.
+
+silent! packadd minpac            " Try to load minpac.
+
+if exists('*minpac#init')         " minpac is available.
+  call minpac#init()
+  call minpac#add('k-takata/minpac', {'type': 'opt'})
+
+  call minpac#add('tpope/vim-fugitive')
+  call minpac#add('tpope/vim-surround')
+  call minpac#add('tpope/vim-commentary')
+  call minpac#add('scrooloose/nerdtree')
+  call minpac#add('wincent/terminus')
+  call minpac#add('vim-airline/vim-airline-themes')
+  call minpac#add('bling/vim-airline')
+  call minpac#add('joshdick/onedark.vim')
+
+  call minpac#add('junegunn/fzf.vim')
+  set rtp+=~/.fzf      " Add fzf to runtime path
+  
+  call minpac#add('w0rp/ale')
+  call minpac#add('editorconfig/editorconfig-vim')
+
+  call minpac#add('moll/vim-node')
+  call minpac#add('pangloss/vim-javascript')
+
+  call minpac#add('suan/vim-instant-markdown', {'type': 'opt'})
+  call minpac#add('fatih/vim-go', {'type': 'opt'})
+  call minpac#add('othree/html5.vim', {'type': 'opt'})
+  call minpac#add('benmills/vimux', {'type': 'opt'})
+  call minpac#add('christoomey/vim-tmux-navigator', {'type': 'opt'})
+
+  " packloadall " Load all plugins right now
+  silent! packadd editorconfig-vim " Load editorconfig-vim right now
+  silent! packadd onedark.vim " Load onedark right now
+  
+  augroup plugins
+    autocmd!
+
+    autocmd FileType markdown silent! packadd vim-instant-markdown
+    autocmd FileType html silent! packadd html5.vim
+    autocmd FileType go silent! packadd vim-go
+
+    if $TMUX != ""
+      silent! packadd vimux
+      silent! packadd vim-tmux-navigator
+    endif
+
+  augroup END
+
+  command! PackUpdate call minpac#update()
+  command! PackClean call minpac#clean()
+endif
 
 set showcmd                       " Display incomplete commands.
 set showmode                      " Display the mode you're in.
@@ -74,8 +104,8 @@ set autoread                      " Auto read file when changed outside of vim
 set wildignore+=*.DS_Store        " Mac Support bootstrap
 set wildignore+=*/_build**        " Mac Support bootstrap
 
-colorscheme onedark
-set background=dark
+silent! colorscheme onedark
+silent! set background=dark
 hi Normal ctermbg=NONE
 
 set statusline=%<%f\ %h%m%r%{fugitive#statusline()}%=%-14.(%l,%c%V%)\ %P
@@ -117,17 +147,6 @@ nnoremap [q :cprev<CR>
 nnoremap ]Q :clast<CR>
 nnoremap [Q :cfirst<CR>
 
-function! LinterHook(config)
-  if has_key(a:config, 'linter')
-    let g:ale_fixers = {&filetype: [a:config['linter']]}
-    let g:ale_linters = {&filetype: [a:config['linter']]}
-    let g:ale_enabled = 1
-  endif
-
-  return 0 " Return 0 to show no error happened
-endfunction
-
-
 let g:airline#extensions#ale#enabled = 1
 let g:airline_powerline_fonts = 1
 
@@ -136,14 +155,11 @@ let g:ale_sign_warning = '▲'
 let g:ale_sign_error = '✗'
 let g:ale_enabled = 0
 
-call editorconfig#AddNewHook(function('LinterHook'))
-
 augroup vimrc
   autocmd!
   autocmd BufReadPost fugitive://* set bufhidden=delete
-  autocmd FileType coffee setlocal shiftwidth=4 tabstop=4 noexpandtab
   autocmd BufNewFile,BufReadPost *.md set filetype=markdown
-  
+
   if executable('npm')
     if $TMUX != ""
       autocmd FileType javascript nmap <leader>t :VimuxRunCommand("npm test")<cr>
@@ -152,6 +168,19 @@ augroup vimrc
       autocmd FileType javascript nmap <leader>t :!npm test<cr>
       autocmd FileType javascript nmap <leader>r :!npm start<cr>
     endif
+  endif
+
+  if exists("g:loaded_EditorConfig")
+      function! LinterHook(config)
+        if has_key(a:config, 'linter')
+          let g:ale_fixers = {&filetype: [a:config['linter']]}
+          let g:ale_linters = {&filetype: [a:config['linter']]}
+          let g:ale_enabled = 1
+        endif
+
+      return 0 " Return 0 to show no error happened
+    endfunction
+    call editorconfig#AddNewHook(function('LinterHook'))
   endif
 
   autocmd bufwritepost .vimrc source $MYVIMRC
