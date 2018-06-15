@@ -113,6 +113,12 @@ set statusline=%<%f\ %h%m%r%{fugitive#statusline()}%=%-14.(%l,%c%V%)\ %P
 
 let mapleader = "\<Space>"
 
+if &diff
+    map <leader>1 :diffget LOCAL<CR>
+    map <leader>2 :diffget BASE<CR>
+    map <leader>3 :diffget REMOTE<CR>
+endif
+
 if !exists("g:loaded_tmux_navigator") || &diff
   nnoremap <C-j> <C-w>j
   nnoremap <C-h> <C-w>h
