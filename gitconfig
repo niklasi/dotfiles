@@ -35,3 +35,5 @@
 [difftool]
 	cmd = vimdiff "$1" "$2"
   prompt = false
+[mergetool "diffconflicts"]
+	keepBackup = false
