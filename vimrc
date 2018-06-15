@@ -33,6 +33,7 @@ if exists('*minpac#init')         " minpac is available.
   call minpac#add('othree/html5.vim', {'type': 'opt'})
   call minpac#add('benmills/vimux', {'type': 'opt'})
   call minpac#add('christoomey/vim-tmux-navigator', {'type': 'opt'})
+  call minpac#add('Yggdroot/indentLine')
 
   " packloadall " Load all plugins right now
   silent! packadd editorconfig-vim " Load editorconfig-vim right now
