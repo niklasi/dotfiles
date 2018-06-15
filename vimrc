@@ -113,10 +113,12 @@ set statusline=%<%f\ %h%m%r%{fugitive#statusline()}%=%-14.(%l,%c%V%)\ %P
 
 let mapleader = "\<Space>"
 
-nnoremap <C-h> <C-w>h
-nnoremap <C-j> <C-w>j
-nnoremap <C-k> <C-w>k
-nnoremap <C-l> <C-w>l
+if !exists("g:loaded_tmux_navigator") || &diff
+  nnoremap <C-j> <C-w>j
+  nnoremap <C-h> <C-w>h
+  nnoremap <C-k> <C-w>k
+  nnoremap <C-l> <C-w>l
+endif
 
 inoremap jj <ESC>
 
