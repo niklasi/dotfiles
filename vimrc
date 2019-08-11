@@ -27,6 +27,7 @@ if exists('*minpac#init')         " minpac is available.
 
   call minpac#add('moll/vim-node')
   call minpac#add('pangloss/vim-javascript')
+  call minpac#add('mxw/vim-jsx')
 
   call minpac#add('suan/vim-instant-markdown', {'type': 'opt'})
   call minpac#add('fatih/vim-go', {'type': 'opt'})
@@ -35,10 +36,17 @@ if exists('*minpac#init')         " minpac is available.
   call minpac#add('christoomey/vim-tmux-navigator', {'type': 'opt'})
   call minpac#add('Yggdroot/indentLine')
 
+  call minpac#add('prabirshrestha/asyncomplete.vim')
+  call minpac#add('prabirshrestha/async.vim')
+  call minpac#add('prabirshrestha/vim-lsp')
+  call minpac#add('prabirshrestha/asyncomplete-lsp.vim')
+  call minpac#add('ryanolsonx/vim-lsp-javascript')
+  call minpac#add('arcticicestudio/nord-vim')
+
   " packloadall " Load all plugins right now
   silent! packadd editorconfig-vim " Load editorconfig-vim right now
   silent! packadd onedark.vim " Load onedark right now
-  
+   
   augroup plugins
     autocmd!
 
@@ -105,9 +113,9 @@ set autoread                      " Auto read file when changed outside of vim
 set wildignore+=*.DS_Store        " Mac Support bootstrap
 set wildignore+=*/_build**        " Mac Support bootstrap
 
-silent! colorscheme onedark
-silent! set background=dark
-hi Normal ctermbg=NONE
+set splitright                    " Open split to the right side
+
+silent! colorscheme nord
 
 set statusline=%<%f\ %h%m%r%{fugitive#statusline()}%=%-14.(%l,%c%V%)\ %P
 
@@ -180,7 +188,7 @@ augroup vimrc
   endif
 
   if exists("g:loaded_EditorConfig")
-      function! LinterHook(config)
+    function! LinterHook(config)
         if has_key(a:config, 'linter')
           let g:ale_fixers = {&filetype: [a:config['linter']]}
           let g:ale_linters = {&filetype: [a:config['linter']]}
@@ -194,6 +202,7 @@ augroup vimrc
 
   autocmd bufwritepost .vimrc source $MYVIMRC
 augroup END
+
 
 " Set up the window colors and size
 "-----------------------------------------------------------------------------
