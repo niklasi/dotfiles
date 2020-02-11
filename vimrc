@@ -20,7 +20,7 @@ if exists('*minpac#init')         " minpac is available.
   call minpac#add('joshdick/onedark.vim')
 
   call minpac#add('junegunn/fzf.vim')
-  set rtp+=~/.fzf      " Add fzf to runtime path
+  set rtp+=~/.fzf   " Add fzf to runtime path
   
   call minpac#add('w0rp/ale')
   call minpac#add('editorconfig/editorconfig-vim')
@@ -38,11 +38,11 @@ if exists('*minpac#init')         " minpac is available.
 
   call minpac#add('prabirshrestha/asyncomplete.vim')
   call minpac#add('prabirshrestha/async.vim')
-  call minpac#add('prabirshrestha/vim-lsp')
-  call minpac#add('prabirshrestha/asyncomplete-lsp.vim')
-  call minpac#add('ryanolsonx/vim-lsp-javascript')
+  " call minpac#add('prabirshrestha/vim-lsp')
+  " call minpac#add('prabirshrestha/asyncomplete-lsp.vim')
+  " call minpac#add('ryanolsonx/vim-lsp-javascript')
   call minpac#add('arcticicestudio/nord-vim')
-
+  call minpac#add('vim-ruby/vim-ruby')
   " packloadall " Load all plugins right now
   silent! packadd editorconfig-vim " Load editorconfig-vim right now
   silent! packadd onedark.vim " Load onedark right now
