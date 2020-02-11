@@ -28,6 +28,18 @@
   tcm = !git add -A && git commit -m                                                            
   bclean = "!f() { git branch --merged ${1-master} | grep -v " ${1-master}$" | xargs -r git branch -d; }; f"
   bdone = "!f() { git checkout ${1-master} && git up && git bclean ${1-master}; }; f"
+  fch = "!f() { \
+      branch=$(git branch -a | grep -m1 $1); \
+      git checkout ${branch/remotes\\/origin\\/}; \
+    }; f"
+  fdb = "!f() { \
+      branch=$(git branch | grep -m1 $1); \
+      while [ ! -z "$branch" ]; do \
+        git branch -D ${branch}; \
+        branch=$(git branch | grep -m1 $1); \
+      done \
+    }; f"
+  tpush = push
 [diff]
 	tool = vimdiff
 [merge]
