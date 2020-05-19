@@ -164,10 +164,15 @@ nnoremap [Q :cfirst<CR>
 let g:airline#extensions#ale#enabled = 1
 let g:airline_powerline_fonts = 1
 
-let g:ale_fix_on_save = 1
+let g:ale_completion_enabled = 1
+let g:ale_completion_tsserver_autoimport = 1
 let g:ale_sign_warning = '▲'
 let g:ale_sign_error = '✗'
-let g:ale_enabled = 0
+let g:ale_echo_msg_error_str = 'E'
+let g:ale_echo_msg_warning_str = 'W'
+let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
+let g:ale_fix_on_save = 1
+let g:ale_enabled = 1
 
 augroup vimrc
   autocmd!
@@ -176,25 +181,41 @@ augroup vimrc
 
   if executable('npm')
     if $TMUX != ""
-      autocmd FileType javascript nmap <leader>t :VimuxRunCommand("npm test")<cr>
-      autocmd FileType javascript nmap <leader>r :VimuxRunCommand("npm start")<cr>
+      autocmd FileType javascript,typescript nmap <leader>t :VimuxRunCommand("npm test")<cr>
+      autocmd FileType javascript,typescript nmap <leader>r :VimuxRunCommand("npm start")<cr>
     else
-      autocmd FileType javascript nmap <leader>t :!npm test<cr>
-      autocmd FileType javascript nmap <leader>r :!npm start<cr>
+      autocmd FileType javascript,typescript nmap <leader>t :!npm test<cr>
+      autocmd FileType javascript,typescript nmap <leader>r :!npm start<cr>
     endif
-  endif
-
-  if exists("g:loaded_EditorConfig")
-    function! LinterHook(config)
-        if has_key(a:config, 'linter')
-          let g:ale_fixers = {&filetype: [a:config['linter']]}
-          let g:ale_linters = {&filetype: [a:config['linter']]}
-          let g:ale_enabled = 1
+    let packagejson = niklasi#npm#get_package_json('<afile>')
+    if !empty(packagejson)
+      if has_key(packagejson, 'devDependencies')
+        let linters = {}
+        let fixers = []
+        let devDep = packagejson['devDependencies']
+        if has_key(devDep, 'standard')
+          let linters.javascript = ['standard']
+          let linters.typescript = ['tsserver', 'standard']
+          call add(fixers, 'standard')
         endif
-
-      return 0 " Return 0 to show no error happened
-    endfunction
-    call editorconfig#AddNewHook(function('LinterHook'))
+        if has_key(devDep, 'prettier')
+          call add(fixers, 'prettier')
+          let linters.html = ['prettier']
+          let linters.scss = ['prettier']
+        endif
+        if has_key(devDep, 'eslint')
+          call add(fixers, 'eslint')
+          let linters.javascript = ['eslint']
+          let linters.typescript = ['tsserver', 'eslint']
+        endif
+        if !empty(fixers)
+          let g:ale_fixers = fixers
+        endif
+        if !empty(linters)
+          let g:ale_linters = linters
+        endif
+      endif
+    endif
   endif
 
   autocmd bufwritepost .vimrc source $MYVIMRC
