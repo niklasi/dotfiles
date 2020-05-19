@@ -5,6 +5,8 @@
 	default = simple
 [credential]
   helper = cache --timeout=9999999
+[core]
+  pager = delta --plus-color="#012800" --minus-color="#340001" --theme='Nord'
 [alias]
   st = status
   tst = status # Handle typo
