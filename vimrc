@@ -10,6 +10,7 @@ if exists('*minpac#init')         " minpac is available.
   call minpac#init()
   call minpac#add('k-takata/minpac', {'type': 'opt'})
 
+  call minpac#add('sheerun/vim-polyglot')
   call minpac#add('tpope/vim-fugitive')
   call minpac#add('tpope/vim-surround')
   call minpac#add('tpope/vim-commentary')
@@ -17,7 +18,6 @@ if exists('*minpac#init')         " minpac is available.
   call minpac#add('wincent/terminus')
   call minpac#add('vim-airline/vim-airline-themes')
   call minpac#add('bling/vim-airline')
-  call minpac#add('joshdick/onedark.vim')
 
   call minpac#add('junegunn/fzf.vim')
   set rtp+=~/.fzf   " Add fzf to runtime path
@@ -26,33 +26,24 @@ if exists('*minpac#init')         " minpac is available.
   call minpac#add('editorconfig/editorconfig-vim')
 
   call minpac#add('moll/vim-node')
-  call minpac#add('pangloss/vim-javascript')
-  call minpac#add('mxw/vim-jsx')
 
   call minpac#add('suan/vim-instant-markdown', {'type': 'opt'})
-  call minpac#add('fatih/vim-go', {'type': 'opt'})
-  call minpac#add('othree/html5.vim', {'type': 'opt'})
   call minpac#add('benmills/vimux', {'type': 'opt'})
   call minpac#add('christoomey/vim-tmux-navigator', {'type': 'opt'})
   call minpac#add('Yggdroot/indentLine')
 
   call minpac#add('prabirshrestha/asyncomplete.vim')
   call minpac#add('prabirshrestha/async.vim')
-  " call minpac#add('prabirshrestha/vim-lsp')
-  " call minpac#add('prabirshrestha/asyncomplete-lsp.vim')
-  " call minpac#add('ryanolsonx/vim-lsp-javascript')
   call minpac#add('arcticicestudio/nord-vim')
-  call minpac#add('vim-ruby/vim-ruby')
   " packloadall " Load all plugins right now
   silent! packadd editorconfig-vim " Load editorconfig-vim right now
-  silent! packadd onedark.vim " Load onedark right now
-   
   augroup plugins
     autocmd!
 
     autocmd FileType markdown silent! packadd vim-instant-markdown
-    autocmd FileType html silent! packadd html5.vim
-    autocmd FileType go silent! packadd vim-go
+    autocmd FileType markdown let g:instant_markdown_autostart = 0
+    autocmd FileType markdown nmap <leader>r :InstantMarkdownPreview<CR>
+    autocmd FileType markdown nmap <leader>s :InstantMarkdownStop<CR>
 
     if $TMUX != ""
       silent! packadd vimux
