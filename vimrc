@@ -145,8 +145,14 @@ nmap <C-y><C-y> "+yy
 vnoremap J :m '>+1<CR>gv=gv
 vnoremap K :m '<-2<CR>gv=gv
 
+let NERDTreeAutoDeleteBuffer = 1
+let NERDTreeMinimalUI = 1
+let NERDTreeShowHidden=1
+let NERDTreeShowLineNumbers=1
+
 nnoremap <Leader>w :w<CR>
 nnoremap <Leader>e :NERDTreeToggle<CR>
+nnoremap <Leader>ee :NERDTreeFocus<CR>
 nnoremap <Leader><Leader>e :NERDTreeFind<CR>
 nnoremap <silent> <C-p> :Ag<CR>
 
