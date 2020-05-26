@@ -35,6 +35,8 @@ if exists('*minpac#init')         " minpac is available.
   call minpac#add('prabirshrestha/asyncomplete.vim')
   call minpac#add('prabirshrestha/async.vim')
   call minpac#add('arcticicestudio/nord-vim')
+  call minpac#add('machakann/vim-highlightedyank')
+
   " packloadall " Load all plugins right now
   silent! packadd editorconfig-vim " Load editorconfig-vim right now
   augroup plugins
