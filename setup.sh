@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 ############################
 # .make.sh
 # This script creates symlinks from the home directory to any desired dotfiles in ~/dotfiles
@@ -8,7 +8,7 @@
 
 dir=~/dotfiles                    # dotfiles directory
 olddir=~/dotfiles_old             # old dotfiles backup directory
-files="vim bashrc vimrc bash_profile gitconfig tmux.conf"    # list of files/folders to symlink in homedir
+files="vim vimrc gitconfig tmux.conf"    # list of files/folders to symlink in homedir
 
 ##########
 
