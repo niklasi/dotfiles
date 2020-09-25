@@ -6,7 +6,7 @@ syntax enable                     " Turn on syntax highlighting.
 
 silent! packadd minpac            " Try to load minpac.
 
-if exists('*minpac#init')         " minpac is available.
+if exists('g:loaded_minpac')         " minpac is available.
   call minpac#init()
   call minpac#add('k-takata/minpac', {'type': 'opt'})
 
