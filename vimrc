@@ -27,7 +27,7 @@ if exists('*minpac#init')         " minpac is available.
 
   call minpac#add('moll/vim-node')
 
-  call minpac#add('suan/vim-instant-markdown', {'type': 'opt'})
+  call minpac#add('plasticboy/vim-markdown', {'type': 'opt'})
   call minpac#add('benmills/vimux', {'type': 'opt'})
   call minpac#add('christoomey/vim-tmux-navigator', {'type': 'opt'})
   call minpac#add('Yggdroot/indentLine')
@@ -42,10 +42,13 @@ if exists('*minpac#init')         " minpac is available.
   augroup plugins
     autocmd!
 
-    autocmd FileType markdown silent! packadd vim-instant-markdown
-    autocmd FileType markdown let g:instant_markdown_autostart = 0
-    autocmd FileType markdown nmap <leader>r :InstantMarkdownPreview<CR>
-    autocmd FileType markdown nmap <leader>s :InstantMarkdownStop<CR>
+    autocmd FileType markdown silent! packadd vim-markdown
+    autocmd FileType markdown hi mkdCode ctermbg=0
+    autocmd FileType markdown map <leader>r :w!<CR>:w!/tmp/vim-markdown.md<CR>:!pandoc -s -f markdown -t html -o /tmp/vim-markdown.html /tmp/vim-markdown.md<CR>:!open /tmp/vim-markdown.html > /dev/null 2> /dev/null&<CR><CR>
+
+    " add yaml stuffs
+    au! BufNewFile,BufReadPost *.{yaml,yml} set filetype=yaml foldmethod=indent
+    autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
 
     if $TMUX != ""
       silent! packadd vimux
@@ -167,7 +170,7 @@ let g:airline#extensions#ale#enabled = 1
 let g:airline_powerline_fonts = 1
 
 let g:ale_completion_enabled = 1
-let g:ale_completion_tsserver_autoimport = 1
+let g:ale_completion_autoimport = 1
 let g:ale_sign_warning = '▲'
 let g:ale_sign_error = '✗'
 let g:ale_echo_msg_error_str = 'E'
