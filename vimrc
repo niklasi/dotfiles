@@ -36,6 +36,7 @@ if exists('g:loaded_minpac')         " minpac is available.
   call minpac#add('prabirshrestha/async.vim')
   call minpac#add('arcticicestudio/nord-vim')
   call minpac#add('machakann/vim-highlightedyank')
+  call minpac#add('stsewd/fzf-checkout.vim')
 
   " packloadall " Load all plugins right now
   silent! packadd editorconfig-vim " Load editorconfig-vim right now
