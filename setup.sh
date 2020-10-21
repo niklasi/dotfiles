@@ -8,7 +8,7 @@
 
 dir=~/dotfiles                    # dotfiles directory
 olddir=~/dotfiles_old             # old dotfiles backup directory
-files="vim vimrc config/nvim gitconfig tmux.conf"    # list of files/folders to symlink in homedir
+files="zshrc vim vimrc config/nvim gitconfig tmux.conf"    # list of files/folders to symlink in homedir
 
 ##########
 
@@ -35,3 +35,6 @@ done
 
 # install fzf 
 [ ! -d ~/.fzf ] && git clone https://github.com/junegunn/fzf.git ~/.fzf && ~/.fzf/install --all
+
+# install oh-my-zsh 
+[ ! -d ~/.oh-my-zsh ] && sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
