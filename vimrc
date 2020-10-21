@@ -38,6 +38,8 @@ if exists('g:loaded_minpac')         " minpac is available.
   call minpac#add('machakann/vim-highlightedyank')
   call minpac#add('stsewd/fzf-checkout.vim')
 
+  call minpac#add('jparise/vim-graphql')
+
   " packloadall " Load all plugins right now
   silent! packadd editorconfig-vim " Load editorconfig-vim right now
   augroup plugins
@@ -55,6 +57,7 @@ if exists('g:loaded_minpac')         " minpac is available.
       silent! packadd vimux
       silent! packadd vim-tmux-navigator
     endif
+
 
   augroup END
 
@@ -112,6 +115,8 @@ set wildignore+=*/_build**        " Mac Support bootstrap
 
 set splitright                    " Open split to the right side
 
+set cmdheight=2
+
 silent! colorscheme nord
 
 set statusline=%<%f\ %h%m%r%{fugitive#statusline()}%=%-14.(%l,%c%V%)\ %P
@@ -131,12 +136,34 @@ if !exists("g:loaded_tmux_navigator") || &diff
   nnoremap <C-l> <C-w>l
 endif
 
+
 inoremap jj <ESC>
 
 " Sudo tee trick
 cmap w!! w !sudo tee % >/dev/null
 
-nnoremap <leader>l :redraw!<CR>
+let g:fzf_layout = { 'window': { 'width': 0.8, 'height': 0.9 }}
+let $FZF_DEFAULT_OPTS='--reverse'
+
+let g:fzf_checkout_git_options = '--sort=-committerdate'
+let g:fzf_branch_actions = {
+      \ 'create': {'keymap': 'ctrl-b'},
+      \ 'diff': {
+      \   'prompt': 'Diff> ',
+      \   'execute': 'Git diff {branch}',
+      \   'multiple': v:false,
+      \   'keymap': 'ctrl-f',
+      \   'required': ['branch'],
+      \   'confirm': v:false,
+      \ },
+      \}
+
+nnoremap <silent> <C-f> :Ag<CR>
+nnoremap <silent> <C-p> :GFiles<CR>
+nnoremap <silent> <C-b> :Buffers<CR>
+nnoremap <silent> <leader>gc :Commits<CR>
+nnoremap <silent> <leader>gs :G<CR>
+nnoremap <silent> <leader>gb :GBranches<CR>
 
 " Copy and paste to system clipboard
 vmap <Leader>y "+y
@@ -160,12 +187,15 @@ nnoremap <Leader>w :w<CR>
 nnoremap <Leader>e :NERDTreeToggle<CR>
 nnoremap <Leader>ee :NERDTreeFocus<CR>
 nnoremap <Leader><Leader>e :NERDTreeFind<CR>
-nnoremap <silent> <C-p> :Ag<CR>
 
 nnoremap ]q :cnext<CR>
 nnoremap [q :cprev<CR>
 nnoremap ]Q :clast<CR>
 nnoremap [Q :cfirst<CR>
+
+nnoremap <Leader>gd :ALEGoToDefinition<CR>
+nnoremap <Leader>gr :ALEFindReferences<CR>
+nnoremap <Leader>rr :ALERename<CR>
 
 let g:airline#extensions#ale#enabled = 1
 let g:airline_powerline_fonts = 1
@@ -178,6 +208,8 @@ let g:ale_echo_msg_error_str = 'E'
 let g:ale_echo_msg_warning_str = 'W'
 let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
 let g:ale_fix_on_save = 1
+set omnifunc=ale#completion#OmniFunc
+let g:ale_set_balloons = 1
 let g:ale_enabled = 1
 
 augroup vimrc
