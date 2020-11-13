@@ -38,3 +38,6 @@ done
 
 # install oh-my-zsh 
 [ ! -d ~/.oh-my-zsh ] && sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+
+# install nvm
+[ ! -d ~/.nvm ] && curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.37.0/install.sh | zsh
