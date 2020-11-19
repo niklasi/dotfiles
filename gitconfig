@@ -51,3 +51,5 @@
   prompt = false
 [mergetool "diffconflicts"]
 	keepBackup = false
+[mergetool]
+	keepBackup = false
