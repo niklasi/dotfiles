@@ -7,15 +7,39 @@ export ZSH="/Users/niklas/.oh-my-zsh"
 
 alias gi=git
 alias vim=nvim
+
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+autoload -U add-zsh-hook
+load-nvmrc() {
+  local node_version="$(nvm version)"
+  local nvmrc_path="$(nvm_find_nvmrc)"
+
+  if [ -n "$nvmrc_path" ]; then
+    local nvmrc_node_version=$(nvm version "$(cat "${nvmrc_path}")")
+
+    if [ "$nvmrc_node_version" = "N/A" ]; then
+      nvm install
+    elif [ "$nvmrc_node_version" != "$node_version" ]; then
+      nvm use
+    fi
+  elif [ "$node_version" != "$(nvm version default)" ]; then
+    echo "Reverting to nvm default version"
+    nvm use default
+  fi
+}
+add-zsh-hook chpwd load-nvmrc
+load-nvmrc
 
 __zsh-on-cd () {
 if git ls-files &>/dev/null ; then
     if [[ "$PWD" =~ 'stampen' ]]; then
         echo "setting git to use company identity"
         git config user.email "niklas.ingholt@stampen.com"
+    elif [[ "$PWD" =~ 'evolve' ]]; then
+        echo "setting git to use evolve identity"
+        git config user.email "niklas.ingholt@evolvetechnology.se"
     else
         echo "setting git to use personal identity"
         git config user.email "niklas@ingholt.com"
