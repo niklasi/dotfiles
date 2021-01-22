@@ -164,6 +164,7 @@ nnoremap <silent> <C-b> :Buffers<CR>
 nnoremap <silent> <leader>gc :Commits<CR>
 nnoremap <silent> <leader>gs :G<CR>
 nnoremap <silent> <leader>gb :GBranches<CR>
+tnoremap <silent> <leader>c <C-\><C-n>
 
 " Copy and paste to system clipboard
 vmap <Leader>y "+y
