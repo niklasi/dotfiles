@@ -1,11 +1,7 @@
-﻿set nocompatible                  " Must come first because it changes other options.
-set encoding=utf-8
-
-filetype plugin indent on         " Turn on file type detection.
+﻿filetype plugin indent on         " Turn on file type detection.
 syntax enable                     " Turn on syntax highlighting.
 
 silent! packadd minpac            " Try to load minpac.
-
 if exists('g:loaded_minpac')         " minpac is available.
   call minpac#init()
   call minpac#add('k-takata/minpac', {'type': 'opt'})
@@ -14,16 +10,16 @@ if exists('g:loaded_minpac')         " minpac is available.
   call minpac#add('tpope/vim-fugitive')
   call minpac#add('tpope/vim-surround')
   call minpac#add('tpope/vim-commentary')
-  call minpac#add('scrooloose/nerdtree')
+  " call minpac#add('scrooloose/nerdtree')
   call minpac#add('wincent/terminus')
-  call minpac#add('vim-airline/vim-airline-themes')
+  " call minpac#add('vim-airline/vim-airline-themes')
   call minpac#add('bling/vim-airline')
 
   call minpac#add('junegunn/fzf.vim')
   set rtp+=~/.fzf   " Add fzf to runtime path
   
   call minpac#add('w0rp/ale')
-  call minpac#add('editorconfig/editorconfig-vim')
+  " call minpac#add('editorconfig/editorconfig-vim')
 
   call minpac#add('moll/vim-node')
 
@@ -40,8 +36,12 @@ if exists('g:loaded_minpac')         " minpac is available.
 
   call minpac#add('jparise/vim-graphql')
 
+  call minpac#add('mbbill/undotree')
+
+  call minpac#add('psliwka/vim-smoothie')
+
   " packloadall " Load all plugins right now
-  silent! packadd editorconfig-vim " Load editorconfig-vim right now
+  " silent! packadd editorconfig-vim " Load editorconfig-vim right now
   augroup plugins
     autocmd!
 
@@ -81,7 +81,6 @@ set smartcase                     " But case-sensitive if expression contains a 
 set number                        " Show current line number.
 set relativenumber                " Show relative numbers.
 set ruler                         " Show cursor position.
-
 set incsearch                     " Highlight matches as you type.
 
 set nowrap                        " Turn on line wrapping.
@@ -89,13 +88,12 @@ set scrolloff=3                   " Show 3 lines of context around the cursor.
 
 set title                         " Set the terminal's title
 
-set visualbell                    " No beeping.
+set novisualbell                  " No beeping.
 set noerrorbells				          " No beeping.
 
 set nobackup                      " Don't make a backup before overwriting a file.
 set nowritebackup                 " And again.
 set noswapfile                    " And again. 
-set directory=$HOME/.vim/tmp//,.  " Keep swap files in one location
 
 set tabstop=2                     " Global tab width.
 set shiftwidth=2                  " And again, related.
@@ -106,7 +104,6 @@ set laststatus=2                  " Show the status line all the time
 set smartindent
 set autoindent
 set nofoldenable                  " Disable code folding
-set mousehide                     " Hide mouse when typing
 
 set autoread                      " Auto read file when changed outside of vim
 
@@ -119,7 +116,12 @@ set cmdheight=2
 
 silent! colorscheme nord
 
-set statusline=%<%f\ %h%m%r%{fugitive#statusline()}%=%-14.(%l,%c%V%)\ %P
+" set statusline=%<%f\ %h%m%r%{fugitive#statusline()}%=%-14.(%l,%c%V%)\ %P
+
+if has("persistent_undo")
+    set undodir=$HOME"/.undodir"
+    set undofile
+endif
 
 let mapleader = "\<Space>"
 
@@ -136,8 +138,8 @@ if !exists("g:loaded_tmux_navigator") || &diff
   nnoremap <C-l> <C-w>l
 endif
 
-
-inoremap jj <ESC>
+nnoremap <silent> <leader>j :cnext<CR>
+nnoremap <silent> <leader>k :cprev<CR>
 
 " Sudo tee trick
 cmap w!! w !sudo tee % >/dev/null
@@ -157,6 +159,18 @@ let g:fzf_branch_actions = {
       \   'confirm': v:false,
       \ },
       \}
+" An action can be a reference to a function that processes selected lines
+function! s:build_quickfix_list(lines)
+  call setqflist(map(copy(a:lines), '{ "filename": v:val }'))
+  copen
+  cc
+endfunction
+
+let g:fzf_action = {
+  \ 'ctrl-q': function('s:build_quickfix_list'),
+  \ 'ctrl-t': 'tab split',
+  \ 'ctrl-x': 'split',
+  \ 'ctrl-v': 'vsplit' }
 
 nnoremap <silent> <C-f> :Ag<CR>
 nnoremap <silent> <C-p> :GFiles<CR>
@@ -165,6 +179,7 @@ nnoremap <silent> <leader>gc :Commits<CR>
 nnoremap <silent> <leader>gs :G<CR>
 nnoremap <silent> <leader>gb :GBranches<CR>
 tnoremap <silent> <leader>c <C-\><C-n>
+nnoremap <silent> <leader>z :UndotreeToggle<CR>
 
 " Copy and paste to system clipboard
 vmap <Leader>y "+y
@@ -179,15 +194,11 @@ nmap <C-y><C-y> "+yy
 vnoremap J :m '>+1<CR>gv=gv
 vnoremap K :m '<-2<CR>gv=gv
 
-let NERDTreeAutoDeleteBuffer = 1
-let NERDTreeMinimalUI = 1
-let NERDTreeShowHidden=1
-let NERDTreeShowLineNumbers=1
-
 nnoremap <Leader>w :w<CR>
-nnoremap <Leader>e :NERDTreeToggle<CR>
-nnoremap <Leader>ee :NERDTreeFocus<CR>
-nnoremap <Leader><Leader>e :NERDTreeFind<CR>
+
+nnoremap <Leader>e :Explore .<CR>
+nnoremap <Leader><Leader>e :Explore<CR>
+let g:netrw_bufsettings = 'noma nomod nu nobl nowrap ro'
 
 nnoremap ]q :cnext<CR>
 nnoremap [q :cprev<CR>
@@ -197,6 +208,8 @@ nnoremap [Q :cfirst<CR>
 nnoremap <Leader>gd :ALEGoToDefinition<CR>
 nnoremap <Leader>gr :ALEFindReferences<CR>
 nnoremap <Leader>rr :ALERename<CR>
+nnoremap <Leader>ca :ALECodeAction<CR>
+vnoremap <Leader>ca :ALECodeAction<CR>
 
 let g:airline#extensions#ale#enabled = 1
 let g:airline_powerline_fonts = 1
@@ -260,28 +273,4 @@ augroup vimrc
   autocmd bufwritepost .vimrc source $MYVIMRC
 augroup END
 
-
-" Set up the window colors and size
-"-----------------------------------------------------------------------------
-if has("gui_running")
-    if has("gui_win32")
-        set guifont=Consolas:h12:cANSI
-    elseif has("gui_macvim")
-        set guifont=Hack:h13
-    elseif has("gui_gtk2")
-        set guifont=Inconsolata\ 14
-    endif
-    
-    if !exists("g:vimrcloaded")
-        winpos 0 0
-
-        if ! &diff
-           winsize 160 50
-        else
-            winsize 227 50
-        endif
-        
-        let g:vimrcloaded = 1
-    endif
-endif
 :nohls
