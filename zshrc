@@ -37,6 +37,9 @@ if git ls-files &>/dev/null ; then
     if [[ "$PWD" =~ 'stampen' ]]; then
         echo "setting git to use company identity"
         git config user.email "niklas.ingholt@stampen.com"
+    elif [[ "$PWD" =~ 'nwt' ]]; then
+        echo "setting git to use evolve identity"
+        git config user.email "niklas.ingholt@evolvetechnology.se"
     elif [[ "$PWD" =~ 'evolve' ]]; then
         echo "setting git to use evolve identity"
         git config user.email "niklas.ingholt@evolvetechnology.se"
