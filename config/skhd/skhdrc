@@ -1,0 +1,29 @@
+## toggle window fullscreen zoom
+hyper - f : yabai -m window --toggle zoom-fullscreen
+
+## focus display
+ctrl + cmd - 1 : yabai -m window --display 1 yabai -m display --focus 1
+ctrl + cmd - 2 : yabai -m window --display 2 yabai -m display --focus 2
+
+hyper - d : yabai -m window --focus recent
+
+# swap window
+hyper - y : yabai -m window --swap east
+
+## rotate tree 90
+hyper - r : yabai -m space --rotate 90
+
+## flip the tree vertically
+hyper - w : yabai -m space --mirror y-axis
+
+hyper - 1 : /Users/niklas/dotfiles/bin/switchAndFocusSIP.sh 1
+hyper - 2 : /Users/niklas/dotfiles/bin/switchAndFocusSIP.sh 2
+
+## Move window
+shift + cmd - j : yabai -m window --warp south
+shift + cmd - k : yabai -m window --warp north
+shift + cmd - h : yabai -m window --warp west
+shift + cmd - l : yabai -m window --warp east
+
+## Next display
+hyper - s : yabai -m display --focus next
