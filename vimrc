@@ -18,7 +18,7 @@ if exists('g:loaded_minpac')         " minpac is available.
   call minpac#add('junegunn/fzf.vim')
   set rtp+=~/.fzf   " Add fzf to runtime path
   
-  call minpac#add('w0rp/ale')
+  " call minpac#add('w0rp/ale')
   " call minpac#add('editorconfig/editorconfig-vim')
 
   call minpac#add('moll/vim-node')

@@ -8,25 +8,43 @@ export ZSH="/Users/niklas/.oh-my-zsh"
 alias gi=git
 alias vim=nvim
 
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+eval "$(fnm env)"
+
+fnm_echo() {
+  command printf %s\\n "$*" 2>/dev/null
+}
+# Traverse up in directory tree to find containing folder
+fnm_find_up() {
+  local path_
+  path_="${PWD}"
+  while [ "${path_}" != "" ] && [ ! -f "${path_}/${1-}" ]; do
+    path_=${path_%/*}
+  done
+  fnm_echo "${path_}"
+}
+
+fnm_find_nvmrc() {
+  local dir
+  dir="$(fnm_find_up '.nvmrc')"
+  if [ -e "${dir}/.nvmrc" ]; then
+    fnm_echo "${dir}/.nvmrc"
+  fi
+}
+
 autoload -U add-zsh-hook
 load-nvmrc() {
-  local node_version="$(nvm version)"
-  local nvmrc_path="$(nvm_find_nvmrc)"
+  local node_version="$(fnm current)"
+  local nvmrc_path="$(fnm_find_nvmrc)"
+  local default="$(fnm list | grep default)"
 
   if [ -n "$nvmrc_path" ]; then
-    local nvmrc_node_version=$(nvm version "$(cat "${nvmrc_path}")")
+    local nvmrc_node_version="$(cat "${nvmrc_path}")"
 
-    if [ "$nvmrc_node_version" = "N/A" ]; then
-      nvm install
-    elif [ "$nvmrc_node_version" != "$node_version" ]; then
-      nvm use
+    if [ "$nvmrc_node_version" != "$node_version" ]; then
+      fnm use --install-if-missing
     fi
-  elif [ "$node_version" != "$(nvm version default)" ]; then
-    echo "Reverting to nvm default version"
-    nvm use default
+  elif [[ "$default" != *"$node_version"* ]]; then
+    fnm use default
   fi
 }
 add-zsh-hook chpwd load-nvmrc
@@ -38,8 +56,8 @@ if git ls-files &>/dev/null ; then
         echo "setting git to use company identity"
         git config user.email "niklas.ingholt@stampen.com"
     elif [[ "$PWD" =~ 'nwt' ]]; then
-        echo "setting git to use evolve identity"
-        git config user.email "niklas.ingholt@evolvetechnology.se"
+        echo "setting git to use afry identity"
+        git config user.email "niklas.ingholt@afry.com"
     elif [[ "$PWD" =~ 'evolve' ]]; then
         echo "setting git to use evolve identity"
         git config user.email "niklas.ingholt@evolvetechnology.se"
