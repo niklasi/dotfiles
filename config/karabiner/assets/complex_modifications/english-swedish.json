@@ -1,0 +1,65 @@
+{
+    "title": "Toggle swedish <-> english",
+    "rules": [
+        {
+            "description": "Shift+Escape to swedish <-> english",
+            "manipulators": [
+                {
+                    "conditions": [
+                        {
+                            "input_sources": [
+                                {
+                                    "input_source_id": "^com\\.apple\\.keylayout\\.USExtended$"
+                                }
+                            ],
+                            "type": "input_source_if"
+                        }
+                    ],
+                    "from": {
+                        "key_code": "escape",
+                        "modifiers": {
+                            "mandatory": [
+                                "shift"
+                            ]
+                        }
+                    },
+                    "to": [
+                        {
+                            "select_input_source": {
+                                "input_source_id": "^com\\.apple\\.keylayout\\.Swedish-Pro$"
+                            }
+                        }
+                    ],
+                    "type": "basic"
+                },
+                {
+                    "conditions": [
+                        {
+                            "input_sources": [
+                                {
+                                    "input_source_id": "^com\\.apple\\.keylayout\\.Swedish-Pro$"
+                                }
+                            ],
+                            "type": "input_source_if"
+                        }
+                    ],
+                    "from": {
+                        "key_code": "escape",
+                        "modifiers": {
+                            "mandatory": [
+                                "shift"
+                            ]
+                        }
+                    },
+                    "to": [
+                        {
+                            "select_input_source": {
+                                "input_source_id": "^com\\.apple\\.keylayout\\.USExtended$"
+                            }
+                        }
+                    ],
+                    "type": "basic"
+                }
+            ]
+        }
+    ]}
