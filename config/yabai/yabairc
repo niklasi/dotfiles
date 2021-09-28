@@ -11,19 +11,18 @@
 sudo yabai --load-sa
 yabai -m signal --add event=dock_did_restart action="sudo yabai --load-sa"
 
-yabai -m space --create
 yabai -m space 1 --label one
-yabai -m space 2 --label two
-yabai -m space 3 --label three
-yabai -m space 4 --label four
-yabai -m space 5 --label five
+yabai -m space 2 --label terminal
+yabai -m space 3 --label slack
+yabai -m space 4 --label browser-work
+yabai -m space 5 --label browser-private
 yabai -m space 6 --label six
 yabai -m space 9 --label nine
 
-yabai -m rule --add app=Alacritty space=two
-yabai -m rule --add app=Slack space=three
-yabai -m rule --add app=Brave space=four
-yabai -m rule --add app=Brave title="Work$" space=five
+yabai -m rule --add app=Alacritty space=terminal
+yabai -m rule --add app=Slack space=slack
+yabai -m rule --add app=Brave space=browser-private
+yabai -m rule --add app=Brave title="Work$" space=browser-work
 
 # bar settings
 # yabai -m config status_bar                   off
