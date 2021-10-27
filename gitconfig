@@ -42,9 +42,18 @@
       done \
     }; f"
   tpush = push
-[diff] tool = nvimdiff
-[difftool] prompt = false
-[difftool "nvimdiff"] cmd = "nvim -d \"$LOCAL\" \"$REMOTE\""
-[merge] tool = nvimdiff
-[mergetool] prompt = true
-[mergetool "nvimdiff"] cmd = "nvim -d \"$LOCAL\" \"$REMOTE\" \"$MERGED\" -c 'wincmd w' -c 'wincmd J'"
+[difftool] 
+  prompt = false
+[diff] 
+  tool = nvimdiff
+[difftool "nvimdiff"] 
+  cmd = "nvim -d \"$LOCAL\" \"$REMOTE\""
+[mergetool "nvim"]
+  cmd = nvim -f -c \"Gvdiffsplit!\" \"$MERGED\"
+[merge]
+  tool = nvim
+[mergetool]
+  prompt = false
+	keepBackup = false
+[rerere]
+	enabled = true
