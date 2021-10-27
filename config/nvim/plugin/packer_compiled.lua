@@ -69,9 +69,25 @@ end
 time([[try_loadstring definition]], false)
 time([[Defining packer_plugins]], true)
 _G.packer_plugins = {
+  LuaSnip = {
+    loaded = true,
+    path = "/Users/niklas/.local/share/nvim/site/pack/packer/start/LuaSnip"
+  },
+  ["cmp-buffer"] = {
+    loaded = true,
+    path = "/Users/niklas/.local/share/nvim/site/pack/packer/start/cmp-buffer"
+  },
   ["cmp-nvim-lsp"] = {
     loaded = true,
     path = "/Users/niklas/.local/share/nvim/site/pack/packer/start/cmp-nvim-lsp"
+  },
+  ["cmp-nvim-lua"] = {
+    loaded = true,
+    path = "/Users/niklas/.local/share/nvim/site/pack/packer/start/cmp-nvim-lua"
+  },
+  ["cmp-path"] = {
+    loaded = true,
+    path = "/Users/niklas/.local/share/nvim/site/pack/packer/start/cmp-path"
   },
   indentLine = {
     loaded = true,
@@ -146,7 +162,7 @@ _G.packer_plugins = {
     path = "/Users/niklas/.local/share/nvim/site/pack/packer/start/vim-graphql"
   },
   ["vim-markdown"] = {
-    config = { "\27LJ\2\nø\2\0\0\3\0\4\0\t6\0\0\0009\0\1\0'\2\2\0B\0\2\0016\0\0\0009\0\1\0'\2\3\0B\0\2\1K\0\1\0‡\1autocmd FileType markdown map <leader>r :w!<CR>:w!/tmp/vim-markdown.md<CR>:!pandoc -s -f markdown -t html -o /tmp/vim-markdown.html /tmp/vim-markdown.md<CR>:!open /tmp/vim-markdown.html > /dev/null 2> /dev/null&<CR><CR>3autocmd FileType markdown hi mkdCode ctermbg=0\bcmd\bvim\0" },
+    config = { "\27LJ\2\n¿\2\0\0\3\0\4\0\t6\0\0\0009\0\1\0'\2\2\0B\0\2\0016\0\0\0009\0\1\0'\2\3\0B\0\2\1K\0\1\0·\1autocmd FileType markdown map <leader>mr :w!<CR>:w!/tmp/vim-markdown.md<CR>:!pandoc -s -f markdown -t html -o /tmp/vim-markdown.html /tmp/vim-markdown.md<CR>:!open /tmp/vim-markdown.html > /dev/null 2> /dev/null&<CR><CR>3autocmd FileType markdown hi mkdCode ctermbg=0\bcmd\bvim\0" },
     loaded = false,
     needs_bufread = true,
     path = "/Users/niklas/.local/share/nvim/site/pack/packer/opt/vim-markdown"
@@ -187,10 +203,10 @@ try_loadstring("\27LJ\2\n8\0\0\1\0\3\0\t6\0\0\0009\0\1\0009\0\2\0\v\0\0\0X\0\2Ä+
 then
 time("Condition for { 'vim-tmux-navigator', 'vimux' }", false)
 time([[packadd for vim-tmux-navigator]], true)
-		vim.cmd [[packadd vim-tmux-navigator]]
+		require("packer.load")({"vim-tmux-navigator"}, {}, _G.packer_plugins)
 	time([[packadd for vim-tmux-navigator]], false)
 	time([[packadd for vimux]], true)
-		vim.cmd [[packadd vimux]]
+		require("packer.load")({"vimux"}, {}, _G.packer_plugins)
 	time([[packadd for vimux]], false)
 else
 time("Condition for { 'vim-tmux-navigator', 'vimux' }", false)

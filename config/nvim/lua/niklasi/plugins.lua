@@ -45,7 +45,7 @@ packer.startup(function(use)
     ft = {'markdown'},
     config = function()
       vim.cmd([[autocmd FileType markdown hi mkdCode ctermbg=0]])
-      vim.cmd([[autocmd FileType markdown map <leader>r :w!<CR>:w!/tmp/vim-markdown.md<CR>:!pandoc -s -f markdown -t html -o /tmp/vim-markdown.html /tmp/vim-markdown.md<CR>:!open /tmp/vim-markdown.html > /dev/null 2> /dev/null&<CR><CR>]])
+      vim.cmd([[autocmd FileType markdown map <leader>mr :w!<CR>:w!/tmp/vim-markdown.md<CR>:!pandoc -s -f markdown -t html -o /tmp/vim-markdown.html /tmp/vim-markdown.md<CR>:!open /tmp/vim-markdown.html > /dev/null 2> /dev/null&<CR><CR>]])
     end
   }
   use {
@@ -73,7 +73,12 @@ packer.startup(function(use)
 
   use 'hrsh7th/nvim-cmp' -- Autocompletion plugin
   use 'hrsh7th/cmp-nvim-lsp' -- LSP source for nvim-cmp
-  
+  use 'hrsh7th/cmp-buffer' -- Buffer source for nvim-cmp
+  use 'hrsh7th/cmp-nvim-lua' --Neovim lua api
+  use 'hrsh7th/cmp-path' --Neovim lua api
+
+  use 'L3MON4D3/LuaSnip' 
+   
   use 'nvim-lua/plenary.nvim'
 
   use 'jose-elias-alvarez/null-ls.nvim'
