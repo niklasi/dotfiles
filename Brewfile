@@ -27,6 +27,7 @@ cask "slack"
 cask "zoom"
 cask "karabiner-elements"
 cask "rider"
+cask "hammerspoon"
 
 cask "font-hack-nerd-font"
 cask "raycast"
