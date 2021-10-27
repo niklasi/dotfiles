@@ -57,3 +57,7 @@
 	keepBackup = false
 [rerere]
 	enabled = true
+[includeIf "gitdir:~/dev/evolve/"]
+  path = ~/dotfiles/evolve.gitconfig
+[includeIf "gitdir:~/dev/nwt/"]
+  path = ~/dotfiles/afry.gitconfig

@@ -4,6 +4,7 @@ if [[ -d "~/.config/bin" ]]; then
   export PATH="~/.config/bin:$PATH"
 fi
 export BAT_THEME="Nord"
+export EDITOR=nvim
 
 # Path to your oh-my-zsh installation.
 export ZSH="/Users/niklas/.oh-my-zsh"
@@ -52,27 +53,6 @@ load-nvmrc() {
 }
 add-zsh-hook chpwd load-nvmrc
 load-nvmrc
-
-__zsh-on-cd () {
-if git ls-files &>/dev/null ; then
-    if [[ "$PWD" =~ 'stampen' ]]; then
-        echo "setting git to use company identity"
-        git config user.email "niklas.ingholt@stampen.com"
-    elif [[ "$PWD" =~ 'nwt' ]]; then
-        echo "setting git to use afry identity"
-        git config user.email "niklas.ingholt@afry.com"
-    elif [[ "$PWD" =~ 'evolve' ]]; then
-        echo "setting git to use evolve identity"
-        git config user.email "niklas.ingholt@evolvetechnology.se"
-    else
-        echo "setting git to use personal identity"
-        git config user.email "niklas@ingholt.com"
-    fi
-fi
-}
-
-chpwd_functions=(${chpwd_functions[@]} "__zsh-on-cd")
-
 
 source $ZSH/oh-my-zsh.sh
 
