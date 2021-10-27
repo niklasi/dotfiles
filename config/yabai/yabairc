@@ -86,5 +86,6 @@ yabai -m rule --add app="^System Information$" sticky=on layer=above manage=off
 yabai -m rule --add app="^Activity Monitor$" sticky=on layer=above manage=off
 yabai -m rule --add app="^Music$" manage=off
 yabai -m rule --add app="^ForkLift$" manage=off
+yabai -m rule --add app="^TV$" manage=off
 
 echo "yabai configuration loaded.."
