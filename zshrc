@@ -1,8 +1,5 @@
 # If you come from bash you might have to change your $PATH.
-export PATH=/usr/local/bin:$PATH
-if [[ -d "~/.config/bin" ]]; then
-  export PATH="~/.config/bin:$PATH"
-fi
+export PATH=~/dotfiles/npm_global/node_modules/.bin:$PATH
 export BAT_THEME="Nord"
 export EDITOR=nvim
 
