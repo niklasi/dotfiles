@@ -6,9 +6,6 @@ fi
 export BAT_THEME="Nord"
 export EDITOR=nvim
 
-# Path to your oh-my-zsh installation.
-export ZSH="/Users/niklas/.oh-my-zsh"
-
 alias gi=git
 alias vim=nvim
 
@@ -54,9 +51,10 @@ load-nvmrc() {
 add-zsh-hook chpwd load-nvmrc
 load-nvmrc
 
-source $ZSH/oh-my-zsh.sh
-
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# Load completion scripts
+autoload -Uz compinit
 compinit
 
 autoload -U edit-command-line
