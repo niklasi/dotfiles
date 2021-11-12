@@ -67,6 +67,27 @@ local hyper = {"leftCmd", "leftAlt", "leftCtrl","leftShift"}
 local yabai = hs.execute("which yabai", true)
 yabai = string.gsub(yabai, "\n", "")
 
+hs.hotkey.bind(hyper, "v", function()
+  local str = hs.execute(yabai.." -m query --displays") 
+  local info = hs.json.decode(str)
+
+  for key,value in pairs(info) do
+    hs.alert(value.index..' '..hs.inspect(value.spaces))
+  end
+end)
+
+hs.hotkey.bind(hyper, "a", function()
+  hs.execute(yabai.." -m window --grid 1:2:0:0:1:1", false)
+end)
+
+hs.hotkey.bind(hyper, "s", function()
+  hs.execute(yabai.." -m window --grid 1:2:1:1:0:0", false)
+end)
+
+hs.hotkey.bind(hyper, "d", function()
+  hs.execute(yabai.." -m window --toggle zoom-parent", false)
+end)
+
 hs.hotkey.bind(hyper, "2", function()
   hs.execute(yabai.." -m space --focus terminal", false)
 end)
@@ -80,9 +101,9 @@ hs.hotkey.bind(hyper, "5", function()
   hs.execute(yabai.." -m space --focus browser-private", false)
 end)
 
-hs.hotkey.bind(hyper, "d", function()
-  hs.execute(yabai.." -m window --focus recent", false)
-end)
+-- hs.hotkey.bind(hyper, "d", function()
+--   hs.execute(yabai.." -m window --focus recent", false)
+-- end)
 
 -- Fullscreen
 hs.hotkey.bind(hyper, "f", function()
@@ -95,9 +116,9 @@ end)
 hs.hotkey.bind(hyper, "w", function()
   hs.execute(yabai.." -m space --mirror y-axis", false)
 end)
-hs.hotkey.bind(hyper, "s", function()
-  hs.execute(yabai.." -m display --focus next", false)
-end)
+-- hs.hotkey.bind(hyper, "s", function()
+--   hs.execute(yabai.." -m display --focus next", false)
+-- end)
 
 -- Move window
 hs.hotkey.bind({"ctrl", "cmd"}, "j", function()
