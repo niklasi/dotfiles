@@ -78,6 +78,10 @@ noremap <C-w>m :MaximizerToggle<CR>
 
 augroup vimrc
   autocmd!
+
+  " automatically rebalance windows on vim resize
+  autocmd VimResized * :wincmd =
+
   au TextYankPost * silent! lua vim.highlight.on_yank{higroup="IncSearch", timeout=700}
   autocmd BufReadPost fugitive://* set bufhidden=delete
   autocmd BufNewFile,BufReadPost *.md set filetype=markdown
