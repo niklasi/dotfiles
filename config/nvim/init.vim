@@ -65,6 +65,10 @@ nnoremap [q :cprev<CR>
 nnoremap ]Q :clast<CR>
 nnoremap [Q :cfirst<CR>
 
+" zoom a vim pane, <C-w>= to re-balance
+" nnoremap <leader>- :wincmd _<cr>:wincmd \|<cr>
+" nnoremap <leader>= :wincmd =<cr>
+
 " nnoremap <Leader>gd :ALEGoToDefinition<CR>
 " nnoremap <Leader>gr :ALEFindReferences<CR>
 " nnoremap <Leader>rr :ALERename<CR>
