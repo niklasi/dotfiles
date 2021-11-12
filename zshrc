@@ -1,5 +1,5 @@
 # If you come from bash you might have to change your $PATH.
-export PATH=~/dotfiles/npm_global/node_modules/.bin:$PATH
+export PATH=~/dotfiles/npm_global/node_modules/.bin:~/dotfiles/bin:$PATH
 export BAT_THEME="Nord"
 export EDITOR=nvim
 
@@ -50,6 +50,7 @@ load-nvmrc
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
+# A lot of the following is stolen from https://github.com/wincent/wincent
 # Load completion scripts
 autoload -Uz compinit
 compinit
@@ -57,6 +58,10 @@ compinit
 autoload -U edit-command-line
 zle -N edit-command-line
 bindkey '^x^x' edit-command-line
+
+
+bindkey '^P' history-beginning-search-backward
+bindkey '^N' history-beginning-search-forward
 
 # http://zsh.sourceforge.net/Doc/Release/User-Contributions.html
 autoload -Uz vcs_info
@@ -109,3 +114,52 @@ function () {
 
 export RPROMPT=$RPROMPT_BASE
 export SPROMPT="zsh: correct %F{red}'%R'%f to %F{red}'%r'%f [%B%Uy%u%bes, %B%Un%u%bo, %B%Ue%u%bdit, %B%Ua%u%bbort]? "
+#
+# `git` wrapper:
+#
+#     - `git` with no arguments = `git status`; run `git help` to show what
+#       vanilla `git` without arguments would normally show.
+#     - `git root` = `cd` to repo root.
+#     - `ROOT=$(git root)` = no args and stdout is not a tty; prints the root.
+#     - `git root ARG...` = evals `ARG...` from the root (eg. `git root ls`).
+#     - `git ARG...` = behaves just like normal `git` command.
+#
+function git() {
+  if [ $# -eq 0 ]; then
+    command git status
+  elif [ "$1" = root ]; then
+    shift
+    local ROOT
+    if [ "$(command git rev-parse --is-inside-git-dir 2> /dev/null)" = true ]; then
+      if [ "$(command git rev-parse --is-bare-repository)" = true ]; then
+        ROOT="$(command git rev-parse --absolute-git-dir)"
+      else
+        # Note: This is a good-enough, rough heuristic, which ignores
+        # the possibility that GIT_DIR might be outside of the worktree;
+        # see:
+        # https://stackoverflow.com/a/38852055/2103996
+        ROOT="$(command git rev-parse --git-dir)/.."
+      fi
+    else
+      # Git 2.13.0 and above:
+      ROOT="$(command git rev-parse --show-superproject-working-tree 2> /dev/null)"
+      if [ -z "$ROOT" ]; then
+        ROOT="$(command git rev-parse --show-toplevel 2> /dev/null)"
+      fi
+    fi
+    if [ -z "$ROOT" ]; then
+      ROOT="$PWD"
+    fi
+    if [ $# -eq 0 ]; then
+      if [ -t 1 ]; then
+        cd "$ROOT"
+      else
+        echo "$ROOT"
+      fi
+    else
+      (cd "$ROOT" && eval "$@")
+    fi
+  else
+    command git "$@"
+  fi
+}
