@@ -1,6 +1,4 @@
 let mapleader = "\<Space>"
-lua require('niklasi.plugins')
-lua require('niklasi.lsp')
 let g:nord_disable_background = v:true
 let g:nord_italic = v:true
 lua require('nord').set()
@@ -100,5 +98,8 @@ augroup vimrc
   endif
 
 augroup END
+
+lua require('niklasi.plugins')
+lua require('niklasi.lsp')
 
 :nohls

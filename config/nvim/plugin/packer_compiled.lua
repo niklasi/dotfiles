@@ -71,146 +71,178 @@ time([[Defining packer_plugins]], true)
 _G.packer_plugins = {
   LuaSnip = {
     loaded = true,
-    path = "/Users/niklas/.local/share/nvim/site/pack/packer/start/LuaSnip"
+    path = "/Users/niklas/.local/share/nvim/site/pack/packer/start/LuaSnip",
+    url = "https://github.com/L3MON4D3/LuaSnip"
   },
   ["cmp-buffer"] = {
     loaded = true,
-    path = "/Users/niklas/.local/share/nvim/site/pack/packer/start/cmp-buffer"
+    path = "/Users/niklas/.local/share/nvim/site/pack/packer/start/cmp-buffer",
+    url = "https://github.com/hrsh7th/cmp-buffer"
   },
   ["cmp-nvim-lsp"] = {
     loaded = true,
-    path = "/Users/niklas/.local/share/nvim/site/pack/packer/start/cmp-nvim-lsp"
+    path = "/Users/niklas/.local/share/nvim/site/pack/packer/start/cmp-nvim-lsp",
+    url = "https://github.com/hrsh7th/cmp-nvim-lsp"
   },
   ["cmp-nvim-lua"] = {
     loaded = true,
-    path = "/Users/niklas/.local/share/nvim/site/pack/packer/start/cmp-nvim-lua"
+    path = "/Users/niklas/.local/share/nvim/site/pack/packer/start/cmp-nvim-lua",
+    url = "https://github.com/hrsh7th/cmp-nvim-lua"
   },
   ["cmp-path"] = {
     loaded = true,
-    path = "/Users/niklas/.local/share/nvim/site/pack/packer/start/cmp-path"
+    path = "/Users/niklas/.local/share/nvim/site/pack/packer/start/cmp-path",
+    url = "https://github.com/hrsh7th/cmp-path"
   },
   indentLine = {
     loaded = true,
-    path = "/Users/niklas/.local/share/nvim/site/pack/packer/start/indentLine"
+    path = "/Users/niklas/.local/share/nvim/site/pack/packer/start/indentLine",
+    url = "https://github.com/Yggdroot/indentLine"
   },
   ["lualine.nvim"] = {
     loaded = true,
-    path = "/Users/niklas/.local/share/nvim/site/pack/packer/start/lualine.nvim"
+    path = "/Users/niklas/.local/share/nvim/site/pack/packer/start/lualine.nvim",
+    url = "https://github.com/hoob3rt/lualine.nvim"
   },
   ["nord.nvim"] = {
     loaded = true,
-    path = "/Users/niklas/.local/share/nvim/site/pack/packer/start/nord.nvim"
+    path = "/Users/niklas/.local/share/nvim/site/pack/packer/start/nord.nvim",
+    url = "https://github.com/shaunsingh/nord.nvim"
   },
   ["null-ls.nvim"] = {
     loaded = true,
-    path = "/Users/niklas/.local/share/nvim/site/pack/packer/start/null-ls.nvim"
+    path = "/Users/niklas/.local/share/nvim/site/pack/packer/start/null-ls.nvim",
+    url = "https://github.com/jose-elias-alvarez/null-ls.nvim"
   },
   ["nvim-cmp"] = {
     loaded = true,
-    path = "/Users/niklas/.local/share/nvim/site/pack/packer/start/nvim-cmp"
+    path = "/Users/niklas/.local/share/nvim/site/pack/packer/start/nvim-cmp",
+    url = "https://github.com/hrsh7th/nvim-cmp"
   },
   ["nvim-lsp-ts-utils"] = {
     loaded = true,
-    path = "/Users/niklas/.local/share/nvim/site/pack/packer/start/nvim-lsp-ts-utils"
+    path = "/Users/niklas/.local/share/nvim/site/pack/packer/start/nvim-lsp-ts-utils",
+    url = "https://github.com/jose-elias-alvarez/nvim-lsp-ts-utils"
   },
   ["nvim-lspconfig"] = {
     loaded = true,
-    path = "/Users/niklas/.local/share/nvim/site/pack/packer/start/nvim-lspconfig"
+    path = "/Users/niklas/.local/share/nvim/site/pack/packer/start/nvim-lspconfig",
+    url = "https://github.com/neovim/nvim-lspconfig"
   },
   ["nvim-treesitter"] = {
     loaded = true,
-    path = "/Users/niklas/.local/share/nvim/site/pack/packer/start/nvim-treesitter"
+    path = "/Users/niklas/.local/share/nvim/site/pack/packer/start/nvim-treesitter",
+    url = "https://github.com/nvim-treesitter/nvim-treesitter"
   },
   ["nvim-web-devicons"] = {
     loaded = true,
-    path = "/Users/niklas/.local/share/nvim/site/pack/packer/start/nvim-web-devicons"
+    path = "/Users/niklas/.local/share/nvim/site/pack/packer/start/nvim-web-devicons",
+    url = "https://github.com/kyazdani42/nvim-web-devicons"
   },
   ["packer.nvim"] = {
     loaded = true,
-    path = "/Users/niklas/.local/share/nvim/site/pack/packer/start/packer.nvim"
+    path = "/Users/niklas/.local/share/nvim/site/pack/packer/start/packer.nvim",
+    url = "https://github.com/wbthomason/packer.nvim"
   },
   ["plenary.nvim"] = {
     loaded = true,
-    path = "/Users/niklas/.local/share/nvim/site/pack/packer/start/plenary.nvim"
+    path = "/Users/niklas/.local/share/nvim/site/pack/packer/start/plenary.nvim",
+    url = "https://github.com/nvim-lua/plenary.nvim"
   },
   ["telescope-fzf-native.nvim"] = {
     loaded = true,
-    path = "/Users/niklas/.local/share/nvim/site/pack/packer/start/telescope-fzf-native.nvim"
+    path = "/Users/niklas/.local/share/nvim/site/pack/packer/start/telescope-fzf-native.nvim",
+    url = "https://github.com/nvim-telescope/telescope-fzf-native.nvim"
   },
   ["telescope.nvim"] = {
     loaded = true,
-    path = "/Users/niklas/.local/share/nvim/site/pack/packer/start/telescope.nvim"
+    path = "/Users/niklas/.local/share/nvim/site/pack/packer/start/telescope.nvim",
+    url = "https://github.com/nvim-telescope/telescope.nvim"
   },
   terminus = {
     loaded = true,
-    path = "/Users/niklas/.local/share/nvim/site/pack/packer/start/terminus"
+    path = "/Users/niklas/.local/share/nvim/site/pack/packer/start/terminus",
+    url = "https://github.com/wincent/terminus"
   },
   undotree = {
     loaded = true,
-    path = "/Users/niklas/.local/share/nvim/site/pack/packer/start/undotree"
+    path = "/Users/niklas/.local/share/nvim/site/pack/packer/start/undotree",
+    url = "https://github.com/mbbill/undotree"
   },
   ["vim-commentary"] = {
     loaded = true,
-    path = "/Users/niklas/.local/share/nvim/site/pack/packer/start/vim-commentary"
+    path = "/Users/niklas/.local/share/nvim/site/pack/packer/start/vim-commentary",
+    url = "https://github.com/tpope/vim-commentary"
+  },
+  ["vim-dirvish"] = {
+    loaded = true,
+    path = "/Users/niklas/.local/share/nvim/site/pack/packer/start/vim-dirvish",
+    url = "https://github.com/justinmk/vim-dirvish"
   },
   ["vim-fugitive"] = {
     loaded = true,
-    path = "/Users/niklas/.local/share/nvim/site/pack/packer/start/vim-fugitive"
+    path = "/Users/niklas/.local/share/nvim/site/pack/packer/start/vim-fugitive",
+    url = "https://github.com/tpope/vim-fugitive"
   },
   ["vim-graphql"] = {
     loaded = true,
-    path = "/Users/niklas/.local/share/nvim/site/pack/packer/start/vim-graphql"
+    path = "/Users/niklas/.local/share/nvim/site/pack/packer/start/vim-graphql",
+    url = "https://github.com/jparise/vim-graphql"
   },
   ["vim-markdown"] = {
     config = { "\27LJ\2\n¿\2\0\0\3\0\4\0\t6\0\0\0009\0\1\0'\2\2\0B\0\2\0016\0\0\0009\0\1\0'\2\3\0B\0\2\1K\0\1\0·\1autocmd FileType markdown map <leader>mr :w!<CR>:w!/tmp/vim-markdown.md<CR>:!pandoc -s -f markdown -t html -o /tmp/vim-markdown.html /tmp/vim-markdown.md<CR>:!open /tmp/vim-markdown.html > /dev/null 2> /dev/null&<CR><CR>3autocmd FileType markdown hi mkdCode ctermbg=0\bcmd\bvim\0" },
     loaded = false,
     needs_bufread = true,
-    path = "/Users/niklas/.local/share/nvim/site/pack/packer/opt/vim-markdown"
+    only_cond = false,
+    path = "/Users/niklas/.local/share/nvim/site/pack/packer/opt/vim-markdown",
+    url = "https://github.com/plasticboy/vim-markdown"
   },
   ["vim-maximizer"] = {
     loaded = true,
-    path = "/Users/niklas/.local/share/nvim/site/pack/packer/start/vim-maximizer"
+    path = "/Users/niklas/.local/share/nvim/site/pack/packer/start/vim-maximizer",
+    url = "https://github.com/szw/vim-maximizer"
   },
   ["vim-polyglot"] = {
     loaded = true,
-    path = "/Users/niklas/.local/share/nvim/site/pack/packer/start/vim-polyglot"
+    path = "/Users/niklas/.local/share/nvim/site/pack/packer/start/vim-polyglot",
+    url = "https://github.com/sheerun/vim-polyglot"
   },
   ["vim-smoothie"] = {
     loaded = true,
-    path = "/Users/niklas/.local/share/nvim/site/pack/packer/start/vim-smoothie"
+    path = "/Users/niklas/.local/share/nvim/site/pack/packer/start/vim-smoothie",
+    url = "https://github.com/psliwka/vim-smoothie"
   },
   ["vim-surround"] = {
     loaded = true,
-    path = "/Users/niklas/.local/share/nvim/site/pack/packer/start/vim-surround"
+    path = "/Users/niklas/.local/share/nvim/site/pack/packer/start/vim-surround",
+    url = "https://github.com/tpope/vim-surround"
   },
   ["vim-tmux-navigator"] = {
+    cond = { "\27LJ\2\n8\0\0\1\0\3\0\t6\0\0\0009\0\1\0009\0\2\0\v\0\0\0X\0\2Ä+\0\1\0X\1\1Ä+\0\2\0L\0\2\0\tTMUX\benv\bvim\0" },
     loaded = false,
     needs_bufread = false,
-    path = "/Users/niklas/.local/share/nvim/site/pack/packer/opt/vim-tmux-navigator"
+    only_cond = true,
+    path = "/Users/niklas/.local/share/nvim/site/pack/packer/opt/vim-tmux-navigator",
+    url = "https://github.com/christoomey/vim-tmux-navigator"
   },
   vimux = {
+    cond = { "\27LJ\2\n8\0\0\1\0\3\0\t6\0\0\0009\0\1\0009\0\2\0\v\0\0\0X\0\2Ä+\0\1\0X\1\1Ä+\0\2\0L\0\2\0\tTMUX\benv\bvim\0" },
     loaded = false,
     needs_bufread = false,
-    path = "/Users/niklas/.local/share/nvim/site/pack/packer/opt/vimux"
+    only_cond = true,
+    path = "/Users/niklas/.local/share/nvim/site/pack/packer/opt/vimux",
+    url = "https://github.com/benmills/vimux"
   }
 }
 
 time([[Defining packer_plugins]], false)
 -- Conditional loads
-time("Condition for { 'vim-tmux-navigator', 'vimux' }", true)
-if
-try_loadstring("\27LJ\2\n8\0\0\1\0\3\0\t6\0\0\0009\0\1\0009\0\2\0\v\0\0\0X\0\2Ä+\0\1\0X\1\1Ä+\0\2\0L\0\2\0\tTMUX\benv\bvim\0", "condition", '{ "vim-tmux-navigator", "vimux" }')
-then
-time("Condition for { 'vim-tmux-navigator', 'vimux' }", false)
-time([[packadd for vim-tmux-navigator]], true)
-		require("packer.load")({"vim-tmux-navigator"}, {}, _G.packer_plugins)
-	time([[packadd for vim-tmux-navigator]], false)
-	time([[packadd for vimux]], true)
-		require("packer.load")({"vimux"}, {}, _G.packer_plugins)
-	time([[packadd for vimux]], false)
-else
-time("Condition for { 'vim-tmux-navigator', 'vimux' }", false)
-end
+time([[Conditional loading of vim-tmux-navigator]], true)
+  require("packer.load")({"vim-tmux-navigator"}, {}, _G.packer_plugins)
+time([[Conditional loading of vim-tmux-navigator]], false)
+time([[Conditional loading of vimux]], true)
+  require("packer.load")({"vimux"}, {}, _G.packer_plugins)
+time([[Conditional loading of vimux]], false)
 vim.cmd [[augroup packer_load_aucmds]]
 vim.cmd [[au!]]
   -- Filetype lazy-loads

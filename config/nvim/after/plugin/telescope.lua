@@ -1,3 +1,5 @@
+local u = require("niklasi.utils")
+
 require('telescope').setup {
   defaults = {
     prompt_prefix = "> ",
@@ -31,3 +33,10 @@ require('telescope').setup {
   }
 }
 require('telescope').load_extension('fzf')
+
+-- lsp
+u.command("LspRef", "Telescope lsp_references")
+u.command("LspDef", "Telescope lsp_definitions")
+u.command("LspSym", "Telescope lsp_workspace_symbols")
+u.command("LspAct", "Telescope lsp_code_actions")
+u.command("LspRangeAct", "Telescope lsp_range_code_actions")
