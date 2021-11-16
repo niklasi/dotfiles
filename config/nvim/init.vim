@@ -56,6 +56,7 @@ nnoremap <Leader>w :w<CR>
 
 nnoremap <Leader>e :Dirvish<CR>
 nnoremap <Leader><Leader>e :Dirvish %<CR>
+let g:dirvish_mode = ':sort ,^.*[\/],'
 
 nnoremap ]q :cnext<CR>
 nnoremap [q :cprev<CR>
