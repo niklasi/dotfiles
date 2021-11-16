@@ -57,6 +57,10 @@ nnoremap <Leader>w :w<CR>
 nnoremap <Leader>e :Dirvish<CR>
 nnoremap <Leader><Leader>e :Dirvish %<CR>
 let g:dirvish_mode = ':sort ,^.*[\/],'
+augroup dirvish_config
+  autocmd!
+  autocmd FileType dirvish silent! unmap <buffer> <C-p>
+augroup END
 
 nnoremap ]q :cnext<CR>
 nnoremap [q :cprev<CR>
