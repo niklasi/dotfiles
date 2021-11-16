@@ -89,6 +89,7 @@ packer.startup(function(use)
     'nvim-treesitter/nvim-treesitter',
     run = ':TSUpdate'
   }
+  use 'justinmk/vim-dirvish'
   
 end)
 

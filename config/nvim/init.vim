@@ -56,9 +56,8 @@ vnoremap K :m '<-2<CR>gv=gv
 
 nnoremap <Leader>w :w<CR>
 
-nnoremap <Leader>e :Explore .<CR>
-nnoremap <Leader><Leader>e :Explore<CR>
-let g:netrw_bufsettings = 'noma nomod nu nobl nowrap ro'
+nnoremap <Leader>e :Dirvish<CR>
+nnoremap <Leader><Leader>e :Dirvish %<CR>
 
 nnoremap ]q :cnext<CR>
 nnoremap [q :cprev<CR>
