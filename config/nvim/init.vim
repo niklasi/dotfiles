@@ -54,8 +54,8 @@ vnoremap K :m '<-2<CR>gv=gv
 
 nnoremap <Leader>w :w<CR>
 
-nnoremap <Leader>e :Dirvish<CR>
-nnoremap <Leader><Leader>e :Dirvish %<CR>
+nnoremap <silent> <Leader>e :Dirvish<CR>
+nnoremap <silent> <Leader><Leader>e :Dirvish %<CR>
 let g:dirvish_mode = ':sort ,^.*[\/],'
 augroup dirvish_config
   autocmd!
