@@ -33,15 +33,11 @@ packer.startup(function(use)
   }
 
   use 'wincent/terminus'
-  -- use 'bling/vim-airline'
   use { 
     'hoob3rt/lualine.nvim',
     requires = {'kyazdani42/nvim-web-devicons', opt = true}
   }
 
-  -- use {'junegunn/fzf.vim'}
-  -- vim.o.rtp = vim.o.rtp .. ",~/.fzf"
-  -- use 'stsewd/fzf-checkout.vim'
   use {
     'nvim-telescope/telescope.nvim',
     requires = { {'nvim-lua/plenary.nvim'}, {'nvim-telescope/telescope-fzf-native.nvim', run = 'make' } }
@@ -65,8 +61,6 @@ packer.startup(function(use)
     cond = inTmux
   }
   use 'Yggdroot/indentLine'
-
-  -- use 'arcticicestudio/nord-vim'
 
   use 'shaunsingh/nord.nvim'
 
