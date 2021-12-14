@@ -57,7 +57,7 @@ end
 time([[Luarocks path setup]], false)
 time([[try_loadstring definition]], true)
 local function try_loadstring(s, component, name)
-  local success, result = pcall(loadstring(s))
+  local success, result = pcall(loadstring(s), name, _G.packer_plugins[name])
   if not success then
     vim.schedule(function()
       vim.api.nvim_notify('packer.nvim: Error running ' .. component .. ' for ' .. name .. ': ' .. result, vim.log.levels.ERROR, {})
@@ -124,11 +124,6 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/niklas/.local/share/nvim/site/pack/packer/start/nvim-cmp",
     url = "https://github.com/hrsh7th/nvim-cmp"
-  },
-  ["nvim-lsp-ts-utils"] = {
-    loaded = true,
-    path = "/Users/niklas/.local/share/nvim/site/pack/packer/start/nvim-lsp-ts-utils",
-    url = "https://github.com/jose-elias-alvarez/nvim-lsp-ts-utils"
   },
   ["nvim-lspconfig"] = {
     loaded = true,
@@ -242,12 +237,12 @@ time([[Config for Comment.nvim]], true)
 try_loadstring("\27LJ\2\n5\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\fComment\frequire\0", "config", "Comment.nvim")
 time([[Config for Comment.nvim]], false)
 -- Conditional loads
-time([[Conditional loading of vimux]], true)
-  require("packer.load")({"vimux"}, {}, _G.packer_plugins)
-time([[Conditional loading of vimux]], false)
 time([[Conditional loading of vim-tmux-navigator]], true)
   require("packer.load")({"vim-tmux-navigator"}, {}, _G.packer_plugins)
 time([[Conditional loading of vim-tmux-navigator]], false)
+time([[Conditional loading of vimux]], true)
+  require("packer.load")({"vimux"}, {}, _G.packer_plugins)
+time([[Conditional loading of vimux]], false)
 vim.cmd [[augroup packer_load_aucmds]]
 vim.cmd [[au!]]
   -- Filetype lazy-loads
