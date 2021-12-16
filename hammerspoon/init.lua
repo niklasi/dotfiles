@@ -64,8 +64,9 @@ end
 -- end)
 
 local hyper = {"leftCmd", "leftAlt", "leftCtrl","leftShift"}
-local yabai = hs.execute("which yabai", true)
-yabai = string.gsub(yabai, "\n", "")
+-- local yabai = hs.execute("which yabai", true)
+-- yabai = string.gsub(yabai, "\n", "")
+local yabai = "/usr/local/bin/yabai"
 
 hs.hotkey.bind(hyper, "v", function()
   local str = hs.execute(yabai.." -m query --displays") 
