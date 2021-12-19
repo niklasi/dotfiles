@@ -93,6 +93,15 @@ hs.hotkey.bind(hyper, "d", function()
   hs.execute(yabai.." -m window --toggle zoom-parent", false)
 end)
 
+hs.hotkey.bind(hyper, "0", function()
+  hs.execute(yabai.." -m window --space misc", false)
+  hs.execute(yabai.." -m space --focus misc", false)
+end)
+
+hs.hotkey.bind(hyper, "1", function()
+  hs.execute(yabai.." -m space --focus misc", false)
+end)
+
 hs.hotkey.bind(hyper, "2", function()
   hs.execute(yabai.." -m space --focus terminal", false)
 end)
