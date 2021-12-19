@@ -77,6 +77,10 @@ hs.hotkey.bind(hyper, "v", function()
   end
 end)
 
+hs.hotkey.bind(hyper, "=", function()
+  hs.execute(yabai.." -m space --balance", false)
+end)
+
 hs.hotkey.bind(hyper, "a", function()
   hs.execute(yabai.." -m window --grid 1:2:0:0:1:1", false)
 end)
