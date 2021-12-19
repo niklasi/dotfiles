@@ -24,6 +24,9 @@ yabai -m rule --add app=Slack space=slack
 yabai -m rule --add app=Brave space=browser-private
 yabai -m rule --add app=Brave title="Work$" space=browser-work
 
+yabai -m signal --add event=display_removed action="sudo brew services restart yabai"
+yabai -m signal --add event=display_added action="sudo brew services restart yabai"
+
 # bar settings
 # yabai -m config status_bar                   off
 # # yabai -m config status_bar_text_font         "Helvetica Neue:Bold:12.0"
