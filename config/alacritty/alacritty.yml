@@ -99,7 +99,7 @@ font:
     #   - (macOS) Osako
     #   - (Linux/BSD) monospace
     #   - (Windows) Consolas
-    family: Hack
+    family: "Hack Nerd Font"
     style: Regular
 
     # The `style` can be specified to pick a specific face.
@@ -111,7 +111,7 @@ font:
     #
     # If the bold family is not specified, it will fall back to the
     # value specified for the normal font.
-    family: Hack
+    family: "Hack Nerd Font"
     style: Bold
 
   # Italic font face
@@ -120,7 +120,7 @@ font:
     #
     # If the italic family is not specified, it will fall back to the
     # value specified for the normal font.
-    family: Hack
+    family: "Hack Nerd Font"
     style: Italic
 
   # Bold italic font face
@@ -129,7 +129,7 @@ font:
     #
     # If the bold italic family is not specified, it will fall back to the
     # value specified for the normal font.
-    family: Hack
+    family: "Hack Nerd Font"
     style: Bold Italic
 
   # Point size
