@@ -7,7 +7,7 @@
 ########## Variables
 
 dir=~/dotfiles                    # dotfiles directory
-files="zshrc vim vimrc config/nvim gitconfig tmux.conf"    # list of files/folders to symlink in homedir
+files="zshrc vim vimrc config/nvim gitconfig tmux.conf config/alacritty"    # list of files/folders to symlink in homedir
 
 ##########
 
