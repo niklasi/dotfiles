@@ -22,13 +22,7 @@ for file in $files; do
     ls -l ~/.$file
 done
 
-# install minpac 
-[ ! -d vim/pack/minpac/opt/minpac ] && git clone https://github.com/k-takata/minpac.git vim/pack/minpac/opt/minpac
-
 # install fzf 
 [ ! -d ~/.fzf ] && git clone https://github.com/junegunn/fzf.git ~/.fzf && ~/.fzf/install --all
-
-# install oh-my-zsh 
-[ ! -d ~/.oh-my-zsh ] && sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
 echo "setup complete..."
