@@ -18,6 +18,7 @@ brew "neovim", args: ["HEAD"]
 brew "yabai"
 brew "fnm"
 brew "battery"
+brew "trash"
 
 cask_args appdir: "/Applications"
 cask "docker"
