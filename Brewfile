@@ -1,3 +1,4 @@
+tap "buo/cask-upgrade"
 tap "homebrew/cask-drivers"
 tap "homebrew/cask-fonts"
 tap "koekeishiya/formulae"
