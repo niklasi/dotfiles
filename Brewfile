@@ -2,8 +2,9 @@ tap "buo/cask-upgrade"
 tap "homebrew/cask-drivers"
 tap "homebrew/cask-fonts"
 tap "koekeishiya/formulae"
-tap "Goles/batter"
+tap "Goles/battery"
 
+brew "battery"
 brew "git"
 brew "autojump"
 brew "bat"
@@ -18,8 +19,6 @@ brew "luajit", args: ["HEAD"] # This is only needed for nightly neovim (2/9/2021
 brew "neovim", args: ["HEAD"]
 brew "yabai"
 brew "fnm"
-brew "battery"
-brew "trash"
 
 cask_args appdir: "/Applications"
 cask "docker"
