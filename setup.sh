@@ -7,7 +7,7 @@
 ########## Variables
 
 dir=~/dotfiles                    # dotfiles directory
-files="zshrc vim vimrc config/nvim gitconfig tmux.conf config/alacritty"    # list of files/folders to symlink in homedir
+files="zshrc vim vimrc gitconfig tmux.conf yabairc config/nvim config/karabiner config/alacritty"    # list of files/folders to symlink in homedir
 
 ##########
 
@@ -22,7 +22,15 @@ for file in $files; do
     ls -l ~/.$file
 done
 
+# Brewfile should not be a hidden file
+if [ ! -L ~/Brewfile ]; then
+    echo "Creating symlink to Brewfile in home directory."
+    ln -s Brewfile ~/Brewfile
+fi
+ls -l ~/Brewfile
+
+
 # install fzf 
-[ ! -d ~/.fzf ] && git clone https://github.com/junegunn/fzf.git ~/.fzf && ~/.fzf/install --all
+# [ ! -d ~/.fzf ] && git clone https://github.com/junegunn/fzf.git ~/.fzf && ~/.fzf/install --all
 
 echo "setup complete..."
