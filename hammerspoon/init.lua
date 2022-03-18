@@ -54,7 +54,7 @@ end
 
 -- local wf = hs.window.filter
 -- wf_slack = wf.new{'Slack'}
--- wf_slack:subscribe(wf.windowTitleChanged, function (win) 
+-- wf_slack:subscribe(wf.windowTitleChanged, function (win)
 --   local title = win:title()
 --   if (string.find(title, "NWT")) then
 --     hs.keycodes.setLayout(KEYBOARD_ENG)
@@ -69,10 +69,10 @@ local hyper = {"leftCmd", "leftAlt", "leftCtrl","leftShift"}
 local yabai = "/usr/local/bin/yabai"
 
 hs.hotkey.bind(hyper, "v", function()
-  local str = hs.execute(yabai.." -m query --displays") 
+  local str = hs.execute(yabai.." -m query --displays")
   local info = hs.json.decode(str)
 
-  for key,value in pairs(info) do
+  for _,value in pairs(info) do
     hs.alert(value.index..' '..hs.inspect(value.spaces))
   end
 end)
