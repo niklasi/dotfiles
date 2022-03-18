@@ -20,6 +20,7 @@ brew "neovim", args: ["HEAD"]
 brew "yabai"
 brew "fnm"
 brew "lua-language-server"
+brew "bitwarden-cli"
 
 cask_args appdir: "/Applications"
 cask "docker"
