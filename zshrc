@@ -163,3 +163,37 @@ function git() {
     command git "$@"
   fi
 }
+
+function tmux() {
+  emulate -L zsh
+
+  if [ $# -eq 0 ]; then
+    # Attach or create tmux session named the same as current git root directory.
+    # If not a git repo then the current directory name will be used
+    ROOT="$(command git rev-parse --show-toplevel 2> /dev/null)"
+    if [ -z "$ROOT" ]; then
+      ROOT="$PWD"
+    fi
+
+    session_name="$(basename "$ROOT" | tr . -)"
+
+    session_exists() {
+      command tmux list-sessions | sed -E 's/:.*$//' | grep -q "^$session_name$"
+    }
+
+    not_in_tmux() {
+      [ -z "$TMUX" ]
+    }
+
+    if not_in_tmux; then
+      command tmux new-session -As "$session_name"
+    else
+      if ! session_exists; then
+        (TMUX='' command tmux new-session -Ad -s "$session_name" && exit)
+      fi
+      command tmux switch-client -t "$session_name"
+    fi
+  else
+    command tmux "$@"
+  fi
+}
