@@ -2,17 +2,26 @@ local u = require("niklasi.utils")
 
 local lsp = vim.lsp
 
-lsp.handlers["textDocument/publishDiagnostics"] = lsp.with(lsp.diagnostic.on_publish_diagnostics, {
-    underline = true,
-    signs = true,
-    virtual_text = true,
-})
+-- lsp.handlers["textDocument/publishDiagnostics"] = lsp.with(lsp.diagnostic.on_publish_diagnostics, {
+--     underline = true,
+--     signs = true,
+--     virtual_text = true,
+-- })
 
 local border_opts = { border = "single", focusable = false, scope = "line" }
 
 lsp.handlers["textDocument/signatureHelp"] = lsp.with(lsp.handlers.signature_help, border_opts)
 lsp.handlers["textDocument/hover"] = lsp.with(lsp.handlers.hover, border_opts)
-
+vim.diagnostic.config({
+  virtual_text = {
+    source = "if_many",
+  },
+  float = {
+    header = "",
+    source = "always",
+    border = "single",
+},
+})
 -- global.lsp = {
 --     border_opts = border_opts,
 -- }
@@ -29,7 +38,7 @@ local on_attach = function(client, bufnr)
     u.lua_command("LspRename", "vim.lsp.buf.rename()")
     u.lua_command("LspDiagPrev", "vim.lsp.diagnostic.goto_prev({ float = global.lsp.border_opts })")
     u.lua_command("LspDiagNext", "vim.lsp.diagnostic.goto_next({ float = global.lsp.border_opts })")
-    u.lua_command("LspDiagLine", "vim.diagnostic.open_float(nil, global.lsp.border_opts)")
+    u.lua_command("LspDiagLine", "vim.diagnostic.open_float(nil, {virtual_text = false, source = 'always'})")
     u.lua_command("LspSignatureHelp", "vim.lsp.buf.signature_help()")
     u.lua_command("LspTypeDef", "vim.lsp.buf.type_definition()")
 

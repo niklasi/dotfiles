@@ -1,6 +1,10 @@
+local telescope_status_ok, telescope = pcall(require, "telescope")
+if not telescope_status_ok then
+  return
+end
 local u = require("niklasi.utils")
 
-require('telescope').setup {
+telescope.setup {
   defaults = {
     prompt_prefix = "> ",
     selection_caret = "> ",
@@ -32,7 +36,7 @@ require('telescope').setup {
     }
   }
 }
-require('telescope').load_extension('fzf')
+telescope.load_extension('fzf')
 
 -- lsp
 u.command("LspRef", "Telescope lsp_references")

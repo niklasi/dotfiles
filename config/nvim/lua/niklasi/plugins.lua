@@ -90,6 +90,7 @@ packer.startup(function(use)
     run = ':TSUpdate'
   }
   use 'justinmk/vim-dirvish'
+  use 'roginfarrer/vim-dirvish-dovish'
   
 end)
 
