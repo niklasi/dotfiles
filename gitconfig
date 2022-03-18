@@ -52,6 +52,7 @@
   cmd = nvim -f -c \"Gvdiffsplit!\" \"$MERGED\"
 [merge]
   tool = nvim
+  conflictStyle = zdiff3
 [mergetool]
   prompt = false
 	keepBackup = false
