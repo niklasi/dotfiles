@@ -70,6 +70,6 @@ local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require("cmp_nvim_lsp").update_capabilities(capabilities)
 
 require("niklasi.lsp.tsserver").setup(on_attach, capabilities)
--- require("lsp.sumneko").setup(on_attach, capabilities)
+require("niklasi.lsp.sumneko-lua").setup(on_attach)
 require("niklasi.lsp.null-ls").setup(on_attach)
 -- require("lsp.jsonls").setup(on_attach, capabilities)
