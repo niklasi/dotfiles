@@ -206,3 +206,6 @@ function scratch() {
   echo "Removing scratch directory"
   rm -rf "$SCRATCH"
 }
+
+# Options - see man zshoptions for more
+setopt AUTO_CD                 # [default] .. is shortcut for cd .. (etc)
