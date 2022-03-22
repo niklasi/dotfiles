@@ -1,15 +1,14 @@
-local cmp = require('cmp')
+local cmp = require 'cmp'
 
 -- Set completeopt to have a better completion experience
 vim.o.completeopt = 'menu,menuone,noselect'
 
-
 local sourceNames = {
-    nvim_lsp = "[LSP]",
-    buffer = "[Buffer]",
-    luasnip = "[LuaSnip]",
-    nvim_lua = "[NvimLua]",
-    path = "[Path]"
+  nvim_lsp = '[LSP]',
+  buffer = '[Buffer]',
+  luasnip = '[LuaSnip]',
+  nvim_lua = '[NvimLua]',
+  path = '[Path]',
 }
 -- nvim-cmp setup
 cmp.setup {
@@ -22,15 +21,15 @@ cmp.setup {
     ['<C-d>'] = cmp.mapping.scroll_docs(-4),
     ['<C-f>'] = cmp.mapping.scroll_docs(4),
     ['<C-e>'] = cmp.mapping.close(),
-    ['<C-y>'] = cmp.mapping.confirm({
-        behavior = cmp.ConfirmBehavior.Insert,
-        select = true,
-      })
+    ['<C-y>'] = cmp.mapping.confirm {
+      behavior = cmp.ConfirmBehavior.Insert,
+      select = true,
+    },
   },
   sources = {
     { name = 'nvim_lsp', priority = 100 },
-    { name = 'buffer', priority = 2, keyword_length = 5, max_item_count = 5},
-    { name = 'luasnip', },
+    { name = 'buffer', priority = 2, keyword_length = 5, max_item_count = 5 },
+    { name = 'luasnip' },
     { name = 'nvim_lua' },
     { name = 'path' },
   },

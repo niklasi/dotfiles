@@ -1,10 +1,10 @@
 local runtime_path = vim.split(package.path, ';')
-table.insert(runtime_path, "lua/?.lua")
-table.insert(runtime_path, "lua/?/init.lua")
+table.insert(runtime_path, 'lua/?.lua')
+table.insert(runtime_path, 'lua/?/init.lua')
 
 local M = {}
 M.setup = function(on_attach)
-  require'lspconfig'.sumneko_lua.setup {
+  require('lspconfig').sumneko_lua.setup {
     on_attach = on_attach,
     settings = {
       Lua = {
@@ -16,11 +16,11 @@ M.setup = function(on_attach)
         },
         diagnostics = {
           -- Get the language server to recognize the `vim` global
-          globals = {'vim'},
+          globals = { 'vim' },
         },
         workspace = {
           -- Make the server aware of Neovim runtime files
-          library = vim.api.nvim_get_runtime_file("", true),
+          library = vim.api.nvim_get_runtime_file('', true),
         },
         -- Do not send telemetry data containing a randomized but unique identifier
         telemetry = {

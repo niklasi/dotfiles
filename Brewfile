@@ -21,6 +21,7 @@ brew "yabai"
 brew "fnm"
 brew "lua-language-server"
 brew "bitwarden-cli"
+brew "stylua"
 
 cask_args appdir: "/Applications"
 cask "docker"
