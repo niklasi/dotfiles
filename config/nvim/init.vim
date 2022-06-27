@@ -34,6 +34,7 @@ nnoremap <silent> <leader>gs :G<CR>
 tnoremap <silent> <leader>c <C-\><C-n>
 nnoremap <silent> <leader>z :UndotreeToggle<CR>
 
+xnoremap p "_dP
 " Copy and paste to system clipboard
 vmap <Leader>y "+y
 vmap <Leader>d "+d
