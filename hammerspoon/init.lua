@@ -101,14 +101,36 @@ end)
 hs.hotkey.bind(hyper, '2', function()
   hs.execute(yabai .. ' -m space --focus terminal', false)
 end)
+
 hs.hotkey.bind(hyper, '3', function()
   hs.execute(yabai .. ' -m space --focus slack', false)
 end)
+
 hs.hotkey.bind(hyper, '4', function()
   hs.execute(yabai .. ' -m space --focus browser-work', false)
 end)
+
+hs.hotkey.bindSpec({ hyper, 'h' }, '4', function()
+  hs.execute(yabai .. ' -m window --space browser-work', false)
+  hs.execute(yabai .. ' -m space --focus browser-work', false)
+end)
+
 hs.hotkey.bind(hyper, '5', function()
   hs.execute(yabai .. ' -m space --focus browser-private', false)
+end)
+hs.hotkey.bindSpec({ hyper, 'h' }, '5', function()
+  hs.execute(yabai .. ' -m window --space browser-private', false)
+  hs.execute(yabai .. ' -m space --focus browser-private', false)
+end)
+
+hs.hotkey.bind(hyper, 'Left', function()
+  hs.execute(yabai .. ' -m window --space prev', false)
+  hs.execute(yabai .. ' -m space --focus prev', false)
+end)
+
+hs.hotkey.bind(hyper, 'Right', function()
+  hs.execute(yabai .. ' -m window --space next', false)
+  hs.execute(yabai .. ' -m space --focus next', false)
 end)
 
 -- hs.hotkey.bind(hyper, "d", function()
