@@ -46,10 +46,15 @@ packer.startup(function(use)
     'plasticboy/vim-markdown',
     ft = { 'markdown' },
     config = function()
-      vim.cmd [[autocmd FileType markdown hi mkdCode ctermbg=0]]
+      vim.cmd [[autocmd FileType markdown hi mkdCode ctermbg=0 set wrap]]
       vim.cmd [[autocmd FileType markdown map <leader>mr :w!<CR>:w!/tmp/vim-markdown.md<CR>:!pandoc -s -f markdown -t html -o /tmp/vim-markdown.html /tmp/vim-markdown.md<CR>:!open /tmp/vim-markdown.html > /dev/null 2> /dev/null&<CR><CR>]]
     end,
   }
+  use {
+    'iamcco/markdown-preview.nvim',
+    run = 'mkdp#util#install()',
+  }
+
   use {
     'benmills/vimux',
     cond = inTmux,
