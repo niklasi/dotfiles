@@ -1,3 +1,4 @@
+local telescope_status_ok, telescope = pcall(require, 'telescope.builtin')
 local u = require 'niklasi.utils'
 
 local lsp = vim.lsp
@@ -34,35 +35,84 @@ local on_attach = function(client, bufnr)
   buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
 
   -- commands
-  u.lua_command('LspFormatting', 'vim.lsp.buf.formatting()')
-  u.lua_command('LspHover', 'vim.lsp.buf.hover()')
-  u.lua_command('LspRename', 'vim.lsp.buf.rename()')
-  u.lua_command('LspDiagPrev', 'vim.lsp.diagnostic.goto_prev({ float = global.lsp.border_opts })')
-  u.lua_command('LspDiagNext', 'vim.lsp.diagnostic.goto_next({ float = global.lsp.border_opts })')
-  u.lua_command('LspDiagLine', "vim.diagnostic.open_float(nil, {virtual_text = false, source = 'always'})")
-  u.lua_command('LspSignatureHelp', 'vim.lsp.buf.signature_help()')
-  u.lua_command('LspTypeDef', 'vim.lsp.buf.type_definition()')
+  u.buf_cmd('LspFormatting', function()
+    vim.lsp.buf.formatting()
+  end, bufnr)
+  u.buf_cmd('LspHover', function()
+    vim.lsp.buf.hover()
+  end, bufnr)
+  u.buf_cmd('LspRename', function()
+    vim.lsp.buf.rename()
+  end, bufnr)
+  u.buf_cmd('LspDiagPrev', function()
+    vim.lsp.diagnostic.goto_prev { float = client.lsp.border_opts }
+  end, bufnr)
+  u.buf_cmd('LspDiagNext', function()
+    vim.lsp.diagnostic.goto_next { float = client.lsp.border_opts }
+  end, bufnr)
+  u.buf_cmd('LspDiagLine', function()
+    vim.diagnostic.open_float(nil, { virtual_text = false, source = 'always' })
+  end, bufnr)
+  u.buf_cmd('LspSignatureHelp', function()
+    vim.lsp.buf.signature_help()
+  end, bufnr)
+  u.buf_cmd('LspTypeDef', function()
+    vim.lsp.buf.type_definition()
+  end, bufnr)
+  u.buf_cmd('LspAct', function()
+    vim.lsp.buf.code_action()
+  end, bufnr)
+  u.buf_cmd('LspRangeAct', function()
+    vim.lsp.buf.range_code_action()
+  end, bufnr)
+  u.buf_cmd('LspRef', function()
+    if telescope_status_ok then
+      telescope.lsp_references()
+    else
+      vim.lsp.buf.references()
+    end
+  end, bufnr)
+  u.buf_cmd('LspDef', function()
+    if telescope_status_ok then
+      telescope.lsp_definitions()
+    else
+      vim.lsp.buf.definition()
+    end
+  end, bufnr)
+  u.buf_cmd('LspSym', function()
+    if telescope_status_ok then
+      telescope.lsp_workspace_symbols()
+    else
+      vim.lsp.buf.workspace_symbol()
+    end
+  end, bufnr)
 
   -- bindings
-  u.buf_map('n', '<leader>rr', ':LspRename<CR>', nil, bufnr)
-  u.buf_map('n', '<leader>D', ':LspTypeDef<CR>', nil, bufnr)
-  u.buf_map('n', 'K', ':LspHover<CR>', nil, bufnr)
-  u.buf_map('n', '[d', ':LspDiagPrev<CR>', nil, bufnr)
-  u.buf_map('n', ']d', ':LspDiagNext<CR>', nil, bufnr)
-  u.buf_map('n', '<Leader>d', ':LspDiagLine<CR>', nil, bufnr)
-  u.buf_map('i', '<C-k>', '<cmd> LspSignatureHelp<CR>', nil, bufnr)
+  u.nmap('<leader>rr', ':LspRename<CR>', { buffer = bufnr })
+  u.nmap('<leader>D', ':LspTypeDef<CR>', { buffer = bufnr })
+  u.nmap('K', ':LspHover<CR>', { buffer = bufnr })
+  u.nmap('[d', ':LspDiagPrev<CR>', { buffer = bufnr })
+  u.nmap(']d', ':LspDiagNext<CR>', { buffer = bufnr })
+  u.nmap('<leader>d', ':LspDiagLine<CR>', { buffer = bufnr })
+  u.imap('<C-k>', ':LspSignatureHelp<CR>', { buffer = bufnr })
 
-  -- telescope
-  u.buf_map('n', 'gr', ':LspRef<CR>', nil, bufnr)
-  u.buf_map('n', '<Leader>gd', ':LspDef<CR>', nil, bufnr)
+  u.nmap('<leader>gr', ':LspRef<CR>', { buffer = bufnr })
+  u.nmap('<leader>gd', ':LspDef<CR>', { buffer = bufnr })
 
   if client.resolved_capabilities.code_action then
-    u.buf_map('n', '<Leader>ca', ':LspAct<CR>', nil, bufnr)
-    u.buf_map('v', '<Leader>ca', '<Esc><cmd> LspRangeAct<CR>', nil, bufnr)
+    u.nmap('<Leader>ca', ':LspAct<CR>', { buffer = bufnr })
+    u.vmap('<Leader>ca', '<Esc><cmd> LspRangeAct<CR>', { buffer = bufnr })
   end
 
   if client.resolved_capabilities.document_formatting then
-    vim.cmd 'autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync()'
+    local formatting_group = vim.api.nvim_create_augroup('formatting', { clear = true })
+    vim.api.nvim_create_autocmd('BufWritePre', {
+      buffer = bufnr,
+      callback = function()
+        vim.lsp.buf.formatting_sync()
+      end,
+      group = formatting_group,
+    })
   end
 end
 

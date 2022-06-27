@@ -2,7 +2,6 @@ local telescope_status_ok, telescope = pcall(require, 'telescope')
 if not telescope_status_ok then
   return
 end
-local u = require 'niklasi.utils'
 
 telescope.setup {
   defaults = {
@@ -39,8 +38,4 @@ telescope.setup {
 telescope.load_extension 'fzf'
 
 -- lsp
-u.command('LspRef', 'Telescope lsp_references')
-u.command('LspDef', 'Telescope lsp_definitions')
-u.command('LspSym', 'Telescope lsp_workspace_symbols')
-u.command('LspAct', 'Telescope lsp_code_actions')
-u.command('LspRangeAct', 'Telescope lsp_range_code_actions')
+vim.api.nvim_set_keymap('n', '<leader>h', '', { callback = vim.lsp.buf.references })

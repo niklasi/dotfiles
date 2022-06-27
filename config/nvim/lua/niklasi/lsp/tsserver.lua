@@ -1,7 +1,5 @@
 local lspconfig = require 'lspconfig'
 
-local u = require 'niklasi.utils'
-
 local M = {}
 M.setup = function(on_attach, capabilities)
   -- local ts_utils = require("nvim-lsp-ts-utils")
