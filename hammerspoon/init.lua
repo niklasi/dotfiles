@@ -1,10 +1,14 @@
-KEYBOARD_SWE = 'Swedish - Pro'
+KEYBOARD_SWE = 'Swedish'
 KEYBOARD_ENG = 'ABC - Extended'
 
 -- These constants are used in the code below to allow hotkeys to be
 -- assigned using side-specific modifier keys.
 ORDERED_KEY_CODES = { 58, 61, 55, 54, 59, 62, 56, 60 }
 KEY_CODE_TO_KEY_STR = {
+  -- [37] = 'leftArrow',
+  -- [38] = 'upArrow',
+  -- [39] = 'rightArrow',
+  -- [40] = 'downArrow',
   [58] = 'leftAlt',
   [61] = 'rightAlt',
   [55] = 'leftCmd',
@@ -37,6 +41,9 @@ KEY_CODE_TO_SIBLING_KEY_CODE = {
 -- Global appWatcher to prevent gc
 appWatcher = hs.application.watcher.new(function(appName, eventType, appInstance)
   if eventType == hs.application.watcher.activated then
+    -- use english keyboard as default
+    hs.keycodes.setLayout(KEYBOARD_ENG)
+
     if appName == 'Messages' then
       hs.keycodes.setLayout(KEYBOARD_SWE)
     end
@@ -51,20 +58,10 @@ appWatcher = hs.application.watcher.new(function(appName, eventType, appInstance
   end
 end):start()
 
--- local wf = hs.window.filter
--- wf_slack = wf.new{'Slack'}
--- wf_slack:subscribe(wf.windowTitleChanged, function (win)
---   local title = win:title()
---   if (string.find(title, "NWT")) then
---     hs.keycodes.setLayout(KEYBOARD_ENG)
---   else
---     hs.keycodes.setLayout(KEYBOARD_SWE)
---   end
--- end)
-
 local hyper = { 'leftCmd', 'leftAlt', 'leftCtrl', 'leftShift' }
--- local yabai = hs.execute("which yabai", true)
--- yabai = string.gsub(yabai, "\n", "")
+local hyper_down = { 'leftCmd', 'leftAlt', 'leftCtrl', 'leftShift', 'down' }
+-- local yabai = hs.execute('which yabai', true)
+-- yabai = string.gsub(yabai, '\n', '')
 local yabai = '/usr/local/bin/yabai'
 
 hs.hotkey.bind(hyper, 'v', function()
