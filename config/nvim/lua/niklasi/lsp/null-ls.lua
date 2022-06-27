@@ -22,9 +22,18 @@ local sources = {
   },
   b.formatting.trim_whitespace.with { filetypes = { 'tmux', 'teal', 'zsh' } },
   b.formatting.shfmt,
-  b.formatting.eslint_d,
+  -- b.formatting.eslint_d,
 
-  b.diagnostics.eslint_d,
+  -- b.diagnostics.eslint.with {
+  --   condition = function(utils)
+  --     return utils.root_has_file { '.eslintrc', '.eslintrc.js', '.eslintrc.json' }
+  --   end,
+  -- },
+  b.diagnostics.eslint_d.with {
+    condition = function(utils)
+      return utils.root_has_file { '.eslintrc', '.eslintrc.js', '.eslintrc.json' }
+    end,
+  },
   b.diagnostics.write_good,
   b.diagnostics.markdownlint,
   b.diagnostics.teal,
