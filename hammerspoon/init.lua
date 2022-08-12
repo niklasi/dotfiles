@@ -98,11 +98,26 @@ hs.hotkey.bind(hyper, '1', function()
   hs.execute(yabai .. ' -m space --focus misc', false)
 end)
 
+hs.hotkey.bindSpec({ hyper, 'h' }, '1', function()
+  hs.execute(yabai .. ' -m window --space misc', false)
+  hs.execute(yabai .. ' -m space --focus misc', false)
+end)
+
 hs.hotkey.bind(hyper, '2', function()
   hs.execute(yabai .. ' -m space --focus terminal', false)
 end)
 
+hs.hotkey.bindSpec({ hyper, 'h' }, '2', function()
+  hs.execute(yabai .. ' -m window --space terminal', false)
+  hs.execute(yabai .. ' -m space --focus terminal', false)
+end)
+
 hs.hotkey.bind(hyper, '3', function()
+  hs.execute(yabai .. ' -m space --focus slack', false)
+end)
+
+hs.hotkey.bindSpec({ hyper, 'h' }, '3', function()
+  hs.execute(yabai .. ' -m window --space slack', false)
   hs.execute(yabai .. ' -m space --focus slack', false)
 end)
 
