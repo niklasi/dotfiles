@@ -1,4 +1,4 @@
-tap "buo/cask-upgrade"
+tap "buo/cask-upgrade" # upgrade outdated apps installed with cask: brew cu
 tap "homebrew/cask-drivers"
 tap "homebrew/cask-fonts"
 tap "koekeishiya/formulae"
