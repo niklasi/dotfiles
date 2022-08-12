@@ -5,8 +5,10 @@ set backspace=indent,eol,start    " Intuitive backspacing.
 
 set hidden                        " Handle multiple buffers better.
 
-set wildmenu                      " Enhanced command line completion.
-set wildmode=list:longest         " Complete files like a shell.
+                                  " Enhanced command line completion.
+set wildmode=longest:full         " Popup in command mode
+set pumblend=17
+set wildoptions=pum
 
 set ignorecase                    " Case-insensitive searching.
 set smartcase                     " But case-sensitive if expression contains a capital letter.
@@ -14,9 +16,19 @@ set smartcase                     " But case-sensitive if expression contains a 
 set number                        " Show current line number.
 set relativenumber                " Show relative numbers.
 set ruler                         " Show cursor position.
+" set colorcolumn=80
 set incsearch                     " Highlight matches as you type.
 
-set nowrap                        " Turn on line wrapping.
+set breakindent
+set linebreak
+set showbreak =   
+
+" opt.breakindent = true
+" opt.showbreak = string.rep(" ", 3) -- Make it so that long lines wrap smartly
+" opt.linebreak = true
+
+" set clipboard+=unnamedplus
+set nowrap                        " Turn off line wrapping.
 set scrolloff=3                   " Show 3 lines of context around the cursor.
 
 set title                         " Set the terminal's title
