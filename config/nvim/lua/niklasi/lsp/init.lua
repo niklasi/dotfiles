@@ -27,10 +27,12 @@ vim.diagnostic.config {
 --     border_opts = border_opts,
 -- }
 
+local formatting_group = vim.api.nvim_create_augroup('formatting', { clear = true })
 local on_attach = function(client, bufnr)
   local function buf_set_option(...)
     vim.api.nvim_buf_set_option(bufnr, ...)
   end
+
   --Enable completion triggered by <c-x><c-o>
   buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
 
@@ -99,17 +101,17 @@ local on_attach = function(client, bufnr)
   u.nmap('<leader>gr', ':LspRef<CR>', { buffer = bufnr })
   u.nmap('<leader>gd', ':LspDef<CR>', { buffer = bufnr })
 
-  if client.resolved_capabilities.code_action then
+  if client.server_capabilities.codeActionProvider then
     u.nmap('<Leader>ca', ':LspAct<CR>', { buffer = bufnr })
     u.vmap('<Leader>ca', '<Esc><cmd> LspRangeAct<CR>', { buffer = bufnr })
   end
 
-  if client.resolved_capabilities.document_formatting then
-    local formatting_group = vim.api.nvim_create_augroup('formatting', { clear = true })
+  if client.server_capabilities.documentFormattingProvider then
+    vim.api.nvim_clear_autocmds { buffer = bufnr, group = formatting_group }
     vim.api.nvim_create_autocmd('BufWritePre', {
       buffer = bufnr,
       callback = function()
-        vim.lsp.buf.formatting_sync()
+        vim.lsp.buf.format()
       end,
       group = formatting_group,
     })

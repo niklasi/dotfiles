@@ -8,8 +8,8 @@ M.setup = function(on_attach, capabilities)
     cmd = { 'npx', 'typescript-language-server', '--stdio' },
     -- init_options = ts_utils.init_options,
     on_attach = function(client, bufnr)
-      client.resolved_capabilities.document_formatting = false
-      client.resolved_capabilities.document_range_formatting = false
+      client.server_capabilities.documentFormatProvider = false
+      client.server_capabilities.documentRangeFormatProvider = false
 
       on_attach(client, bufnr)
     end,
