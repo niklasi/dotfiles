@@ -39,30 +39,65 @@ KEY_CODE_TO_SIBLING_KEY_CODE = {
   [60] = 56,
 }
 -- Global appWatcher to prevent gc
-appWatcher = hs.application.watcher.new(function(appName, eventType, appInstance)
-  if eventType == hs.application.watcher.activated then
-    -- use english keyboard as default
-    hs.keycodes.setLayout(KEYBOARD_ENG)
+appWatcher = hs.application.watcher
+  .new(function(appName, eventType, appInstance)
+    if eventType == hs.application.watcher.activated then
+      -- use english keyboard as default
+      hs.keycodes.setLayout(KEYBOARD_ENG)
 
-    if appName == 'Messages' then
-      hs.keycodes.setLayout(KEYBOARD_SWE)
-    end
-    if appName == 'Slack' then
-      local title = appInstance:mainWindow():title()
-      if string.find(title, 'NWT') then
-        hs.keycodes.setLayout(KEYBOARD_ENG)
-      else
+      if appName == 'Messages' then
         hs.keycodes.setLayout(KEYBOARD_SWE)
       end
+      if appName == 'Slack' then
+        local title = appInstance:mainWindow():title()
+        if string.find(title, 'NWT') then
+          hs.keycodes.setLayout(KEYBOARD_ENG)
+        else
+          hs.keycodes.setLayout(KEYBOARD_SWE)
+        end
+      end
     end
-  end
-end):start()
+  end)
+  :start()
 
 local hyper = { 'leftCmd', 'leftAlt', 'leftCtrl', 'leftShift' }
-local hyper_down = { 'leftCmd', 'leftAlt', 'leftCtrl', 'leftShift', 'down' }
 -- local yabai = hs.execute('which yabai', true)
 -- yabai = string.gsub(yabai, '\n', '')
 local yabai = '/opt/homebrew/bin/yabai'
+
+local moveActiveWindowToSpace = function(spaceName)
+  hs.execute(yabai .. ' -m window --space ' .. spaceName, false)
+end
+
+local focusSpace = function(spaceName)
+  hs.execute(yabai .. ' -m space --focus ' .. spaceName, false)
+end
+
+local windowMapping = {}
+windowMapping['1'] = 'misc'
+windowMapping['2'] = 'terminal'
+windowMapping['3'] = 'slack'
+windowMapping['4'] = 'browser-work'
+windowMapping['5'] = 'browser-private'
+
+hs.hotkey.bind(hyper, 'Left', function()
+  hs.execute(yabai .. ' -m window --space prev', false)
+  hs.execute(yabai .. ' -m space --focus prev', false)
+end)
+
+hs.hotkey.bind(hyper, 'Right', function()
+  hs.execute(yabai .. ' -m window --space next', false)
+  hs.execute(yabai .. ' -m space --focus next', false)
+end)
+
+for k, v in pairs(windowMapping) do
+  hs.hotkey.bind(hyper, k, nil, function()
+    focusSpace(v)
+  end, function()
+    moveActiveWindowToSpace(v)
+    focusSpace(v)
+  end)
+end
 
 hs.hotkey.bind(hyper, 'v', function()
   local str = hs.execute(yabai .. ' -m query --displays')
@@ -87,65 +122,6 @@ end)
 
 hs.hotkey.bind(hyper, 'd', function()
   hs.execute(yabai .. ' -m window --toggle zoom-parent', false)
-end)
-
-hs.hotkey.bind(hyper, '0', function()
-  hs.execute(yabai .. ' -m window --space misc', false)
-  hs.execute(yabai .. ' -m space --focus misc', false)
-end)
-
-hs.hotkey.bind(hyper, '1', function()
-  hs.execute(yabai .. ' -m space --focus misc', false)
-end)
-
-hs.hotkey.bindSpec({ hyper, 'h' }, '1', function()
-  hs.execute(yabai .. ' -m window --space misc', false)
-  hs.execute(yabai .. ' -m space --focus misc', false)
-end)
-
-hs.hotkey.bind(hyper, '2', function()
-  hs.execute(yabai .. ' -m space --focus terminal', false)
-end)
-
-hs.hotkey.bindSpec({ hyper, 'h' }, '2', function()
-  hs.execute(yabai .. ' -m window --space terminal', false)
-  hs.execute(yabai .. ' -m space --focus terminal', false)
-end)
-
-hs.hotkey.bind(hyper, '3', function()
-  hs.execute(yabai .. ' -m space --focus slack', false)
-end)
-
-hs.hotkey.bindSpec({ hyper, 'h' }, '3', function()
-  hs.execute(yabai .. ' -m window --space slack', false)
-  hs.execute(yabai .. ' -m space --focus slack', false)
-end)
-
-hs.hotkey.bind(hyper, '4', function()
-  hs.execute(yabai .. ' -m space --focus browser-work', false)
-end)
-
-hs.hotkey.bindSpec({ hyper, 'h' }, '4', function()
-  hs.execute(yabai .. ' -m window --space browser-work', false)
-  hs.execute(yabai .. ' -m space --focus browser-work', false)
-end)
-
-hs.hotkey.bind(hyper, '5', function()
-  hs.execute(yabai .. ' -m space --focus browser-private', false)
-end)
-hs.hotkey.bindSpec({ hyper, 'h' }, '5', function()
-  hs.execute(yabai .. ' -m window --space browser-private', false)
-  hs.execute(yabai .. ' -m space --focus browser-private', false)
-end)
-
-hs.hotkey.bind(hyper, 'Left', function()
-  hs.execute(yabai .. ' -m window --space prev', false)
-  hs.execute(yabai .. ' -m space --focus prev', false)
-end)
-
-hs.hotkey.bind(hyper, 'Right', function()
-  hs.execute(yabai .. ' -m window --space next', false)
-  hs.execute(yabai .. ' -m space --focus next', false)
 end)
 
 -- hs.hotkey.bind(hyper, "d", function()
