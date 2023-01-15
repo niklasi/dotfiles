@@ -1,69 +1,64 @@
-let mapleader = "\<Space>"
+let mapleader=" "
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
 Plug 'machakann/vim-highlightedyank' 
+Plug 'preservim/nerdtree'
+
+set ideajoin                      " Smart joining of lines
+set idearefactormode=keep
+set ideastatusicon=gray
 
 set number                        " Show current line number.
 set relativenumber                " Show relative numbers.
-
 set showcmd                       " Display incomplete commands.
 set showmode                      " Display the mode you're in.
-
-set backspace=indent,eol,start    " Intuitive backspacing.
-
-set hidden                        " Handle multiple buffers better.
-
-set wildmenu                      " Enhanced command line completion.
-set wildmode=list:longest         " Complete files like a shell.
-
 set ignorecase                    " Case-insensitive searching.
 set smartcase                     " But case-sensitive if expression contains a capital letter.
-
-set ruler                         " Show cursor position.
 set incsearch                     " Highlight matches as you type.
-
-set nowrap                        " Turn on line wrapping.
 set scrolloff=3                   " Show 3 lines of context around the cursor.
-
-set title                         " Set the terminal's title
-
 set novisualbell                  " No beeping.
-set noerrorbells				          " No beeping.
+set notimeout
+set timeoutlen=1000
 
-set nobackup                      " Don't make a backup before overwriting a file.
-set nowritebackup                 " And again.
-set noswapfile                    " And again. 
+map <leader>b <Action>(RebuildSolutionAction)<CR>
+nmap <leader>w <Action>(SaveAll)
+nmap <leader>t <Action>(RiderUnitTestRunSolutionAction)
+nmap <leader><leader>t <Action>(RiderUnitTestQuickListPopupAction)
+nmap <leader>f :action RerunFailedTests<CR>
+nmap <leader><leader>r <Action>(ChooseRunConfiguration)
+nmap <leader>s <Action>(Stop)
+nmap <c-z> :action ToggleDistractionFreeMode<CR>
+nmap <leader>te :action ActivateTerminalToolWindow<CR>
+nmap <leader>re :action Refactorings.QuickListPopupAction<CR>
+vmap <leader>re :action Refactorings.QuickListPopupAction<CR>
+nmap <leader>ca :action ShowIntentionActions<CR>
+" nnoremap <leader>gd :action GotToDeclaration<CR>
+nmap <leader>gr :action FindUsages<CR>
+nmap <leader>bp :action ToggleLineBreakpoint<CR>
+nmap <c-b> :action RecentFiles<CR>
 
-set tabstop=2                     " Global tab width.
-set shiftwidth=2                  " And again, related.
-set expandtab                     " Use spaces instead of tabs
+sethandler <c-j> a:vim
+sethandler <c-k> a:vim
 
-set laststatus=2                  " Show the status line all the time
+nmap <c-h> <c-w>h
+nmap <c-l> <c-w>l
+nmap <c-j> <c-w>j
+nmap <c-k> <c-w>k
 
-set smartindent
-set autoindent
-set nofoldenable                  " Disable code folding
+nmap <leader><leader>e :NERDTree<CR>
+nmap <leader>ec :NERDTreeClose<CR>
 
-set autoread                      " Auto read file when changed outside of vim
-
-set wildignore+=*.DS_Store        " Mac Support bootstrap
-set wildignore+=*/_build**        " Mac Support bootstrap
-
-set splitright                    " Open split to the right side
-
-set cmdheight=2
-
-map <Leader>b <Action>(RebuildSolutionAction)
-map <Leader>w <Action>(SaveAll)
-map <Leader>t <Action>(RiderUnitTestRunSolutionAction)
-map <C-f> <Action>(GotoFile)
+nmap <c-p> <Action>(GotoFile)
 " Move visual blocks up and down
-vnoremap J :m '>+1<CR>gv=gv
-vnoremap K :m '<-2<CR>gv=gv
+vmap J :m '>+1<CR>gv=gv
+vmap K :m '<-2<CR>gv=gv
 
-nnoremap ]q :cnext<CR>
-nnoremap [q :cprev<CR>
-nnoremap ]Q :clast<CR>
-nnoremap [Q :cfirst<CR>
+set clipboard+=unnamed
+set clipboard+=ideaput
+
+nmap ]q :cnext<CR>
+nmap [q :cprev<CR>
+nmap ]Q :clast<CR>
+nmap [Q :cfirst<CR>
 
 :nohls
