@@ -36,6 +36,7 @@ telescope.setup {
   },
 }
 telescope.load_extension 'fzf'
+telescope.load_extension 'dap'
 
 -- lsp
 vim.api.nvim_set_keymap('n', '<leader>h', '', { callback = vim.lsp.buf.references })

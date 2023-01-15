@@ -69,5 +69,6 @@ lua require('niklasi.telescope')
 lua require('niklasi.treesitter') 
 lua require('niklasi.plugins')
 lua require('niklasi.lsp')
+lua require('niklasi.dap')
 
 :nohls

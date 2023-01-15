@@ -20,6 +20,8 @@ packer.startup(function(use)
   -- Packer can manage itself
   use 'wbthomason/packer.nvim'
 
+  use '/Users/niklas/dev/niklasi/dotnet-cli.nvim'
+
   use 'sheerun/vim-polyglot'
   use 'tpope/vim-fugitive'
   use 'tpope/vim-surround'
@@ -39,7 +41,11 @@ packer.startup(function(use)
 
   use {
     'nvim-telescope/telescope.nvim',
-    requires = { { 'nvim-lua/plenary.nvim' }, { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' } },
+    requires = { 
+      { 'nvim-lua/plenary.nvim' },
+      { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' },
+      { 'nvim-telescope/telescope-dap.nvim' }
+    },
   }
 
   use {
@@ -95,6 +101,12 @@ packer.startup(function(use)
   }
   use 'justinmk/vim-dirvish'
   use 'roginfarrer/vim-dirvish-dovish'
+
+  use 'omnisharp/omnisharp-vim'
+  use 'mfussenegger/nvim-dap'
+  use { "rcarriga/nvim-dap-ui", requires = {"mfussenegger/nvim-dap"} }
+  use 'theHamsta/nvim-dap-virtual-text'
+  
   use {
     'NTBBloodbath/rest.nvim',
     requires = { 'nvim-lua/plenary.nvim' },
