@@ -61,5 +61,7 @@
 	enabled = true
 [includeIf "gitdir:~/dev/evolve/"]
   path = ~/dotfiles/evolve.gitconfig
-[includeIf "gitdir:~/dev/nwt/"]
-  path = ~/dotfiles/afry.gitconfig
+[includeIf "gitdir:~/dev/ortoma/"]
+  path = ~/dotfiles/niking.gitconfig
+[includeIf "gitdir:~/dev/ciceronen/"]
+  path = ~/dotfiles/niking.gitconfig
