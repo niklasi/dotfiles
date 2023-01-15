@@ -1,5 +1,5 @@
 # If you come from bash you might have to change your $PATH.
-export PATH=~/dotfiles/npm_global/node_modules/.bin:~/dotfiles/bin:$PATH
+export PATH=~/dotfiles/npm_global/node_modules/.bin:~/dotfiles/bin:~/.omnisharp:$PATH
 export BAT_THEME="Nord"
 export EDITOR=nvim
 
