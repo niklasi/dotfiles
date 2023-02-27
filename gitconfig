@@ -8,6 +8,7 @@
 [core]
   ; pager = delta --plus-color="#012800" --minus-color="#340001" --theme='Nord'
 	fsmonitor = true
+	excludesFile = ~/.gitignore
 [alias]
   st = status
   tst = status # Handle typo
