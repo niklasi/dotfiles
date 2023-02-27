@@ -50,8 +50,8 @@ vnoremap K :m '<-2<CR>gv=gv
 
 nnoremap <Leader>w :w<CR>
 
-nnoremap <silent> <Leader>e :Dirvish<CR>
-nnoremap <silent> <Leader><Leader>e :Dirvish %<CR>
+nnoremap <silent> <Leader>e <cmd>Dirvish<CR>
+nnoremap <silent> <Leader><Leader>e <cmd>Dirvish %<CR>
 let g:dirvish_mode = ':sort ,^.*[\/],'
 
 nnoremap ]q :cnext<CR>

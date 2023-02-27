@@ -2,9 +2,10 @@ local execute = vim.api.nvim_command
 local fn = vim.fn
 
 local install_path = fn.stdpath 'data' .. '/site/pack/packer/start/packer.nvim'
+local packer_bootstrap
 
 if fn.empty(fn.glob(install_path)) > 0 then
-  fn.system { 'git', 'clone', 'https://github.com/wbthomason/packer.nvim', install_path }
+  packer_bootstrap = fn.system { 'git', 'clone', 'https://github.com/wbthomason/packer.nvim', install_path }
   execute 'packadd packer.nvim'
 end
 
@@ -48,17 +49,12 @@ packer.startup(function(use)
     },
   }
 
-  use {
-    'plasticboy/vim-markdown',
-    ft = { 'markdown' },
-    config = function()
-      vim.cmd [[autocmd FileType markdown hi mkdCode ctermbg=0 set wrap]]
-      vim.cmd [[autocmd FileType markdown map <leader>mr :w!<CR>:w!/tmp/vim-markdown.md<CR>:!pandoc -s -f markdown -t html -o /tmp/vim-markdown.html /tmp/vim-markdown.md<CR>:!open /tmp/vim-markdown.html > /dev/null 2> /dev/null&<CR><CR>]]
-    end,
-  }
+  use 'MDeiml/tree-sitter-markdown'
   use {
     'iamcco/markdown-preview.nvim',
-    run = 'mkdp#util#install()',
+    run = function()
+      vim.fn['mkdp#util#install']()
+    end,
   }
 
   use {
@@ -99,6 +95,9 @@ packer.startup(function(use)
     'nvim-treesitter/nvim-treesitter',
     run = ':TSUpdate',
   }
+  use {
+    'nvim-treesitter/playground',
+  }
   use 'justinmk/vim-dirvish'
   use 'roginfarrer/vim-dirvish-dovish'
 
@@ -108,7 +107,7 @@ packer.startup(function(use)
   use 'theHamsta/nvim-dap-virtual-text'
   
   use {
-    'NTBBloodbath/rest.nvim',
+    'rest-nvim/rest.nvim',
     requires = { 'nvim-lua/plenary.nvim' },
     config = function()
       require('rest-nvim').setup {
@@ -137,4 +136,7 @@ packer.startup(function(use)
       }
     end,
   }
+  if packer_bootstrap then
+    require('packer').sync()
+  end
 end)
