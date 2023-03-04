@@ -8,19 +8,25 @@ defaults write NSGlobalDomain AppleKeyboardUIMode -int 3
 # Disable the 'Are you sure you want to open this application?' dialog
 defaults write com.apple.LaunchServices LSQuarantine -bool true
 
+# Do not rearrange Spaces automatically
+defaults write com.apple.dock mru-spaces -bool false
+
 # Automatically illuminate built-in MacBook keyboard in low light
 defaults write com.apple.BezelServices kDim -bool true
+
 # Turn off keyboard illumination when computer is not used for 5 minutes
 defaults write com.apple.BezelServices kDimTime -int 300
 
 # Finder: show hidden files by default
-defaults write com.apple.finder AppleShowAllFiles -bool false
+defaults write com.apple.finder AppleShowAllFiles -bool true
 
 # Disable the warning when changing a file extension
 defaults write com.apple.finder FXEnableExtensionChangeWarning -bool false
 
 # Finder: Always open everything in list view
 defaults write com.apple.Finder FXPreferredViewStyle Nlsv
+# Remove saved layouts to let the default take place for already opened folders
+find ~ -name ".DS_Store" -exec rm {} \;killall Finder
 
 # Make Dock icons of hidden applications translucent
 defaults write com.apple.dock showhidden -bool true
@@ -50,21 +56,26 @@ defaults write NSGlobalDomain PMPrintingExpandedStateForPrint -bool true
 
 # Disable shadow in screenshots
 defaults write com.apple.screencapture disable-shadow -bool true
-
 # Save screenshots to ~/Desktop/screenshots
 defaults write com.apple.screencapture location ~/Desktop/screenshots
 
-# https://www.defaults-write.com/enable-spring-loaded-dock-items/
-defaults write enable-spring-load-actions-on-all-items -bool true
-
+# Place dock to the left
+defaults write com.apple.dock orientation -string left
+# Auto hide dock
+defaults write com.apple.dock autohide -bool true
 # Show indicator lights under open applications in the Dock
 defaults write com.apple.dock show-process-indicators -bool true
+# https://www.defaults-write.com/enable-spring-loaded-dock-items/
+defaults write enable-spring-load-actions-on-all-items -bool true
 
 # Disable press-and-hold for keys in favor of key repeat
 defaults write NSGlobalDomain ApplePressAndHoldEnabled -bool false
 
 # Display full POSIX path as Finder window title
 defaults write com.apple.finder _FXShowPosixPathInTitle -bool true
+
+# Use Downloads as default path for new Finder windows
+defaults write com.apple.finder NewWindowTargetPath -string "file://$HOME/"
 
 # Avoid creating .DS_Store files on network volumes
 defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true
