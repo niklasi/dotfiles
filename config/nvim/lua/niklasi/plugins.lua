@@ -42,10 +42,10 @@ packer.startup(function(use)
 
   use {
     'nvim-telescope/telescope.nvim',
-    requires = { 
+    requires = {
       { 'nvim-lua/plenary.nvim' },
       { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' },
-      { 'nvim-telescope/telescope-dap.nvim' }
+      { 'nvim-telescope/telescope-dap.nvim' },
     },
   }
 
@@ -103,9 +103,9 @@ packer.startup(function(use)
 
   use 'omnisharp/omnisharp-vim'
   use 'mfussenegger/nvim-dap'
-  use { "rcarriga/nvim-dap-ui", requires = {"mfussenegger/nvim-dap"} }
+  use { 'rcarriga/nvim-dap-ui', requires = { 'mfussenegger/nvim-dap' } }
   use 'theHamsta/nvim-dap-virtual-text'
-  
+
   use {
     'rest-nvim/rest.nvim',
     requires = { 'nvim-lua/plenary.nvim' },
