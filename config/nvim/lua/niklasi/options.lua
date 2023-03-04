@@ -28,10 +28,16 @@ local options = {
   foldenable = false, -- Disable code folding
   splitright = true, -- Open split to the right side
   cmdheight = 2,
+  hls = false,
 }
 
 vim.cmd 'set wildignore+=*.DS_Store' -- Mac Support bootstrap
 vim.cmd 'set wildignore+=*/_build**' -- Mac Support bootstrap
+
+if vim.fn.has 'persistent_undo' == 1 then
+  vim.opt.undodir = vim.env.HOME .. '/.undodir'
+  vim.opt.undofile = true
+end
 
 for k, v in pairs(options) do
   vim.opt[k] = v
