@@ -1,5 +1,5 @@
 KEYBOARD_SWE = 'Swedish'
-KEYBOARD_ENG = 'ABC - Extended'
+KEYBOARD_ENG = 'ABC'
 
 -- These constants are used in the code below to allow hotkeys to be
 -- assigned using side-specific modifier keys.
@@ -44,7 +44,6 @@ appWatcher = hs.application.watcher
     if eventType == hs.application.watcher.activated then
       -- use english keyboard as default
       hs.keycodes.setLayout(KEYBOARD_ENG)
-
       if appName == 'Messages' then
         hs.keycodes.setLayout(KEYBOARD_SWE)
       end
@@ -79,6 +78,7 @@ windowMapping['2'] = 'terminal'
 windowMapping['3'] = 'slack'
 windowMapping['4'] = 'browser-work'
 windowMapping['5'] = 'browser-private'
+windowMapping['9'] = 'remote-desktop'
 
 hs.hotkey.bind(hyper, 'Left', function()
   hs.execute(yabai .. ' -m window --space prev', false)
@@ -124,7 +124,7 @@ hs.hotkey.bind(hyper, 'd', function()
   hs.execute(yabai .. ' -m window --toggle zoom-parent', false)
 end)
 
--- hs.hotkey.bind(hyper, "d", function()
+-- hs.hotkey.bin(hyper, "d", function()
 --   hs.execute(yabai.." -m window --focus recent", false)
 -- end)
 
@@ -143,6 +143,7 @@ end)
 --   hs.execute(yabai.." -m display --focus next", false)
 -- end)
 
+hs.hotkey.bind(hyper, 'b', function() end)
 -- Move window
 hs.hotkey.bind({ 'ctrl', 'cmd' }, 'j', function()
   hs.execute(yabai .. ' -m window --focus south', false)
