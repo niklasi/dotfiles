@@ -1,114 +1,124 @@
 local execute = vim.api.nvim_command
 local fn = vim.fn
 
-local install_path = fn.stdpath 'data' .. '/site/pack/packer/start/packer.nvim'
-local packer_bootstrap
-
-if fn.empty(fn.glob(install_path)) > 0 then
-  packer_bootstrap = fn.system { 'git', 'clone', 'https://github.com/wbthomason/packer.nvim', install_path }
-  execute 'packadd packer.nvim'
+local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
+if not vim.loop.fs_stat(lazypath) then
+  vim.fn.system {
+    'git',
+    'clone',
+    '--filter=blob:none',
+    'https://github.com/folke/lazy.nvim.git',
+    '--branch=stable', -- latest stable release
+    lazypath,
+  }
 end
-
-vim.cmd [[autocmd BufWritePost plugins.lua source <afile> | PackerCompile]]
-
-local packer = require 'packer'
+vim.opt.rtp:prepend(lazypath)
 
 local function inTmux()
   return vim.env.TMUX ~= nil
 end
 
-packer.startup(function(use)
-  -- Packer can manage itself
-  use 'wbthomason/packer.nvim'
+require('lazy').setup({
+  -- use '/Users/niklas/dev/niklasi/dotnet-cli.nvim'
+  'sheerun/vim-polyglot',
+  'tpope/vim-fugitive',
+  'tpope/vim-surround',
 
-  use '/Users/niklas/dev/niklasi/dotnet-cli.nvim'
-
-  use 'sheerun/vim-polyglot'
-  use 'tpope/vim-fugitive'
-  use 'tpope/vim-surround'
-
-  use {
+  {
     'numToStr/Comment.nvim',
     config = function()
       require('Comment').setup()
     end,
-  }
+  },
 
-  use 'wincent/terminus'
-  use {
+  'wincent/terminus',
+
+  {
     'hoob3rt/lualine.nvim',
-    requires = { 'kyazdani42/nvim-web-devicons', opt = true },
-  }
+    dependencies = { 'kyazdani42/nvim-web-devicons', opt = true },
+  },
 
-  use {
+  {
     'nvim-telescope/telescope.nvim',
-    requires = {
-      { 'nvim-lua/plenary.nvim' },
-      { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' },
-      { 'nvim-telescope/telescope-dap.nvim' },
+    dependencies = {
+      'nvim-lua/plenary.nvim',
+      { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
+      'nvim-telescope/telescope-dap.nvim',
     },
-  }
+  },
 
-  use 'MDeiml/tree-sitter-markdown'
-  use {
+  'MDeiml/tree-sitter-markdown',
+  {
     'iamcco/markdown-preview.nvim',
-    run = function()
+    build = function()
       vim.fn['mkdp#util#install']()
     end,
-  }
+  },
 
-  use {
+  {
     'benmills/vimux',
     cond = inTmux,
-  }
+  },
 
-  use {
+  {
     'christoomey/vim-tmux-navigator',
     cond = inTmux,
-  }
-  use 'Yggdroot/indentLine'
+  },
 
-  use 'shaunsingh/nord.nvim'
+  'Yggdroot/indentLine',
+  {
+    'shaunsingh/nord.nvim',
+    config = function()
+      vim.cmd 'colorscheme nord'
+      vim.g.nord_disable_background = true
+      vim.g.nord_italic = true
+    end,
+  },
+  'jparise/vim-graphql',
+  'mbbill/undotree',
+  'psliwka/vim-smoothie',
+  'neovim/nvim-lspconfig',
 
-  use 'jparise/vim-graphql'
-
-  use 'mbbill/undotree'
-
-  use 'psliwka/vim-smoothie'
-
-  use 'neovim/nvim-lspconfig'
-
-  use 'hrsh7th/nvim-cmp' -- Autocompletion plugin
-  use 'hrsh7th/cmp-nvim-lsp' -- LSP source for nvim-cmp
-  use 'hrsh7th/cmp-buffer' -- Buffer source for nvim-cmp
-  use 'hrsh7th/cmp-nvim-lua' --Neovim lua api
-  use 'hrsh7th/cmp-path' --Neovim lua api
-
-  use 'L3MON4D3/LuaSnip'
-
-  use 'nvim-lua/plenary.nvim'
-
-  use 'jose-elias-alvarez/null-ls.nvim'
-
-  use 'szw/vim-maximizer'
-  use {
+  'hrsh7th/nvim-cmp', -- Autocompletion plugin
+  'hrsh7th/cmp-nvim-lsp', -- LSP source for nvim-cmp
+  'hrsh7th/cmp-buffer', -- Buffer source for nvim-cmp
+  'hrsh7th/cmp-nvim-lua', --Neovim lua api
+  'hrsh7th/cmp-path', --Neovim lua api
+  {
+    'L3MON4D3/LuaSnip',
+    -- install jsregexp (optional!).
+    build = 'make install_jsregexp',
+  },
+  'nvim-lua/plenary.nvim',
+  'jose-elias-alvarez/null-ls.nvim',
+  'szw/vim-maximizer',
+  {
     'nvim-treesitter/nvim-treesitter',
-    run = ':TSUpdate',
-  }
-  use {
-    'nvim-treesitter/playground',
-  }
-  use 'justinmk/vim-dirvish'
-  use 'roginfarrer/vim-dirvish-dovish'
+    build = ':TSUpdate',
+    dependencies = {
+      -- show treesitter nodes
+      'nvim-treesitter/playground',
+      -- 'nvim-treesitter/nvim-treesitter-textobjects',
+      -- 'JoosepAlviste/nvim-ts-context-commentstring',
+    },
+  },
 
-  use 'omnisharp/omnisharp-vim'
-  use 'mfussenegger/nvim-dap'
-  use { 'rcarriga/nvim-dap-ui', requires = { 'mfussenegger/nvim-dap' } }
-  use 'theHamsta/nvim-dap-virtual-text'
+  {
+    'justinmk/vim-dirvish',
+    config = function()
+      vim.g.dirvish_mode = ':sort ,^.*[\\/],'
+    end,
+  },
+  'roginfarrer/vim-dirvish-dovish',
 
-  use {
+  'omnisharp/omnisharp-vim',
+  'mfussenegger/nvim-dap',
+  { 'rcarriga/nvim-dap-ui', dependencies = { 'mfussenegger/nvim-dap' } },
+  'theHamsta/nvim-dap-virtual-text',
+
+  {
     'rest-nvim/rest.nvim',
-    requires = { 'nvim-lua/plenary.nvim' },
+    dependencies = { 'nvim-lua/plenary.nvim' },
     config = function()
       require('rest-nvim').setup {
         -- Open request results in a horizontal split
@@ -135,8 +145,7 @@ packer.startup(function(use)
         yank_dry_run = true,
       }
     end,
-  }
-  if packer_bootstrap then
-    require('packer').sync()
-  end
-end)
+  },
+}, {
+  install = { missing = true, colorscheme = { 'nord' } },
+})
