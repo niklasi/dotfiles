@@ -1,6 +1,3 @@
-local execute = vim.api.nvim_command
-local fn = vim.fn
-
 local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
 if not vim.loop.fs_stat(lazypath) then
   vim.fn.system {
@@ -77,7 +74,23 @@ require('lazy').setup({
   'jparise/vim-graphql',
   'mbbill/undotree',
   'psliwka/vim-smoothie',
-  'neovim/nvim-lspconfig',
+  {
+    'williamboman/mason.nvim',
+    dependencies = {
+      'williamboman/mason-lspconfig.nvim',
+      'jose-elias-alvarez/null-ls.nvim',
+      'jayp0521/mason-null-ls.nvim',
+    },
+  },
+  {
+    'neovim/nvim-lspconfig',
+    lazy = false,
+    dependencies = {
+      -- Helpers to install LSPs and maintain them
+      'mason.nvim',
+      'williamboman/mason-lspconfig.nvim',
+    },
+  },
 
   'hrsh7th/nvim-cmp', -- Autocompletion plugin
   'hrsh7th/cmp-nvim-lsp', -- LSP source for nvim-cmp
@@ -85,12 +98,11 @@ require('lazy').setup({
   'hrsh7th/cmp-nvim-lua', --Neovim lua api
   'hrsh7th/cmp-path', --Neovim lua api
   {
-    'L3MON4D3/LuaSnip',
+    -- 'L3MON4D3/LuaSnip',
     -- install jsregexp (optional!).
-    build = 'make install_jsregexp',
+    -- build = 'make install_jsregexp',
   },
   'nvim-lua/plenary.nvim',
-  'jose-elias-alvarez/null-ls.nvim',
   'szw/vim-maximizer',
   {
     'nvim-treesitter/nvim-treesitter',

@@ -122,7 +122,7 @@ local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
 
 require('niklasi.lsp.tsserver').setup(on_attach, capabilities)
-require('niklasi.lsp.sumneko-lua').setup(on_attach)
+require('niklasi.lsp.lua-ls').setup(on_attach)
 require('niklasi.lsp.null-ls').setup(on_attach)
 require('niklasi.lsp.tailwindcss').setup(on_attach)
 require('niklasi.lsp.omnisharp').setup(on_attach, capabilities)

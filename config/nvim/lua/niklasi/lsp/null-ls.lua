@@ -1,8 +1,11 @@
 local null_ls = require 'null-ls'
 local b = null_ls.builtins
-
+require('mason-null-ls').setup {
+  automatic_setup = false,
+  ensure_installed = { 'stylua', 'prettierd', 'eslint_d' },
+}
 local sources = {
-  b.formatting.prettier_d_slim.with {
+  b.formatting.prettierd.with {
     filetypes = {
       'typescript',
       'typescriptreact',
