@@ -42,3 +42,10 @@ end
 for k, v in pairs(options) do
   vim.opt[k] = v
 end
+
+if vim.fn.has 'windows' then
+  vim.opt.shell = 'powershell'
+  vim.cmd 'set shellcmdflag=-command'
+  vim.cmd 'set shellquote="'
+  vim.cmd 'set shellxquote='
+end
