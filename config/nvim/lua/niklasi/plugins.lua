@@ -1,13 +1,17 @@
 local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
-if not vim.loop.fs_stat(lazypath) then
-  vim.fn.system {
-    'git',
-    'clone',
-    '--filter=blob:none',
-    'https://github.com/folke/lazy.nvim.git',
-    '--branch=stable', -- latest stable release
-    lazypath,
-  }
+
+if not (vim.uv or vim.loop).fs_stat(lazypath) then
+  local lazyrepo = 'https://github.com/folke/lazy.nvim.git'
+  local out = vim.fn.system { 'git', 'clone', '--filter=blob:none', '--branch=stable', lazyrepo, lazypath }
+  if vim.v.shell_error ~= 0 then
+    vim.api.nvim_echo({
+      { 'Failed to clone lazy.nvim:\n', 'ErrorMsg' },
+      { out,                            'WarningMsg' },
+      { '\nPress any key to exit...' },
+    }, true, {})
+    vim.fn.getchar()
+    os.exit(1)
+  end
 end
 vim.opt.rtp:prepend(lazypath)
 
@@ -20,6 +24,7 @@ require('lazy').setup({
   'sheerun/vim-polyglot',
   'tpope/vim-fugitive',
   'tpope/vim-surround',
+  'tpope/vim-dadbod',
 
   {
     'numToStr/Comment.nvim',
@@ -40,18 +45,9 @@ require('lazy').setup({
     dependencies = {
       'nvim-lua/plenary.nvim',
       { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
-      'nvim-telescope/telescope-dap.nvim',
     },
   },
-
   'MDeiml/tree-sitter-markdown',
-  {
-    'iamcco/markdown-preview.nvim',
-    build = function()
-      vim.fn['mkdp#util#install']()
-    end,
-  },
-
   {
     'benmills/vimux',
     cond = inTmux,
@@ -71,15 +67,12 @@ require('lazy').setup({
       vim.g.nord_italic = true
     end,
   },
-  'jparise/vim-graphql',
   'mbbill/undotree',
   'psliwka/vim-smoothie',
   {
     'williamboman/mason.nvim',
     dependencies = {
       'williamboman/mason-lspconfig.nvim',
-      'jose-elias-alvarez/null-ls.nvim',
-      'jayp0521/mason-null-ls.nvim',
     },
   },
   {
@@ -92,16 +85,11 @@ require('lazy').setup({
     },
   },
 
-  'hrsh7th/nvim-cmp', -- Autocompletion plugin
+  'hrsh7th/nvim-cmp',     -- Autocompletion plugin
   'hrsh7th/cmp-nvim-lsp', -- LSP source for nvim-cmp
-  'hrsh7th/cmp-buffer', -- Buffer source for nvim-cmp
+  'hrsh7th/cmp-buffer',   -- Buffer source for nvim-cmp
   'hrsh7th/cmp-nvim-lua', --Neovim lua api
-  'hrsh7th/cmp-path', --Neovim lua api
-  {
-    -- 'L3MON4D3/LuaSnip',
-    -- install jsregexp (optional!).
-    -- build = 'make install_jsregexp',
-  },
+  'hrsh7th/cmp-path',     --Neovim lua api
   'nvim-lua/plenary.nvim',
   'szw/vim-maximizer',
   {
@@ -110,8 +98,6 @@ require('lazy').setup({
     dependencies = {
       -- show treesitter nodes
       'nvim-treesitter/playground',
-      -- 'nvim-treesitter/nvim-treesitter-textobjects',
-      -- 'JoosepAlviste/nvim-ts-context-commentstring',
     },
   },
 
@@ -122,42 +108,6 @@ require('lazy').setup({
     end,
   },
   'roginfarrer/vim-dirvish-dovish',
-
-  'omnisharp/omnisharp-vim',
-  'mfussenegger/nvim-dap',
-  { 'rcarriga/nvim-dap-ui', dependencies = { 'mfussenegger/nvim-dap' } },
-  'theHamsta/nvim-dap-virtual-text',
-
-  {
-    'rest-nvim/rest.nvim',
-    dependencies = { 'nvim-lua/plenary.nvim' },
-    config = function()
-      require('rest-nvim').setup {
-        -- Open request results in a horizontal split
-        result_split_horizontal = false,
-        -- Keep the http file buffer above|left when split horizontal|vertical
-        result_split_in_place = false,
-        -- Skip SSL verification, useful for unknown certificates
-        skip_ssl_verification = false,
-        -- Highlight request on run
-        highlight = {
-          enabled = true,
-          timeout = 150,
-        },
-        result = {
-          -- toggle showing URL, HTTP info, headers at top the of result window
-          show_url = true,
-          show_http_info = true,
-          show_headers = true,
-        },
-        -- Jump to request line on run
-        jump_to_request = false,
-        env_file = '.env',
-        custom_dynamic_variables = {},
-        yank_dry_run = true,
-      }
-    end,
-  },
 }, {
   install = { missing = true, colorscheme = { 'nord' } },
 })

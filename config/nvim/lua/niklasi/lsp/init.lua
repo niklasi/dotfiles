@@ -3,12 +3,6 @@ local u = require 'niklasi.utils'
 
 local lsp = vim.lsp
 
--- lsp.handlers["textDocument/publishDiagnostics"] = lsp.with(lsp.diagnostic.on_publish_diagnostics, {
---     underline = true,
---     signs = true,
---     virtual_text = true,
--- })
-
 local border_opts = { border = 'single', focusable = false, scope = 'line' }
 
 lsp.handlers['textDocument/signatureHelp'] = lsp.with(lsp.handlers.signature_help, border_opts)
@@ -23,9 +17,6 @@ vim.diagnostic.config {
     border = 'single',
   },
 }
--- global.lsp = {
---     border_opts = border_opts,
--- }
 
 local formatting_group = vim.api.nvim_create_augroup('formatting', { clear = true })
 local on_attach = function(client, bufnr)
@@ -122,8 +113,7 @@ local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
 
 require('niklasi.lsp.tsserver').setup(on_attach, capabilities)
+require('niklasi.lsp.tailwindcss').setup(on_attach, capabilities)
 require('niklasi.lsp.lua-ls').setup(on_attach)
-require('niklasi.lsp.null-ls').setup(on_attach)
-require('niklasi.lsp.tailwindcss').setup(on_attach)
 require('niklasi.lsp.omnisharp').setup(on_attach, capabilities)
--- require("lsp.jsonls").setup(on_attach, capabilities)
+require('niklasi.lsp.gopls').setup(on_attach, capabilities)
