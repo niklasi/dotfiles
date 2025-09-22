@@ -35,6 +35,7 @@ cask "zoom"
 cask "karabiner-elements"
 cask "rider"
 cask "hammerspoon"
+cask "syncthing"
 
 cask "font-hack-nerd-font"
 cask "raycast"
