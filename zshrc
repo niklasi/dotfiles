@@ -1,10 +1,16 @@
+## Create a hash table for globally stashing variables without polluting main
+# scope with a bunch of identifiers.
+typeset -A __NIKLASI
 # If you come from bash you might have to change your $PATH.
-export PATH=~/dotfiles/npm_global/node_modules/.bin:~/dotfiles/bin:~/.omnisharp:$PATH
+export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
+export PATH=~/dotfiles/npm_global/node_modules/.bin:~/dotfiles/bin:$PATH
+export PATH=$PATH:$(go env GOPATH)/bin
 export BAT_THEME="Nord"
 export EDITOR=nvim
 
 alias gi=git
 alias vim=nvim
+alias tailscale="/Applications/Tailscale.app/Contents/MacOS/Tailscale"
 
 eval "$(fnm env)"
 
@@ -62,6 +68,9 @@ bindkey '^x^x' edit-command-line
 
 bindkey '^P' history-beginning-search-backward
 bindkey '^N' history-beginning-search-forward
+
+autoload -U colors
+colors
 
 # http://zsh.sourceforge.net/Doc/Release/User-Contributions.html
 autoload -Uz vcs_info
@@ -209,3 +218,6 @@ function scratch() {
 
 # Options - see man zshoptions for more
 setopt AUTO_CD                 # [default] .. is shortcut for cd .. (etc)
+
+source $HOME/.zsh/color
+source "$(brew --prefix)/share/google-cloud-sdk/path.zsh.inc"
