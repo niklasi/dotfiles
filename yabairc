@@ -7,9 +7,9 @@
 #
 # for this to work you must configure sudo such that
 # it will be able to run the command without password
-
-sudo yabai --load-sa
+launchctl unload -F /System/Library/LaunchAgents/com.apple.WindowManager.plist
 yabai -m signal --add event=dock_did_restart action="sudo yabai --load-sa"
+sudo yabai --load-sa
 
 yabai -m space 1 --label misc 
 yabai -m space 2 --label terminal
@@ -17,12 +17,13 @@ yabai -m space 3 --label slack
 yabai -m space 4 --label browser-work
 yabai -m space 5 --label browser-private
 yabai -m space 6 --label six
-yabai -m space 9 --label nine
+yabai -m space 9 --label remote-desktop
 
 yabai -m rule --add app=Alacritty space=terminal
 yabai -m rule --add app=Slack space=slack
 yabai -m rule --add app=Brave space=browser-private
 yabai -m rule --add app=Brave title="Work$" space=browser-work
+yabai -m rule --add app="Microsoft Remote Desktop" title="niking-win.local" space=remote-desktop
 
 yabai -m signal --add event=display_removed action="sudo brew services restart yabai"
 yabai -m signal --add event=display_added action="sudo brew services restart yabai"
@@ -69,7 +70,6 @@ yabai -m config window_gap                   2
 yabai -m rule --add app="^System Preferences$" sticky=on layer=above manage=off
 yabai -m rule --add app="^Karabiner-Elements$" sticky=on layer=above manage=off
 yabai -m rule --add app="^Karabiner-EventViewer$" sticky=on layer=above manage=off
-yabai -m rule --add app="^Finder$" sticky=on layer=above manage=off
 yabai -m rule --add app="^Disk Utility$" sticky=on layer=above manage=off
 yabai -m rule --add app="^System Information$" sticky=on layer=above manage=off
 yabai -m rule --add app="^Activity Monitor$" sticky=on layer=above manage=off
