@@ -1,6 +1,6 @@
 return {
   'hrsh7th/nvim-cmp', -- Autocompletion plugin
-  dependencies = { 
+  dependencies = {
     'hrsh7th/cmp-nvim-lsp', -- LSP source for nvim-cmp
     'hrsh7th/cmp-buffer', -- Buffer source for nvim-cmp
     'hrsh7th/cmp-nvim-lua', --Neovim lua api

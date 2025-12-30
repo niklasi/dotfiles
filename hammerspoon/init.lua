@@ -40,24 +40,24 @@ KEY_CODE_TO_SIBLING_KEY_CODE = {
 }
 -- Global appWatcher to prevent gc
 appWatcher = hs.application.watcher
-    .new(function(appName, eventType, appInstance)
-      if eventType == hs.application.watcher.activated then
-        -- use english keyboard as default
-        hs.keycodes.setLayout(KEYBOARD_ENG)
-        if appName == 'Messages' then
+  .new(function(appName, eventType, appInstance)
+    if eventType == hs.application.watcher.activated then
+      -- use english keyboard as default
+      hs.keycodes.setLayout(KEYBOARD_ENG)
+      if appName == 'Messages' then
+        hs.keycodes.setLayout(KEYBOARD_SWE)
+      end
+      if appName == 'Slack' then
+        local title = appInstance:mainWindow():title()
+        if string.find(title, 'NWT') then
+          hs.keycodes.setLayout(KEYBOARD_ENG)
+        else
           hs.keycodes.setLayout(KEYBOARD_SWE)
         end
-        if appName == 'Slack' then
-          local title = appInstance:mainWindow():title()
-          if string.find(title, 'NWT') then
-            hs.keycodes.setLayout(KEYBOARD_ENG)
-          else
-            hs.keycodes.setLayout(KEYBOARD_SWE)
-          end
-        end
       end
-    end)
-    :start()
+    end
+  end)
+  :start()
 
 local hyper = { 'leftCmd', 'leftAlt', 'leftCtrl', 'leftShift' }
 -- local yabai = hs.execute('which yabai', true)
@@ -82,12 +82,12 @@ windowMapping['6'] = 'six'
 windowMapping['9'] = 'remote-desktop'
 
 hs.hotkey.bind(hyper, 'Left', function()
-  hs.execute(yabai .. ' -m window --space prev', false)
+  -- hs.execute(yabai .. ' -m window --space prev', false)
   hs.execute(yabai .. ' -m space --focus prev', false)
 end)
 
 hs.hotkey.bind(hyper, 'Right', function()
-  hs.execute(yabai .. ' -m window --space next', false)
+  -- hs.execute(yabai .. ' -m window --space next', false)
   hs.execute(yabai .. ' -m space --focus next', false)
 end)
 
