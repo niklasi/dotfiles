@@ -2,6 +2,7 @@
 export PATH=~/dotfiles/npm_global/node_modules/.bin:~/dotfiles/bin:~/.omnisharp:$PATH
 export BAT_THEME="Nord"
 export EDITOR=nvim
+export SSH_AUTH_SOCK=~/Library/Containers/com.bitwarden.desktop/Data/.bitwarden-ssh-agent.sock
 
 alias gi=git
 alias vim=nvim
