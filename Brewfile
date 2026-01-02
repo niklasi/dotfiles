@@ -31,3 +31,4 @@ cask "wezterm"
 cask "font-hack-nerd-font"
 cask "raycast"
 
+mas "Windows App", id: 1295203466
