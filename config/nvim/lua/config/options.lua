@@ -39,11 +39,18 @@ if vim.fn.has 'persistent_undo' == 1 then
   vim.opt.undofile = true
 end
 
+local yankGroup = vim.api.nvim_create_augroup('yankGroup', { clear = true })
+vim.api.nvim_create_autocmd('TextYankPost', {
+  group = yankGroup,
+  callback = function() vim.hl.on_yank() end,
+  desc = "Briefly highlight yanked text"
+})
+
 for k, v in pairs(options) do
   vim.opt[k] = v
 end
 
-if vim.fn.has 'windows' then
+if jit.os == 'Windows' then
   vim.opt.shell = 'powershell'
   vim.cmd 'set shellcmdflag=-command'
   vim.cmd 'set shellquote="'
