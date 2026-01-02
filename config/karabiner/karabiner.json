@@ -75,7 +75,7 @@
                             {
                                 "conditions": [
                                     {
-                                        "input_sources": [{ "input_source_id": "^com\\.apple\\.keylayout\\.ABC$" }],
+                                        "input_sources": [{ "input_source_id": "^com\\.apple\\.keylayout\\.US" }],
                                         "type": "input_source_if"
                                     }
                                 ],
@@ -83,13 +83,13 @@
                                     "key_code": "escape",
                                     "modifiers": { "mandatory": ["shift"] }
                                 },
-                                "to": [{ "select_input_source": { "input_source_id": "^com\\.apple\\.keylayout\\.Swedish-Pro$" } }],
+                                "to": [{ "select_input_source": { "input_source_id": "^com\\.apple\\.keylayout\\.Swedish" } }],
                                 "type": "basic"
                             },
                             {
                                 "conditions": [
                                     {
-                                        "input_sources": [{ "input_source_id": "^com\\.apple\\.keylayout\\.Swedish-Pro$" }],
+                                        "input_sources": [{ "input_source_id": "^com\\.apple\\.keylayout\\.Swedish" }],
                                         "type": "input_source_if"
                                     }
                                 ],
@@ -97,7 +97,7 @@
                                     "key_code": "escape",
                                     "modifiers": { "mandatory": ["shift"] }
                                 },
-                                "to": [{ "select_input_source": { "input_source_id": "^com\\.apple\\.keylayout\\.ABC$" } }],
+                                "to": [{ "select_input_source": { "input_source_id": "^com\\.apple\\.keylayout\\.US" } }],
                                 "type": "basic"
                             }
                         ]
