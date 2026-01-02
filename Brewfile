@@ -8,7 +8,7 @@ brew "git"
 brew "bat"
 # brew "fzf"
 # brew "ag"
-# brew "ripgrep"
+brew "ripgrep"
 brew "jq"
 brew "mas" # App store cli
 brew "tmux"
