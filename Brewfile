@@ -15,6 +15,7 @@ brew "tmux"
 brew "luajit", args: ["HEAD"] # This is only needed for nightly neovim (2/9/2021).
 brew "neovim", args: ["HEAD"]
 brew "fnm"
+brew "syncthing"
 # brew "bitwarden-cli"
 
 cask_args appdir: "/Applications"
