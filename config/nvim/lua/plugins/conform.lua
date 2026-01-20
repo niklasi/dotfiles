@@ -6,6 +6,10 @@ return {
       formatters_by_ft = {
         lua = { 'stylua' },
         go = { 'gofmt' },
+        javascript = { 'prettierd' },
+        javascriptreact = { 'prettierd' },
+        typescript = { 'prettierd' },
+        typescriptreact = { 'prettierd' },
         -- Use the "_" filetype to run formatters on filetypes that don't
         -- have other formatters configured.
         ['_'] = { 'trim_whitespace' },

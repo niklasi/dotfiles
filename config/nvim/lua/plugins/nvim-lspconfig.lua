@@ -125,9 +125,10 @@ return {
     local capabilities = vim.lsp.protocol.make_client_capabilities()
     capabilities = vim.tbl_deep_extend('force', capabilities, require('cmp_nvim_lsp').default_capabilities())
     -- vim.lsp.config('roslyn', {})
-    vim.lsp.enable 'roslyn'
-    vim.lsp.enable 'ts_ls'
+    -- vim.lsp.enable 'roslyn'
+    -- vim.lsp.enable 'ts_ls'
+    vim.lsp.enable 'vtsls'
     vim.lsp.enable 'lua_ls'
-    vim.lsp.enable 'gopls'
+    -- vim.lsp.enable 'gopls'
   end,
 }
